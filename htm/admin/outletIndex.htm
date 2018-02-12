@@ -1,0 +1,114 @@
+
+<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+<form method="POST" action="{VAR_FORM_ACTION}" name="formOutlet" id="formOutlet">
+	<fieldset>
+		<legend>{TEXT_LEGEND_OUTLETQUICKADD}</legend>
+		<div class="formElement">
+			<label for="outletName"> {TEXT_LABEL_NAME} </label>
+			<input type="text" name="outletName" id="outletName" value="{VAR_OUTLET_NAME}">
+		</div>
+		<div class="formElement">
+			<label for="outletAddress"> {TEXT_LABEL_ADDRESS} </label>
+			<textarea name="outletAddress" id="outletAddress">{VAR_OUTLET_ADDRESS}</textarea>
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="outletSubmit" value="{TEXT_BUTTON_SUBMIT}">
+		</div>
+	</fieldset>
+</form>
+
+<br />
+
+<form method="POST" action="{VAR_FORM_ACTION}" name="formAdd" id="formAdd" class="alignCenter">
+	<input type="submit" name="outletAddSubmit" value="{TEXT_BUTTON_OUTLETADD}">
+</form>
+
+<form method="POST" action="{VAR_FORM_ACTION}" name="formImport" id="formImport" class="alignCenter">
+	<input type="submit" name="outletImportSubmit" value="{TEXT_BUTTON_OUTLETIMPORT}">
+</form>
+
+<br />
+
+<form method="POST" action="{VAR_FORM_ACTION}" name="formSearch" id="formSearch">
+	<fieldset>
+		<legend>{TEXT_LEGEND_OUTLETSEARCH}</legend>
+		<div class="formElement">
+			<label for="searchName"> {TEXT_LABEL_NAME} </label>
+			<input type="text" name="searchName" id="searchName" value="{VAR_SEARCH_NAME}">
+		</div>
+		<div class="formElement">
+			<label for="searchAddress"> {TEXT_LABEL_ADDRESS} </label>
+			<input type="text" name="searchAddress" id="searchAddress" value="{VAR_SEARCH_ADDRESS}">
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="searchSubmit" value="{TEXT_BUTTON_SEARCH}">
+		</div>
+	</fieldset>
+</form>
+
+<br />
+
+<table class="border" id="list">
+	<tr>
+		<th class="border"> {TEXT_NO} </th>
+		<th class="border">
+			{TEXT_NAME}
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formSortName" id="formSortName" class="inline">
+				<input type="submit" name="sortNameSubmit" value="{TEXT_BUTTON_SORTNAME}">
+			</form>
+		</th>
+		<th class="border">
+			{TEXT_ADDRESS}
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formSortAddress" id="formSortAddress" class="inline">
+				<input type="submit" name="sortAddressSubmit" value="{TEXT_BUTTON_SORTADDRESS}">
+			</form>
+		</th>
+		<th class="border"> {TEXT_MASTEROUTLET} </th>
+<!--		<th class="border"> {TEXT_PHONE} </th>		
+		<th class="border"> {TEXT_FAX} </th> -->
+		<th class="border"> {TEXT_STATUS} </th>
+		<th class="border"> {TEXT_EDIT} </th>
+		<th class="border"> {TEXT_DELETE} </th>
+	</tr>
+	<!-- BEGIN outletListBlock -->
+	<tr>
+		<td class="borderAlignRight"> {VAR_LIST_NO} </td>
+		<td class="border"> {VAR_LIST_NAME} </td>
+		<td class="border"> {VAR_LIST_ADDRESS} </td>
+		<td class="border"> {VAR_LIST_MASTEROUTLET} </td>
+<!--		<td class="border"> {VAR_LIST_PHONE} </td>
+		<td class="border"> {VAR_LIST_FAX} </td> -->
+		<td class="border"> {VAR_LIST_STATUS} </td>
+		<td class="borderAlignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formEdit" id="formEdit">
+				<input type="hidden" name="editID" value="{VAR_LIST_ID}">
+				<input type="submit" name="editSubmit" value="{TEXT_BUTTON_EDIT}">
+			</form>
+		</td>
+		<td class="borderAlignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formDelete" id="formDelete">
+				<input type="hidden" name="deleteID" value="{VAR_LIST_ID}">
+				<input type="submit" name="deleteSubmit" value="{TEXT_BUTTON_DELETE}">
+			</form>
+		</td>
+	</tr>
+	<!-- END outletListBlock -->
+	<!-- BEGIN outletListEmptyBlock -->
+	<tr>
+		<td colspan="7" class="border"> {TEXT_LIST_EMPTY} </td>
+	</tr>
+	<!-- END outletListEmptyBlock -->
+	<tr>
+		<td class="alignLeft">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formPrevious" id="formPrevious">
+				<input type="submit" name="previousSubmit" value="{TEXT_BUTTON_PREVIOUS}">
+			</form>
+		</td>
+		<td colspan="5"> &nbsp; </td>
+		<td class="alignRight">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formNext" id="formNext">
+				<input type="submit" name="nextSubmit" value="{TEXT_BUTTON_NEXT}">
+			</form>
+		</td>
+	</tr>
+</table>

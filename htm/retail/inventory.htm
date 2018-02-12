@@ -1,0 +1,49 @@
+
+		<div class="page-header">
+		  <h1>{VAR_PAGENAME} <small>{VAR_PAGEOUTLETNAME}</small></h1>
+		</div>
+<div style="clear:both"></div>
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;"> Date : {VAR_TODAYDATE} </td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> Barang </td>
+		<td> Jumlah </td>
+<!--		<td> Pembelian </td>
+		<td> Transfer Masuk </td>
+		<td> Transfer Masuk sudah diverifikasi </td>
+		<td> Transfer Masuk belum diverifikasi </td>
+		<td> Penjualan </td>
+		<td> Transfer Keluar </td>
+		<td> Transfer Keluar sudah diverifikasi </td>
+		<td> Transfer Keluar belum diverifikasi </td> -->
+	</tr>
+	<!-- BEGIN inventoryListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_PRODUCTNAME} </td>
+		<td> {VAR_QUANTITY} </td>
+<!--		<td> {VAR_QTY_PURCHASE} </td>
+		<td> {VAR_QTY_TRF_IN} </td>
+		<td> {VAR_QTY_TRF_IN_VERIFIED} </td>
+		<td style="color:red;"> {VAR_QTY_TRF_IN_NOTVERIFIED} </td>
+		<td> {VAR_QTY_SALES} </td>
+		<td> {VAR_QTY_TRF_OUT} </td>
+		<td> {VAR_QTY_TRF_OUT_VERIFIED} </td>
+		<td> {VAR_QTY_TRF_OUT_NOTVERIFIED} </td> -->
+	</tr>
+	<!-- END inventoryListBlock -->
+</table>
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td> <form><input type="submit" value="Cetak" onClick="window.open('retail/inventoryPrint.php');"></input></form> </td>
+	</tr>
+</table>

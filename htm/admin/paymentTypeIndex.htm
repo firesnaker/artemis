@@ -1,0 +1,87 @@
+
+<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+<form method="POST" action="{VAR_FORM_ACTION}" name="formPaymentType" id="formPaymentType">
+	<fieldset>
+		<legend>{TEXT_LEGEND_PAYMENTTYPEQUICKADD}</legend>
+		<div class="formElement">
+			<label for="paymentTypeName"> {TEXT_LABEL_NAME} </label>
+			<input type="text" name="paymentTypeName" id="paymentTypeName" value="{VAR_PAYMENTTYPE_NAME}">
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="paymentTypeSubmit" value="{TEXT_BUTTON_SUBMIT}">
+		</div>
+	</fieldset>
+</form>
+
+<br />
+
+<form method="POST" action="{VAR_FORM_ACTION}" name="formAdd" id="formAdd" class="alignCenter">
+	<input type="submit" name="paymentTypeAddSubmit" value="{TEXT_BUTTON_PAYMENTTYPEADD}">
+</form>
+
+<br />
+
+<form method="POST" action="{VAR_FORM_ACTION}" name="formSearch" id="formSearch">
+	<fieldset>
+		<legend>{TEXT_LEGEND_PAYMENTTYPESEARCH}</legend>
+		<div class="formElement">
+			<label for="searchName"> {TEXT_LABEL_NAME} </label>
+			<input type="text" name="searchName" id="searchName" value="{VAR_SEARCH_NAME}">
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="searchSubmit" value="{TEXT_BUTTON_SEARCH}">
+		</div>
+	</fieldset>
+</form>
+
+<br />
+
+<table class="border" id="list">
+	<tr>
+		<th class="border"> {TEXT_NO} </th>
+		<th class="border">
+			{TEXT_NAME}
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formSortName" id="formSortName" class="inline">
+				<input type="submit" name="sortNameSubmit" value="{TEXT_BUTTON_SORTNAME}">
+			</form>
+		</th>
+		<th class="border"> {TEXT_EDIT} </th>
+		<th class="border"> {TEXT_DELETE} </th>
+	</tr>
+	<!-- BEGIN paymentTypeListBlock -->
+	<tr>
+		<td class="borderAlignRight"> {VAR_LIST_NO} </td>
+		<td class="border"> {VAR_LIST_NAME} </td>
+		<td class="borderAlignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formEdit" id="formEdit">
+				<input type="hidden" name="editID" value="{VAR_LIST_ID}">
+				<input type="submit" name="editSubmit" value="{TEXT_BUTTON_EDIT}">
+			</form>
+		</td>
+		<td class="borderAlignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formDelete" id="formDelete">
+				<input type="hidden" name="deleteID" value="{VAR_LIST_ID}">
+				<input type="submit" name="deleteSubmit" value="{TEXT_BUTTON_DELETE}">
+			</form>
+		</td>
+	</tr>
+	<!-- END paymentTypeListBlock -->
+	<!-- BEGIN paymentTypeListEmptyBlock -->
+	<tr>
+		<td colspan="4" class="border"> {TEXT_LIST_EMPTY} </td>
+	</tr>
+	<!-- END paymentTypeListEmptyBlock -->
+	<tr>
+		<td class="alignLeft">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formPrevious" id="formPrevious">
+				<input type="submit" name="previousSubmit" value="{TEXT_BUTTON_PREVIOUS}">
+			</form>
+		</td>
+		<td colspan="4"> &nbsp; </td>
+		<td class="alignRight">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formNext" id="formNext">
+				<input type="submit" name="nextSubmit" value="{TEXT_BUTTON_NEXT}">
+			</form>
+		</td>
+	</tr>
+</table>

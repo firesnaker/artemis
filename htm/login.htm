@@ -1,0 +1,13 @@
+<div class="login_form">
+	<h2 class="text-center"><strong>{VAR_PAGENAME}</strong></h2>
+	<form class="form-horizontal" role="form" method="POST" action="{VAR_FORM_ACTION}" name="formLogin" id="formLogin">
+		<div class="form-group text-center">
+			<input type="text" class="form-control" name="loginName" id="loginName" placeholder="Username" required autofocus>
+			<br />
+			<input type="password" class="form-control" name="loginPassword" id="loginPassword" placeholder="Password" required>
+			<br />
+			<button type="submit" name="loginSubmit" class="btn btn-default btn-lg btn-primary">{TEXT_BUTTON_SUBMIT}</button>
+		</div>
+	</form>
+	<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+</div>

@@ -1,0 +1,53 @@
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:50%;"> <span style="font-weight:bold"> {VAR_OUTLETNAME} </span> </td>
+			<td style="text-align:right;">
+				Date : {VAR_DEPOSITDATE} <br />
+			</td>
+		</tr>
+	</table>
+	<div style="border: thin solid black;text-align:justify;">
+		<p style="text-align:center;font-weight:bold;"> EDIT SETORAN BANK </p>
+		<form name="depositForm" id="depositForm" method="POST" action="{VAR_ACTIONURL}">
+			<input type='hidden' name='reportOutlet' value='{VAR_LISTOUTLET}' />
+			<input type='hidden' name='beginYear' value='{VAR_LISTBEGINYEAR}' />
+			<input type='hidden' name='beginMonth' value='{VAR_LISTBEGINMONTH}' />
+			<input type='hidden' name='beginDay' value='{VAR_LISTBEGINDAY}' />
+			<input type='hidden' name='endYear' value='{VAR_LISTENDYEAR}' />
+			<input type='hidden' name='endMonth' value='{VAR_LISTENDMONTH}' />
+			<input type='hidden' name='endDay' value='{VAR_LISTENDDAY}' />
+			<input type="hidden" name="deposit_day" id="deposit_day" value="{VAR_DEPOSITDAY}" />
+			<input type="hidden" name="deposit_month" id="deposit_month" value="{VAR_DEPOSITMONTH}" />
+			<input type="hidden" name="deposit_year" id="deposit_year" value="{VAR_DEPOSITYEAR}" />
+			<input type="hidden" name="outlet_ID" id="outlet_ID" value="{VAR_OUTLETID}" />
+			<input type="hidden" name="deposit_ID" id="deposit_ID" value="{VAR_DEPOSITID}" />
+			<input type="hidden" name="deposit_Edit_Date" id="deposit_Edit_Date" value="{VAR_DEPOSITEDITDATE}" />
+			<label for="deposit_bank">Bank</label>
+			<select name="deposit_bank" id="deposit_bank">
+				<!-- BEGIN bankListBlock -->
+				<option value='{VAR_BANKID}' {VAR_BANKSELECTED}>{VAR_BANKNAME}</option>
+				<!-- END bankListBlock -->
+			</select>
+			<br />
+			<label for="deposit_notes">Notes</label><input type="text" name="deposit_notes" id="deposit_notes" value="{VAR_DEPOSITNOTES}" /> <br />
+			<label for="deposit_price">Nominal Setoran</label><input type="text" name="deposit_price" id="deposit_price" value="{VAR_DEPOSITPRICE}" /> <br />
+			<label for="deposit_FinanceNotes">Finance Notes</label><input type="text" name="deposit_financeNotes" id="deposit_financeNotes" value="{VAR_DEPOSITFINANCENOTES}" /> <br />
+			<label for="deposit_status">Status</label><input type="checkbox" name="deposit_status" id="deposit_status" value="1" {VAR_DEPOSITSTATUS} /> Verified <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="depositSubmit" id="depositSubmit" value="Save" />
+		</form>
+	</div>
+	
+	<div>
+		<form method='POST' action='{VAR_BACKTOLISTURL}'>
+			<input type='hidden' name='reportOutlet' value='{VAR_LISTOUTLET}' />
+			<input type='hidden' name='beginYear' value='{VAR_LISTBEGINYEAR}' />
+			<input type='hidden' name='beginMonth' value='{VAR_LISTBEGINMONTH}' />
+			<input type='hidden' name='beginDay' value='{VAR_LISTBEGINDAY}' />
+			<input type='hidden' name='endYear' value='{VAR_LISTENDYEAR}' />
+			<input type='hidden' name='endMonth' value='{VAR_LISTENDMONTH}' />
+			<input type='hidden' name='endDay' value='{VAR_LISTENDDAY}' />
+
+			<input type="submit" value="BACK TO LIST" />
+		</form>
+	</div>

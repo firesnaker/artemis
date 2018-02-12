@@ -1,0 +1,204 @@
+
+<script type="text/javascript">
+
+	function updatePrice()
+	{
+		//selected value is
+		iProductID = document.getElementById("product").value;
+		document.getElementById("price").value = document.getElementById("productPrice_" + iProductID).value;
+	}
+
+	function disableNonSaveElement()
+	{
+		var formEdit = document.getElementById('salesDetailEditForm');
+
+		formEdit.disabled = "1";
+
+		salesDetailChangeState();
+	}
+</script>
+
+<form name="salesMasterForm" id="salesMasterForm" method="POST" action="{VAR_PAGEURL}">
+	<input type="hidden" name="outlet_ID" id="outlet_ID" value="{VAR_OUTLETID}" />
+	<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+	<input type="hidden" name="salesEditSubmit" id="salesEditSubmit" value="Submit"></input>
+	<input type="hidden" name="salesEditID" id="salesEditID" value="{VAR_SALESID}"></input>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:50%;"> <span style="font-weight:bold"> {VAR_OUTLETNAME} </span> </td>
+			<td style="text-align:right;">
+				Date : {VAR_SALESDATE}
+				<br />
+				<select name="sales_dateDay" id="sales_dateDay" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN dateDay -->
+					<option value="{VAR_DATEDAYVALUE}" {VAR_DATEDAYSELECTED}>{VAR_DATEDAYVALUE}</option>
+				<!-- END dateDay -->
+				</select>
+				<select name="sales_dateMonth" id="sales_dateMonth" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN dateMonth -->
+					<option value="{VAR_DATEMONTHVALUE}" {VAR_DATEMONTHSELECTED}>{VAR_DATEMONTHTEXT}</option>
+				<!-- END dateMonth -->
+				</select>
+				<select name="sales_dateYear" id="sales_dateYear" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN dateYear -->
+					<option value="{VAR_DATEYEARVALUE}" {VAR_DATEYEARSELECTED}>{VAR_DATEYEARVALUE}</option>
+				<!-- END dateYear -->
+				</select>
+				<br />
+				Note: <input style="text-align:right;" type="text" name="sales_notes" id="sales_notes" value="{VAR_SALESNOTES}" {VAR_ELEMENTDISABLED} />
+				<br />
+				Sales:
+				<select name="employee_ID" id="employee_ID" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN employeeBlock -->
+					<option value="{VAR_EMPLOYEEID}" {VAR_EMPLOYEESELECTED}> {VAR_EMPLOYEENAME} </option>
+				<!-- END employeeBlock -->
+				</select>
+				<br />
+				Client:
+				<select name="client_ID" id="client_ID" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN clientBlock -->
+					<option value="{VAR_CLIENTID}" {VAR_CLIENTSELECTED}> {VAR_CLIENTNAME} </option>
+				<!-- END clientBlock -->
+				</select>
+				<br />
+				Pembayaran:
+				<select name="paymentType_ID" id="paymentType_ID" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN paymentTypeBlock -->
+					<option value="{VAR_PAYMENTTYPEID}" {VAR_PAYMENTTYPESELECTED}> {VAR_PAYMENTTYPENAME} </option>
+				<!-- END paymentTypeBlock -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align:right;">
+				<input type="submit" name="salesSave" id="salesSave" value="Save" {VAR_ELEMENTDISABLED} />
+</form>
+			</td>
+		</tr>
+	</table>
+
+	<table id="myTable" style="width:100%;border: thin solid black;">
+		<tr>
+			<td> No. </td>
+			<td> Barang </td>
+			<td> Jumlah </td>
+			<td> Harga satuan (Sebelum Diskon) </td>
+			<td> Diskon (%)</td>
+			<td> Subtotal </td>
+			<td> Edit </td>
+		</tr>
+
+		<!-- BEGIN salesDetailRow -->
+		<tr>
+			<td>
+				{VAR_COUNTER}
+			</td>
+			<td>
+				{VAR_PRODUCTNAME}
+			</td>
+			<td>
+				{VAR_QUANTITY}
+			</td>
+			<td>
+				{VAR_PRICE}
+			</td>
+			<td>
+				{VAR_DISCOUNT}
+			</td>
+			<td style="text-align:right;"> <span id="subtotal"> {VAR_SUBTOTAL} </span> </td>
+			<td style="text-align:right;">
+				<form name="salesDetailEditForm" id="salesDetailEditForm" method="POST" action="{VAR_PAGEURL}">
+					<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+					<input type="hidden" name="salesDetail_ID" id="salesDetail_ID" value="{VAR_SALESDETAILID}" />
+					<input type="hidden" name="salesEditSubmit" id="salesEditSubmit" value="Submit"></input>
+					<input type="hidden" name="salesEditID" id="salesEditID" value="{VAR_SALESID}"></input>
+					<input type="submit" name="salesDetailEdit" id="salesDetailEdit" value="EDIT" {VAR_ELEMENTDISABLED} />
+				</form>
+			</td>
+		</tr>
+		<!-- END salesDetailRow -->
+
+		<tr>
+			<td colspan="5" style="text-align:right;"> GRANDTOTAL</td>
+			<td style="text-align:right;"> {VAR_GRANDTOTAL}</td>
+			<td style="text-align:right;"> &nbsp;</td>
+		</tr>
+	</table>
+
+<div style="border: thin solid black;padding: 5px;">
+	<form name="salesDetailInput" id="salesDetailInput" method="POST" action="{VAR_PAGEURL}">
+		<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+		<input type="hidden" name="salesDetail_ID" id="salesDetail_ID" value="{VAR_EDIT_SALESDETAILID}" />
+		<input type="hidden" name="salesEditSubmit" id="salesEditSubmit" value="Submit"></input>
+		<input type="hidden" name="salesEditID" id="salesEditID" value="{VAR_SALESID}"></input>
+		<label>Tipe Barang</label>
+		<select name="product" id="product" onChange="javascript:updatePrice();" {VAR_ELEMENTDISABLED}>
+			<!-- BEGIN productListBlock -->
+			<option value="{VAR_PRODUCTID}" {VAR_EDIT_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->
+		</select>
+		<br />
+		<label>Jumlah</label>
+		<input type="text" name="quantity" id="quantity" value="{VAR_EDIT_QUANTITY}" {VAR_ELEMENTDISABLED} />
+		<br />
+		<label>Harga Satuan</label>
+		<input type="text" name="price" id="price" value="{VAR_EDIT_PRICE}" {VAR_ELEMENTDISABLED} />
+		<br />
+		<label>Diskon</label>
+		<input type="text" name="discount" id="discount" value="{VAR_EDIT_DISCOUNT}" {VAR_ELEMENTDISABLED} />
+		<br />
+		<label>Serial Number</label>
+		<input type="text" name="sn_start" id="sn_start" value="{VAR_SNSTART}"></input>
+		<input type="text" name="sn_end" id="sn_end" value="{VAR_SNEND}"></input>
+		<br />
+		<label>&nbsp;</label>
+		<input type="submit" name="salesDetail_Save" id="salesDetail_Save" value="Save" {VAR_ELEMENTDISABLED} />
+		<!-- BEGIN productListPriceBlock -->
+			<input type="hidden" id="productPrice_{VAR_PRODUCTID}" name="productPrice_{VAR_PRODUCTID}" value="{VAR_PRODUCTPRICE}" />
+		<!-- END productListPriceBlock -->
+	</form>
+</div>
+
+<script type="text/javascript" >
+	function salesDetailChangeState() 
+	{
+		//check if transferOutID is empty, if empty then disable
+		var frmDetail = document.getElementById('salesDetailInput');
+		for (var i = 0; i < frmDetail.elements.length; i++)
+		{
+			frmDetail.elements[i].disabled = true;
+		}
+	}
+
+	function salesDetailInitialState() 
+	{
+		var stateValue = true;
+
+		var frmSales = document.getElementById('salesMasterForm');
+		var frmDetail = document.getElementById('salesDetailInput');
+
+		if ( frmSales.sales_ID.value > 0 )
+		{
+			stateValue = false;
+		}
+
+		for (var i = 0; i < frmDetail.elements.length; i++)
+		{
+			frmDetail.elements[i].disabled = stateValue;
+		}
+
+		// if salesdetail_ID in salesDetailInput is not empty, this is an edit:
+		// disable salesMasterForm
+		if (frmDetail.salesDetail_ID.value > 0 )
+		{
+			for (var i = 0; i < frmSales.elements.length; i++)
+			{
+				frmSales.elements[i].disabled = true;
+			}
+		}
+
+	}
+
+	salesDetailInitialState();
+</script>

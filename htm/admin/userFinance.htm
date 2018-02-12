@@ -1,0 +1,31 @@
+
+
+<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+<form method="POST" action="{VAR_FORM_ACTION}" name="formProfile" id="formProfile">
+	<fieldset>
+		<legend>{TEXT_LEGEND_PROFILE}</legend>
+		<div class="formElement">
+			<label for="profileName"> {TEXT_LABEL_NAME} </label>
+			<input type="text" name="profileName" id="profileName" value="{VAR_USER_NAME}" disabled="1">
+		</div>
+		<div class="formElement">
+			<label for="profileUserame"> {TEXT_LABEL_USERNAME} </label>
+			<input type="text" name="profileUsername" id="profileUsername" value="{VAR_USER_USERNAME}" disabled="1">
+		</div>
+		<div class="formElement">
+			<label for="profileNewPassword"> {TEXT_LABEL_NEWPASSWORD} </label>
+			<input type="password" name="profileNewPassword" id="profileNewPassword" value="">
+		</div>
+		<div class="formElement">
+			<label for="profileConfirmNewPassword"> {TEXT_LABEL_CONFIRMNEWPASSWORD} </label>
+			<input type="password" name="profileConfirmNewPassword" id="profileConfirmNewPassword" value="">
+		</div>
+		<div class="formElement">
+			<label for="profilePassword"> {TEXT_LABEL_PASSWORD} </label>
+			<input type="password" name="profilePassword" id="profilePassword" value="">
+		</div>
+		<div  class="formElement" id="submitButton">
+			<input type="submit" name="profileSubmit" value="{TEXT_BUTTON_SUBMIT}">
+		</div>
+	</fieldset>
+</form>

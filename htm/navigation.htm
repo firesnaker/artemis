@@ -1,0 +1,544 @@
+<!-- BEGIN navigation_top -->
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="index.php">Home</a>
+		    </div>
+		
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav" id="top_nav">
+		        <li><a href="product.php">Produk</a></li>
+		        <li class="divider"></li>
+		        <li><a href="drivers.php">Driver</a></li>
+		        <li class="divider"></li>
+		        <li><a href="settings.php">Setting</a></li>
+		        <li class="divider"></li>
+		        <li><a href="outlet.php">Outlet</a></li>
+		        <li class="divider"></li>
+		        <li><a href="contactUs.php">Hubungi Kami</a></li>
+		        <li class="divider"></li>
+		        <li><a href="faq.php">FAQ</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+	</div>
+	<div class="col-md-2"></div>
+</div>
+<!-- END navigation_top -->
+
+<!-- BEGIN language -->
+<!-- END language -->
+
+<!-- BEGIN navigation_left -->
+
+<ul class="nav nav-pills nav-stacked">
+	<li class="bg-primary text-center nav_left_header">PRODUCTS</li>
+	<li class="divider">&nbsp;</li>
+	<!-- BEGIN productCategoryBlock -->
+	<li class="nav_left_padding">
+		<span class="glyphicon glyphicon-arrow-right">
+			<a href="product.php/{VAR_NAVIGATION_CATEGORYNAME_LINK}">{VAR_NAVIGATION_CATEGORYNAME}</a>
+		</span>
+	</li>
+<!-- END productCategoryBlock -->
+	<li class="bg-primary">&nbsp;</li>
+</ul>
+
+<!-- END navigation_left -->
+
+<!-- BEGIN navigation_top_admin -->
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand with_tooltip" href="admin/dashboard.php" title="Dashboard"><i class="fa fa-home fa-lg"></i> Admin</a>
+		</div>
+	
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav" id="top_nav">
+				<li>
+					<a href="admin/product.php" class="with_tooltip" title="Product Management">
+						<i class="fa fa-mobile fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="admin/outlet.php" class="with_tooltip" title="Outlet Management">
+						<i class="fa fa-building fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="admin/employeeIndex.php" class="with_tooltip" title="Employee Management">
+						<i class="fa fa-user fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="admin/clientIndex.php" class="with_tooltip" title="Client / Buyer">
+						<i class="fa fa-male fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="admin/supplier.php" class="with_tooltip" title="Supplier">
+						<i class="fa fa-child fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="admin/bank.php" class="with_tooltip" title="Bank">
+						<i class="fa fa-bank fa-lg"></i>
+					</a>
+				</li>
+				
+				<li>
+					<a href="admin/paymentTypeIndex.php" class="with_tooltip" title="Payment Type">
+						<i class="fa fa-money fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="admin/expensesCategory.php" class="with_tooltip" title="Expenses Category">
+						<i class="fa fa-upload fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="admin/news.php" class="with_tooltip" title="News Update">
+						<i class="fa fa-bullhorn fa-lg"></i>
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle with_tooltip" data-toggle="dropdown" title="User Management"> <i class="fa fa-users fa-lg"></i> <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<a href="admin/user.php">
+								<i class="fa fa-users fa-lg"></i> User Login For Outlet
+							</a>
+						</li>
+						<li>
+							<a href="admin/userFinance.php">
+								<i class="fa fa-users fa-lg"></i> User Finance
+							</a>
+						</li>
+						<li>
+							<a href="admin/userAudit.php">
+								<i class="fa fa-users fa-lg"></i> User Audit
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="admin/invoice_numbering.php" class="with_tooltip" title="Invoice Numbering">
+						<i class="fa fa-qrcode fa-lg"></i>
+					</a>
+				</li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{VAR_USERLOGGEDIN} <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<a href="admin/profile.php">
+								<i class="fa fa-user"></i> Edit Profile
+							</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="admin/index.php">
+								<i class="fa fa-power-off"></i> Logout
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+<!-- END navigation_top_admin -->
+
+<!-- BEGIN navigation_top_audit -->
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand with_tooltip" href="audit/dashboard.php" title="Dashboard"><i class="fa fa-home fa-lg"></i> Audit</a>
+		</div>
+	
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav" id="top_nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-archive fa-lg"></i> Data <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="audit/purchase.php">Pembelian</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Penjualan <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="audit/sales.php">Data Penjualan</a></li>
+						<li><a href="audit/sales_order.php">Pesanan Penjualan</a></li>
+						<li><a href="audit/reportSalesSerialNumber.php">SN Penjualan</a></li>
+					</ul>
+				</li>
+				<li><a href="audit/transfer.php">Transfer</a></li>
+				<li><a href="audit/expenses.php">Biaya</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Setoran <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="audit/deposit.php">Setoran Kas</a></li>
+						<li><a href="audit/depositBank.php">Setoran Bank</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Laporan <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="audit/inventory.php">Stok</a></li>
+						<li><a href="audit/profitloss.php">Laba Rugi</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Hutang <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="audit/accountPayable.php">Hutang</a></li>
+						<li><a href="audit/accountReceivable.php">Piutang</a></li>
+						<li><a href="audit/accountReceivable-mkios.php">Piutang MKios</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="audit/index.php">
+					<i class="fa fa-power-off"></i> Logout
+				</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+<!-- END navigation_top_audit -->
+
+<!-- BEGIN navigation_top_finance -->
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand with_tooltip" href="finance/dashboard.php" title="Dashboard"><i class="fa fa-home fa-lg"></i> Finance</a>
+		</div>
+	
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav" id="top_nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-archive fa-lg"></i> Data <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="finance/purchase.php">Pembelian</a></li>
+					</ul>
+				</li>
+
+				<li><a href="finance/sales_order.php">Pesanan Penjualan</a></li>
+				<li><a href="finance/sales.php">Penjualan</a></li>
+				<li><a href="finance/deposit.php">Setoran Kas</a></li>
+				<li><a href="finance/depositBank.php">Setoran Bank</a></li>
+				<li><a href="finance/expenses.php">Biaya</a></li>
+				
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="finance/index.php">
+					<i class="fa fa-power-off"></i> Logout
+				</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+<!-- END navigation_top_finance -->
+
+<!-- BEGIN navigation_top_master -->
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand with_tooltip" href="master/dashboard.php" title="Dashboard"><i class="fa fa-home fa-lg"></i> Master</a>
+		</div>
+	
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav" id="top_nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-archive fa-lg"></i> Data <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="master/purchase.php">Pembelian</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Laporan <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="master/accountPayable.php">Laporan Hutang</a></li>
+						<li><a href="master/accountReceivable.php">Laporan Piutang</a></li>
+						<li><a href="master/accountReceivable-mkios.php">Laporan Piutang MKios</a></li>
+						<li><a href="master/salesCash.php">Laporan Kas</a></li>
+						<li><a href="master/inventory.php">Laporan Stok</a></li>
+						<li><a href="master/profitloss-mkios.php">Laporan Laba Rugi MKios</a></li>
+						<li><a href="master/profitloss.php">Laporan Laba Rugi</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle with_tooltip" data-toggle="dropdown" title="Reports" > <i class="fa fa-cubes fa-lg"></i> <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportInventoryGlobal.php"> Report Inventory Global</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportPurchase.php"> Report Purchase</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportSales.php"> Report Sales</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportSalesOrder.php"> Report Pesanan Penjualan</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportSalesDaily.php"> Report Sales Daily Cash Summary</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportDeposit.php"> Report Setoran_Kas</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportDepositBank.php"> Report Setoran_Bank</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportExpenses.php"> Report Biaya</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportTransfer.php"> Report Transfer</a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportInventory.php"> Report Inventory </a>
+							</span>
+						</li>
+						<li class="nav_left_padding">
+							<span class="glyphicon glyphicon-arrow-right">
+								<a href="master/reportSalesSerialNumber.php"> Report SN Terjual </a>
+							</span>
+						</li>
+					</ul>
+				</li>
+				<li><a href="master/mkiosPrice.php">MKios Price</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="master/index.php">
+					<i class="fa fa-power-off"></i> Logout
+				</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+<!-- END navigation_top_master -->
+
+<!-- BEGIN navigation_top_mkios -->
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand with_tooltip" href="mkios/dashboard.php" title="Dashboard"><i class="fa fa-home fa-lg"></i> MKIOS</a>
+		</div>
+	
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav" id="top_nav">
+				<li><a href="mkios/purchase.php">Pembelian</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Import <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="mkios/import.php">Import</a></li>
+						<li><a href="mkios/importPurchase.php">Import Pembelian</a></li>
+					</ul>
+				</li>
+				<li><a href="mkios/sales.php">Penjualan</a></li>
+				<li><a href="mkios/salesTotal.php">Penjualan Total</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Setoran <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="mkios/deposit.php">Setoran Kas</a></li>
+						<li><a href="mkios/bank.php">Setoran Bank</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Laporan <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="mkios/accountReceivable.php">Laporan Piutang</a></li>
+						<li><a href="mkios/reportCustomer.php">Laporan Bulanan Customer</a></li>
+						<li><a href="mkios/reportDeposit.php">Laporan Setoran Kas</a></li>
+						<li><a href="mkios/reportDepositBank.php">Laporan Setoran Bank</a></li>
+					</ul>
+				</li>
+				<li><a href="mkios/inventory.php">Stok</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="mkios/index.php">
+					<i class="fa fa-power-off"></i> Logout
+				</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+<!-- END navigation_top_mkios -->
+
+<!-- BEGIN navigation_top_retail -->
+		
+		 	<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand with_tooltip" href="retail/dashboard.php" title="Dashboard"><i class="fa fa-home fa-lg"></i> Retail</a>
+				</div>
+		
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav" id="top_nav">
+						<!-- BEGIN purchaseLinkNav_block -->
+						<li>
+							<a href="retail/purchase.php" class="with_tooltip" title="Pembelian">
+								<i class="fa fa-download fa-lg"></i>
+							</a>
+						</li>
+						<!-- END purchaseLinkNav_block -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle with_tooltip" data-toggle="dropdown" title="Penjualan"> <i class="fa fa-upload fa-lg"></i> <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a href="retail/sales.php">
+										<i class="fa fa-upload fa-lg"></i> Penjualan
+									</a>
+								</li>
+								<li>
+									<a href="retail/sales_order.php">
+										<i class="fa fa-cloud-upload fa-lg"></i> Pesanan Penjualan
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="retail/transferView.php" class="with_tooltip" title="Transfer">
+								<i class="fa fa-exchange fa-lg"></i>
+							</a>
+						</li>
+						<li>
+							<a href="retail/expenses.php" class="with_tooltip" title="Biaya">
+								<i class="fa fa-pencil-square-o fa-lg"></i>
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle with_tooltip" data-toggle="dropdown" title="Setoran"> <i class="fa fa-money fa-lg"></i> <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a href="retail/deposit.php">
+										<i class="fa fa-money fa-lg"></i> Setoran Kas
+									</a>
+								</li>
+								<li>
+									<a href="retail/bank.php">
+										<i class="fa fa-bank fa-lg"></i> Setoran Bank
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle with_tooltip" data-toggle="dropdown" title="Laporan"> <i class="fa fa-file-text-o fa-lg"></i> <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<!-- BEGIN purchaseReportNav_block -->
+								<li>
+									<a href="retail/reportPurchase.php">
+										<i class="fa fa-file-text-o fa-lg"></i> Laporan Pembelian
+									</a>
+								</li>
+								<!-- END purchaseReportNav_block -->
+								<li>
+									<a href="retail/reportDaily.php">
+										<i class="fa fa-file-text-o fa-lg"></i> Laporan Harian
+									</a>
+								</li>
+								<li>
+									<a href="retail/inventory.php">
+										<i class="fa fa-file-text-o fa-lg"></i> Laporan Stok
+									</a>
+								</li>
+								<li>
+									<a href="retail/finance.php">
+										<i class="fa fa-file-text-o fa-lg"></i> Laporan Finance
+									</a>
+								</li>
+								<li>
+									<a href="retail/reportSalesSerialNumber.php">
+										<i class="fa fa-file-text-o fa-lg"></i> Laporan SN Penjualan
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{VAR_OUTLETNAME} <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a href="retail/index.php">
+										<i class="fa fa-power-off"></i> Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+
+<!-- END navigation_top_retail -->

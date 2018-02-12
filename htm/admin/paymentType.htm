@@ -1,0 +1,51 @@
+
+<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+<form enctype="multipart/form-data" method="POST" action="{VAR_FORM_ACTION}" name="formPaymentType" id="formPaymentType">
+	<fieldset>
+		<legend>{TEXT_LEGEND_PAYMENTTYPE}</legend>
+		<div class="formElement">
+			<input type="hidden" name="paymentTypeID" id="paymentTypeID" value="{VAR_PAYMENTTYPE_ID}">
+		</div>
+
+		<div class="formElement">
+			<label for="paymentTypeName"> {TEXT_LABEL_NAME} </label>
+			<input type="text" name="paymentTypeName" id="paymentTypeName" value="{VAR_PAYMENTTYPE_NAME}">
+		</div>
+
+		<div class="formElement">
+			<label for="paymentTypeIsCash"> {TEXT_LABEL_ISCASH} </label>
+			<input type="checkbox" name="paymentTypeIsCash" id="paymentTypeIsCash" value="1" {VAR_PAYMENTTYPE_ISCASH} />
+		</div>
+<br />
+		<div class="formElement">
+			<label for="paymentTypePLNoCount"> {TEXT_LABEL_PLNOCOUNT} </label>
+			<input type="checkbox" name="paymentTypePLNoCount" id="paymentTypePLNoCount" value="1" {VAR_PAYMENTTYPE_PLNOCOUNT} />
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="paymentTypeSubmit" value="{TEXT_BUTTON_SUBMIT}">
+		</div>
+	</fieldset>
+</form>
+
+<br />
+
+<table id="list">
+	<tr>
+		<!--<td class="alignLeft">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formPrevious" id="formPrevious">
+				<input type="submit" name="previousSubmit" value="{TEXT_BUTTON_PREVIOUS}">
+			</form>
+		</td>-->
+		<td class="alignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formDelete" id="formDelete">
+				<input type="hidden" name="deleteID" id="deleteID" value="{VAR_PAYMENTTYPE_ID}">
+				<input type="submit" name="deleteSubmit" value="{TEXT_BUTTON_DELETE}">
+			</form>
+		</td>
+		<!--<td class="alignRight">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formNext" id="formNext">
+				<input type="submit" name="nextSubmit" value="{TEXT_BUTTON_NEXT}">
+			</form>
+		</td>-->
+	</tr>
+</table>

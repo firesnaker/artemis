@@ -1,0 +1,77 @@
+
+<form id="purchaseForm" name="purchaseForm" method="POST" action="{VAR_ACTIONURL}" style="text-align:right;">
+	<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}"></input>
+	<input type="hidden" name="outlet_ID" id="outlet_ID" value="{VAR_OUTLETID}" />
+	<input type="hidden" name="purchase_ID" id="purchase_ID" value="{VAR_PURCHASEID}"/>
+	<input type="hidden" name="editPurchaseID" id="editPurchaseID" value="{VAR_PURCHASEID}"/>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:50%;"> <span style="font-weight:bold"> {VAR_OUTLETNAME} </span> </td>
+			<td style="text-align:right;">
+				Date : {VAR_PURCHASEDATEHUMAN}
+				<input type="hidden" name="purchase_date" id="purchase_date" value="{VAR_PURCHASEDATE}" />
+				<br />
+				Note: <input type="text" name="purchase_notes" id="purchase_notes" value="{VAR_PURCHASENOTES}" {VAR_ELEMENTDISABLED} />
+			</td>
+		</tr>
+	</table>
+	<input type="submit" name="purchaseSave" id="purchaseSave" value="Save" {VAR_ELEMENTDISABLED} />
+</form>
+
+	<table id="myTable" style="width:100%;border: thin solid black;">
+		<tr>
+			<td> No. </td>
+			<td> Barang </td>
+			<td> Jumlah </td>
+			<td> IMEI / Serial Number </td>
+			<td> Edit </td>
+		</tr>
+		<!-- BEGIN purchaseDetailRow -->
+		<tr>
+			<td> {VAR_COUNTER} </td>
+			<td> {VAR_PRODUCTNAME} </td>
+			<td> {VAR_QUANTITY} </td>
+			<td> {VAR_SNSTART} - {VAR_SNEND} </td>
+			<td style="text-align:right;">
+				<form name="purchaseDetailEditForm" id="purchaseDetailEditForm" method="POST" action="{VAR_PAGEURL}">
+					<input type="hidden" name="purchase_ID" id="purchase_ID" value="{VAR_PURCHASEID}" />
+					<input type="hidden" name="editPurchaseID" id="editPurchaseID" value="{VAR_PURCHASEID}"/>
+					<input type="hidden" name="purchaseDetail_ID" id="purchaseDetail_ID" value="{VAR_PURCHASEDETAILID}" />
+					<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}" />
+					<input type="submit" name="purchaseDetailEdit" id="purchaseDetailEdit" value="EDIT" {VAR_ELEMENTDISABLED} />
+				</form>
+			</td>
+		</tr>
+		<!-- END purchaseDetailRow -->
+	</table>
+
+
+<div style="border: thin solid black;padding: 5px;">
+	<form name="purchaseDetailInput" id="purchaseDetailInput" method="POST" action="{VAR_ACTIONURL}">
+		<input type="hidden" name="purchase_ID" id="purchase_ID" value="{VAR_PURCHASEID}" />
+		<input type="hidden" name="editPurchaseID" id="editPurchaseID" value="{VAR_PURCHASEID}"/>
+		<input type="hidden" name="purchase_date" id="purchase_date" value="{VAR_PURCHASEDATE}" />
+		<input type="hidden" name="purchaseDetail_ID" id="purchaseDetail_ID" value="{VAR_EDIT_PURCHASEDETAILID}" />
+		<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}" />
+		<label>Tipe Barang</label>
+		<select name="product" id="product" {VAR_EDITPRODUCTDISABLED}>
+			<!-- BEGIN productListBlock -->
+			<option value="{VAR_PRODUCTID}" {VAR_EDIT_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->
+		</select>
+		<br />
+		<label>Jumlah</label>
+		<input type="text" name="quantity" id="quantity" value="{VAR_EDIT_QUANTITY}" {VAR_ELEMENTDISABLED} />
+		<br />
+		<label>Serial Number Start</label> <span style="color:red;">* Wajib Diisi</span>
+		<input type="text" name="sn_start" id="sn_start" value="{VAR_EDIT_SNSTART}" {VAR_ELEMENTDISABLED} />
+		<br />
+		<label>Serial Number End</label>
+		<input type="text" name="sn_end" id="sn_end" value="{VAR_EDIT_SNEND}" {VAR_ELEMENTDISABLED} />
+		<br />
+		<label>&nbsp;</label>
+		<input type="submit" name="purchaseDetail_Save" id="purchaseDetail_Save" value="Save" {VAR_ELEMENTDISABLED} />
+		<br />
+	</form>
+</div>

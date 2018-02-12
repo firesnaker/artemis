@@ -1,0 +1,64 @@
+
+				<div class="modal fade" id="supplierModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title">{TEXT_SUPPLIER_FORM}</h4>
+							</div>
+							<form role="form" class="form-horizontal" enctype="multipart/form-data" method="POST" id="formSupplier">
+							<div class="modal-body">
+								<input class="form-control" type="hidden" name="supplierID" id="supplierID" value="">
+								<div class="form-group" id="supplierNameGroup">
+									<label class="control-label col-sm-3" for="supplierName"> {TEXT_NAME} </label>
+									<div class="col-sm-5">
+										<input class="form-control" type="text" name="supplierName" id="supplierName" value="" required="required">
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer clearfix">
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">{TEXT_CLOSE}</button>
+								<span class="text-center alert" id="processBar"></span>
+								<button type="submit" class="btn btn-primary" id="saveSupplier">{TEXT_SAVE_CHANGES}</button>
+							</div>
+							</form>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+
+				<h1 class="text-right"> {VAR_PAGENAME} </h1>
+				<hr />
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-left">
+						
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+						&nbsp;
+					</div>
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-right">
+						<button class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#supplierModal" id="addNewSupplierButton">Add New Supplier</button>
+					</div>
+				</div>
+				<br />
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<table width="100%" class="table table-bordered table-hover table-condensed table-striped table-responsive" id="supplierList">
+							<thead>
+								<tr>
+									<th> {TEXT_NO} </th>
+									<th> {TEXT_NAME} </th>
+									<th> {TEXT_EDIT} </th>
+									<th> {TEXT_DELETE} </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-right"> </td>
+									<td> </td>
+									<td class="text-center"> </td>
+									<td class="text-center"> </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>

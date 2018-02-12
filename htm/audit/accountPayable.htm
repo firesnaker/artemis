@@ -1,0 +1,67 @@
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} {VAR_SELECTEDOUTLETNAME} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="{VAR_FORMACTION}">
+			Outlet: 
+			<select name="reportOutlet">
+				<option value="0">All Outlets</option>
+			<!-- BEGIN outletListBlock -->
+				<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+			<!-- END outletListBlock -->				
+			</select>
+			<br />
+			Product
+			<select name="reportProduct">
+				<option value="0">All Product</option>
+			<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->				
+			</select>
+			<br />
+			Date 
+			From : <input type='text' id='dateBeginJS' name='dateBeginJS' /> &nbsp;&nbsp;&nbsp;
+			to <input type='text' id='dateEndJS' name='dateEndJS' />
+			<input type='hidden' id='dateBegin' name='dateBegin' />
+			<input type='hidden' id='dateEnd' name='dateEnd' />
+			<br />
+			<input type="submit"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Hutang </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>{TEXT_SUBTOTAL}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- BEGIN purchaseBlock -->
+	<tr>
+		<td>{VAR_PURCHASE_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_PURCHASE_PRICE}</td>
+		<td>{VAR_PURCHASE_VALUE}</td>
+		<td> {VAR_PURCHASE_SUBTOTAL_BY_ID}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- END purchaseBlock -->
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_NON_CASH_PURCHASE_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+
+</table>

@@ -1,0 +1,121 @@
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="master/reportExpenses.php">
+			Outlet: 
+			<select name="reportOutlet">
+				<option value="0">All Outlets</option>
+			<!-- BEGIN outletListBlock -->
+				<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+			<!-- END outletListBlock -->				
+			</select>
+			<br />
+			Category: 
+			<select name="reportCategory">
+				<option value="0">All Category</option>
+			<!-- BEGIN categoryListBlock -->
+				<option value="{VAR_CATEGORYID}" {VAR_CATEGORYSELECTED}> {VAR_CATEGORYNAME} </option>
+			<!-- END categoryListBlock -->				
+			</select>
+			<br />
+			Date Period :<br />
+			From :
+			<select name="beginDay">
+			<!-- BEGIN beginDayBlock -->
+				<option value="{VAR_BEGINDAYVALUE}" {VAR_BEGINDAYSELECTED}> {VAR_BEGINDAYVALUE} </option>
+			<!-- END beginDayBlock -->
+			</select>
+			<select name="beginMonth">
+			<!-- BEGIN beginMonthBlock -->
+				<option value="{VAR_BEGINMONTHVALUE}" {VAR_BEGINMONTHSELECTED}> {VAR_BEGINMONTHTEXT}</option>
+			<!-- END beginMonthBlock -->
+			</select>
+			<select name="beginYear">
+			<!-- BEGIN beginYearBlock -->
+				<option value="{VAR_BEGINYEARVALUE}" {VAR_BEGINYEARSELECTED}> {VAR_BEGINYEARVALUE}</option>
+			<!-- END beginYearBlock -->
+			</select>
+			to
+			<select name="endDay">
+			<!-- BEGIN endDayBlock -->
+				<option value="{VAR_ENDDAYVALUE}" {VAR_ENDDAYSELECTED}> {VAR_ENDDAYVALUE} </option>
+			<!-- END endDayBlock -->				
+			</select>
+			<select name="endMonth">
+			<!-- BEGIN endMonthBlock -->
+				<option value="{VAR_ENDMONTHVALUE}" {VAR_ENDMONTHSELECTED}> {VAR_ENDMONTHTEXT}</option>
+			<!-- END endMonthBlock -->
+			</select>
+			<select name="endYear">
+			<!-- BEGIN endYearBlock -->
+				<option value="{VAR_ENDYEARVALUE}" {VAR_ENDYEARSELECTED}> {VAR_ENDYEARVALUE}</option>
+			<!-- END endYearBlock -->
+			</select>
+			<br />
+			<input type="submit"></input>
+			<input type="button" value="Cetak" onClick="javascript:window.open('master/reportExpensesPrint.php?reportOutlet={VAR_REPORTOUTLET}&reportCategory={VAR_REPORTCATEGORY}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
+			<input type="button" value="Save" onClick="javascript:window.open('master/reportExpensesSave.php?reportOutlet={VAR_REPORTOUTLET}&reportCategory={VAR_REPORTCATEGORY}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> Date </td>
+		<td> Outlet </td>
+		<td> Category </td>
+		<td> Name </td>
+		<td> Biaya </td>
+		<td> Edit </td>
+		<td> Status </td>
+		<td> Finance Notes </td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_EXPENSESDATE} </td>
+		<td> {VAR_OUTLETNAME} </td>
+		<td> {VAR_CATEGORYNAME} </td>
+		<td> {VAR_EXPENSESNAME} </td>
+		<td style="text-align: right;"> {VAR_TOTALEXPENSES} </td>
+		<td>
+			<form name="FormExpensesEdit" method="POST" action="master/expensesEdit.php">
+				<input type="hidden" value="{VAR_EXPENSESID}" name="expensesEdit_ID" />
+				<input type="submit" value="EDIT" name="expensesEditSubmit" />
+			</form>
+		</td>
+		<td style="text-align: right;"> {VAR_STATUS} </td>
+		<td>
+			<form name="FormExpensesEdit" method="POST" action="master/reportExpenses.php">
+				<input type="hidden" value="{VAR_EXPENSESID}" name="expensesVerify_ID" />
+				<input type="hidden" value="{VAR_REPORTOUTLET}" name="reportOutlet" />
+				<input type="hidden" value="{VAR_BEGINDAY}" name="beginDay" />
+				<input type="hidden" value="{VAR_BEGINMONTH}" name="beginMonth" />
+				<input type="hidden" value="{VAR_BEGINYEAR}" name="beginYear" />
+				<input type="hidden" value="{VAR_ENDDAY}" name="endDay" />
+				<input type="hidden" value="{VAR_ENDMONTH}" name="endMonth" />
+				<input type="hidden" value="{VAR_ENDYEAR}" name="endYear" />
+				<input type="text" value="{VAR_EXPENSESFINANCENOTES}" name="expensesVerify_FinanceNotes" />
+				<input type="submit" value="EDIT" name="expensesVerifySubmit" />
+			</form>
+		</td>
+	</tr>
+	<!-- END reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td colspan="4" style="text-align: right;"> Grandtotal </td>
+		<td style="text-align: right;"> {VAR_GRANDTOTALEXPENSES} </td>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+</table>
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td>  </td>
+	</tr>
+</table>

@@ -1,0 +1,147 @@
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;">
+			Date : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="mkios/purchase.php">
+			Pembelian Date :
+			From:
+			<select name="reportDayBegin">
+			<!-- BEGIN dateDayBeginBlock -->
+				<option value="{VAR_DAYBEGINVALUE}" {VAR_DAYBEGINSELECTED}> {VAR_DAYBEGINVALUE} </option>
+			<!-- END dateDayBeginBlock -->				
+			</select>
+			<select name="reportMonthBegin">
+			<!-- BEGIN dateMonthBeginBlock -->
+				<option value="{VAR_MONTHBEGINVALUE}" {VAR_MONTHBEGINSELECTED}> {VAR_MONTHBEGINTEXT}</option>
+			<!-- END dateMonthBeginBlock -->
+			</select>
+			<select name="reportYearBegin">
+			<!-- BEGIN dateYearBeginBlock -->
+				<option value="{VAR_YEARBEGINVALUE}" {VAR_YEARBEGINSELECTED}> {VAR_YEARBEGINVALUE}</option>
+			<!-- END dateYearBeginBlock -->
+			</select>
+			To :
+			<select name="reportDayEnd">
+			<!-- BEGIN dateDayEndBlock -->
+				<option value="{VAR_DAYENDVALUE}" {VAR_DAYENDSELECTED}> {VAR_DAYENDVALUE} </option>
+			<!-- END dateDayEndBlock -->				
+			</select>
+			<select name="reportMonthEnd">
+			<!-- BEGIN dateMonthEndBlock -->
+				<option value="{VAR_MONTHENDVALUE}" {VAR_MONTHENDSELECTED}> {VAR_MONTHENDTEXT}</option>
+			<!-- END dateMonthEndBlock -->
+			</select>
+			<select name="reportYearEnd">
+			<!-- BEGIN dateYearEndBlock -->
+				<option value="{VAR_YEARENDVALUE}" {VAR_YEARENDSELECTED}> {VAR_YEARENDVALUE}</option>
+			<!-- END dateYearEndBlock -->
+			</select>
+			<br />
+			VTS Product
+			<select name="VTSProduct">
+			<!-- BEGIN VTSProductBlock -->
+				<option value="{VAR_VTSPRODUCTVALUE}" {VAR_VTSPRODUCTSELECTED}> {VAR_VTSPRODUCTVALUE}</option>
+			<!-- END VTSProductBlock -->
+			</select>
+			<br />
+			<input type="submit" name="filter" id="filter" value="Filter" / >
+			<input type="submit" name="save" id="save" value="Save" / >
+			</form>
+			
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<form method="POST" action="mkios/purchase.php">
+	<tr>
+		<td style="text-align:center;font-weight:bold;">
+			<input type="hidden" name="purchaseEditID" id="purchaseEditID" value="{VAR_PURCHASEEDITID}" />
+			<input type="submit" name="purchaseAction" id="purchaseAction" value="{VAR_PURCHASEACTION}" />
+		</td>
+		<td style="text-align:center;font-weight:bold;"> <select name="purchaseDay">
+			<!-- BEGIN datePurchaseDayBlock -->
+				<option value="{VAR_PURCHASEDAYVALUE}" {VAR_PURCHASEDAYSELECTED}> {VAR_PURCHASEDAYVALUE} </option>
+			<!-- END datePurchaseDayBlock -->				
+			</select>
+			<select name="purchaseMonth">
+			<!-- BEGIN datePurchaseMonthBlock -->
+				<option value="{VAR_PURCHASEMONTHVALUE}" {VAR_PURCHASEMONTHSELECTED}> {VAR_PURCHASEMONTHTEXT}</option>
+			<!-- END datePurchaseMonthBlock -->
+			</select>
+			<select name="purchaseYear">
+			<!-- BEGIN datePurchaseYearBlock -->
+				<option value="{VAR_PURCHASEYEARVALUE}" {VAR_PURCHASEYEARSELECTED}> {VAR_PURCHASEYEARVALUE}</option>
+			<!-- END datePurchaseYearBlock -->
+			</select> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="purchaseNotes" id="purchaseNotes" value="{VAR_PURCHASEEDITNOTES}" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="purchaseS005" id="purchaseS005" value="{VAR_PURCHASEEDITS005}" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="purchaseS010" id="purchaseS010" value="{VAR_PURCHASEEDITS010}" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="purchaseS020" id="purchaseS020" value="{VAR_PURCHASEEDITS020}" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="purchaseS025" id="purchaseS025" value="{VAR_PURCHASEEDITS025}" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="purchaseS050" id="purchaseS050" value="{VAR_PURCHASEEDITS050}" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="purchaseS100" id="purchaseS100" value="{VAR_PURCHASEEDITS100}" /> </td>
+		<td>&nbsp;</td>
+	</tr>
+	</form>
+	<tr>
+		<td style="text-align:center;font-weight:bold;"> No. </td>
+		<td style="text-align:center;font-weight:bold;"> Tanggal </td>
+		<td style="text-align:center;font-weight:bold;"> Notes </td>
+		<td style="text-align:center;font-weight:bold;"> S005</td>
+		<td style="text-align:center;font-weight:bold;"> S010 </td>
+		<td style="text-align:center;font-weight:bold;"> S020 </td>
+		<td style="text-align:center;font-weight:bold;"> S025 </td>
+		<td style="text-align:center;font-weight:bold;"> S050 </td>
+		<td style="text-align:center;font-weight:bold;"> S100 </td>
+		<td>Edit</td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_DATE} </td>
+		<td> {VAR_NOTES} </td>
+		<td style="text-align:right;"> {VAR_S005} </td>
+		<td style="text-align:right;"> {VAR_S010} </td>
+		<td style="text-align:right;"> {VAR_S020} </td>
+		<td style="text-align:right;"> {VAR_S025} </td>
+		<td style="text-align:right;"> {VAR_S050} </td>
+		<td style="text-align:right;"> {VAR_S100} </td>
+		<td>
+			<form action="mkios/purchase.php" method="POST">
+				<input type="hidden" name="purchaseID" id="purchaseID" value="{VAR_PURCHASEID}" />
+				<input type="hidden" name="reportDayBegin" id="reportDayBegin" value="{VAR_REPORTDAYBEGIN}" />
+				<input type="hidden" name="reportMonthBegin" id="reportMonthBegin" value="{VAR_REPORTMONTHBEGIN}" />
+				<input type="hidden" name="reportYearBegin" id="reportYearBegin" value="{VAR_REPORTYEARBEGIN}" />
+				<input type="hidden" name="reportDayEnd" id="reportDayEnd" value="{VAR_REPORTDAYEND}" />
+				<input type="hidden" name="reportMonthEnd" id="reportMonthEnd" value="{VAR_REPORTMONTHEND}" />
+				<input type="hidden" name="reportYearEnd" id="reportYearEnd" value="{VAR_REPORTYEAREND}" />
+				<input type="submit" name="purchaseEdit" id="purchaseEdit" value="Edit" {VAR_FORM_EDIT_DISABLED} />
+			</form>
+		</td>
+	</tr>
+	<!-- END reportListBlock -->
+
+	<tr>
+		<td colspan="3" style="text-align:right;font-weight:bold;">Grandtotal</td>
+		<td style="text-align:right;font-weight:bold;">{VAR_S005TOTAL}</td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S010TOTAL} </td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S020TOTAL} </td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S025TOTAL} </td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S050TOTAL} </td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S100TOTAL} </td>
+		<td>&nbsp;</td>
+	</tr>
+
+</table>
+
+<!--
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td> <input type="submit" value="Cetak" onClick="window.open('retail/reportDailyPrint.php?reportYearBegin={VAR_REPORTYEARBEGIN}&reportMonthBegin={VAR_REPORTMONTHBEGIN}&reportDayBegin={VAR_REPORTDAYBEGIN}&reportYearEnd={VAR_REPORTYEAREND}&reportMonthEnd={VAR_REPORTMONTHEND}&reportDayEnd={VAR_REPORTDAYEND}&reportClient={VAR_REPORTCLIENT}&reportEmployee={VAR_REPORTEMPLOYEE}&reportProduct={VAR_REPORTPRODUCT}');"></input></form> </td>
+	</tr>
+</table>
+-->

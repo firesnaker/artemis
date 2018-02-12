@@ -1,0 +1,327 @@
+<script type="text/javascript">
+
+	function updatePrice()
+	{
+		//selected value is
+		iProductID = document.getElementById("product").value;
+		document.getElementById("price").value = document.getElementById("productPrice_" + iProductID).value;
+	}
+
+	function updatePriceBySubtotal()
+	{
+		iSubTotal = document.getElementById("target_subtotal").value;
+		alert(iSubTotal);
+		iQuantity = document.getElementById("quantity").value;
+		alert(iQuantity);
+		iPrice = 1 + ( (iSubTotal - iQuantity) / iQuantity );
+		alert(iPrice);
+		document.getElementById("price").value = iPrice;
+	}
+
+	function disableNonSaveElement()
+	{
+		//var buttonNew = document.getElementById('salesNew');
+		var buttonFirst = document.getElementById('firstRecord');
+		var buttonPrev = document.getElementById('prevRecord');
+		var buttonGoTo = document.getElementById('gotoRecord');
+		var buttonNext = document.getElementById('nextRecord');
+		var buttonLast = document.getElementById('lastRecord');
+		var buttonPrint = document.getElementById('Print');
+		var formEdit = document.getElementById('salesDetailEditForm');
+
+		//buttonNew.disabled = "1";
+		buttonFirst.disabled = "1";
+		buttonPrev.disabled = "1";
+		buttonGoTo.disabled = "1";
+		buttonNext.disabled = "1";
+		buttonLast.disabled = "1";
+		buttonPrint.disabled = "1";
+		formEdit.disabled = "1";
+
+		salesDetailChangeState();
+	}
+</script>
+
+		<div class="page-header">
+		  <h1>{VAR_PAGENAME} <small>{VAR_PAGEOUTLETNAME}</small></h1>
+		</div>
+
+<div style="clear:both"></div>
+
+<h2>{VAR_PAGETITLE}</h2>
+<h3>{TEXT_STATUS}: {VAR_SALESSTATUS}</h3>
+
+<form name="salesMasterForm" id="salesMasterForm" method="POST" action="{VAR_PAGEURL}">
+	<input type="hidden" name="outlet_ID" id="outlet_ID" value="{VAR_OUTLETID}" />
+	<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+	<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}"></input>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:50%;"> <span style="font-weight:bold"> {VAR_OUTLETNAME} </span> </td>
+			<td style="text-align:right;">
+				Date : {VAR_SALESDATE}
+				<input type="hidden" name="sales_date" id="sales_date" value="{VAR_SALESDATEVALUE}" />
+				<br />
+				Note: <input style="text-align:right;" type="text" name="sales_notes" id="sales_notes" value="{VAR_SALESNOTES}" onChange="javascript:disableNonSaveElement();" {VAR_ELEMENTDISABLED} />
+				<br />
+				Sales:
+				<select name="employee_ID" id="employee_ID" onChange="javascript:disableNonSaveElement();" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN employeeBlock -->
+					<option value="{VAR_EMPLOYEEID}" {VAR_EMPLOYEESELECTED}> {VAR_EMPLOYEENAME} </option>
+				<!-- END employeeBlock -->
+				</select>
+				<br />
+				Client:
+				<select name="client_ID" id="client_ID" onChange="javascript:disableNonSaveElement();" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN clientBlock -->
+					<option value="{VAR_CLIENTID}" {VAR_CLIENTSELECTED}> {VAR_CLIENTNAME} </option>
+				<!-- END clientBlock -->
+				</select>
+				<br />
+				Pembayaran:
+				<select name="paymentType_ID" id="paymentType_ID" onChange="javascript:disableNonSaveElement();" {VAR_ELEMENTDISABLED} >
+				<!-- BEGIN paymentTypeBlock -->
+					<option value="{VAR_PAYMENTTYPEID}" {VAR_PAYMENTTYPESELECTED}> {VAR_PAYMENTTYPENAME} </option>
+				<!-- END paymentTypeBlock -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align:right;">
+				<input type="submit" name="salesSave" id="salesSave" value="Save" {VAR_ELEMENTDISABLED} />
+</form>
+<form name="salesNewForm" id="salesNewForm" method="POST" action="{VAR_PAGEURL}">
+				<input type="submit" name="salesNew" id="salesNew" value="Buat Baru" />
+</form>
+			</td>
+		</tr>
+	</table>
+
+	<table id="myTable" style="width:100%;border: thin solid black;">
+		<tr>
+			<td> No. </td>
+			<td> Barang </td>
+			<td> Jumlah </td>
+			<td> Harga satuan (Sebelum Diskon) </td>
+			<td> Diskon (%)</td>
+			<td> Subtotal </td>
+			<td> Serial Number </td>
+			<td> Edit </td>
+		</tr>
+
+		<!-- BEGIN salesDetailRow -->
+		<tr>
+			<td>
+				{VAR_COUNTER}
+			</td>
+			<td>
+				{VAR_PRODUCTNAME}
+			</td>
+			<td>
+				{VAR_QUANTITY}
+			</td>
+			<td>
+				{VAR_PRICE}
+			</td>
+			<td>
+				{VAR_DISCOUNT}
+			</td>
+			<td style="text-align:right;"> <span id="subtotal"> {VAR_SUBTOTAL} </span> </td>
+			<td>
+				{VAR_SN}
+			</td>
+			<td style="text-align:right;">
+				<form name="salesDetailEditForm" id="salesDetailEditForm" method="POST" action="{VAR_PAGEURL}">
+					<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+					<input type="hidden" name="salesDetail_ID" id="salesDetail_ID" value="{VAR_SALESDETAILID}" />
+					<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}" />
+					<input type="submit" name="salesDetailEdit" id="salesDetailEdit" value="EDIT" {VAR_ELEMENTDISABLED} />
+				</form>
+			</td>
+		</tr>
+		<!-- END salesDetailRow -->
+
+		<tr>
+			<td colspan="5" style="text-align:right;"> GRANDTOTAL</td>
+			<td style="text-align:right;"> {VAR_GRANDTOTAL}</td>
+			<td colspan="2" style="text-align:right;"> &nbsp;</td>
+		</tr>
+	</table>
+
+<div style="border: thin solid black;padding: 5px;">
+	<form name="salesDetailInput" id="salesDetailInput" method="POST" action="{VAR_PAGEURL}">
+		<input type="hidden" name="editAllowed" id="editAllowed" value="{VAR_EDITALLOWED}" />
+		<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+		<input type="hidden" name="salesDetail_ID" id="salesDetail_ID" value="{VAR_EDIT_SALESDETAILID}" />
+		<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}" />
+		<div class="form-group">
+			<label>Tipe Barang</label>
+			<select name="product" id="product" onChange="javascript:updatePrice();" {VAR_ELEMENTDISABLED}>
+				<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_EDIT_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+				<!-- END productListBlock -->
+			</select>
+			<br />
+		</div>
+		<div class="form-group">
+			<label>Jumlah</label>
+			<input type="text" name="quantity" id="quantity" value="{VAR_EDIT_QUANTITY}" {VAR_ELEMENTDISABLED} />
+			<br />
+		</div>
+		<div class="form-group">
+			<label>Harga Satuan</label>
+			<input type="text" name="price" id="price" value="{VAR_EDIT_PRICE}" {VAR_ELEMENTDISABLED} />
+			<br />
+		</div>
+		<div class="form-group">
+			<label>Diskon</label>
+			<input type="text" name="discount" id="discount" value="{VAR_EDIT_DISCOUNT}" {VAR_ELEMENTDISABLED} />
+			<br />
+		</div>
+		<div class="form-group">
+			<label>Serial Number Start</label> <span style="color:red;">* Wajib diisi</span>
+			<input type="text" name="sn_start" id="sn_start" value="{VAR_EDIT_SNSTART}" {VAR_ELEMENTDISABLED} />
+			<br />
+		</div>
+		<div class="form-group">
+			<label>Serial Number End</label>
+			<input type="text" name="sn_end" id="sn_end" value="{VAR_EDIT_SNEND}" {VAR_ELEMENTDISABLED} />
+			<br />
+		</div>
+		<div class="form-group">
+			<label>&nbsp;</label>
+			<input type="submit" name="salesDetail_Save" id="salesDetail_Save" value="Save" {VAR_ELEMENTDISABLED} />
+			<br />
+		</div>
+		<div class="form-group">
+			<label>Target Subtotal</label>
+			<input type="text" name="target_subtotal" id="target_subtotal" value="" {VAR_ELEMENTDISABLED} onChange="updatePriceBySubtotal();" />
+			<br />
+		</div>
+		<!-- BEGIN productListPriceBlock -->
+			<input type="hidden" id="productPrice_{VAR_PRODUCTID}" name="productPrice_{VAR_PRODUCTID}" value="{VAR_PRODUCTPRICE}" />
+		<!-- END productListPriceBlock -->
+	</form>
+</div>
+
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td>
+			<form method="POST" name="Sales_First" id="Sales_First">
+				<input type="hidden" name="currentRecordCounter" value="{VAR_PREVRECORDCOUNTER}"></input>
+				<input type="submit" name="firstRecord" id="firstRecord" value="First"></input>
+			</form>
+		</td>
+		<td>
+			<form method="POST" name="Sales_Prev" id="Sales_Prev">
+				<input type="hidden" name="currentRecordCounter" value="{VAR_PREVRECORDCOUNTER}"></input>
+				<input type="submit" name="prevRecord" id="prevRecord" value="Prev"></input>
+			</form>
+		</td>
+		<td>
+			{VAR_SALES} / {VAR_SALESTOTAL}
+			<br />
+			 <form method="POST" name="Sales_Goto" id="Sales_Goto">
+				Go To <input type="text" name="currentRecordCounter" value="{VAR_SALES}" size="3"></input>
+				<input type="submit" name="gotoRecord" id="gotoRecord" value="Go"></input>
+			</form>
+		</td>
+		<td>
+			<form method="POST" name="Sales_Next" id="Sales_Next">
+				<input type="hidden" name="currentRecordCounter" value="{VAR_NEXTRECORDCOUNTER}"></input>
+				<input type="submit" name="nextRecord" id="nextRecord" value="Next"></input>
+			</form>
+		</td>
+		<td>
+			<form method="POST" name="Sales_Last" id="Sales_Last">
+				<input type="hidden" name="currentRecordCounter" value="{VAR_NEXTRECORDCOUNTER}"></input>
+				<input type="submit" name="lastRecord" id="lastRecord" value="Last"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td> <form method="POST" id="Sales_Stay">
+			<input type="hidden" name="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}"></input>
+			<input type="submit" name="Print" id="Print" value="Cetak" onClick="javascript:window.open('retail/sales_orderPrint.php?salesID={VAR_SALESID}');"></input>
+		</form> </td>
+	</tr>
+</table>
+
+<script type="text/javascript" >
+	function salesDetailChangeState() 
+	{
+		//check if transferOutID is empty, if empty then disable
+		var frmDetail = document.getElementById('salesDetailInput');
+		for (var i = 0; i < frmDetail.elements.length; i++)
+		{
+			frmDetail.elements[i].disabled = true;
+		}
+	}
+
+	function salesDetailInitialState() 
+	{
+		var stateValue = true;
+
+		var frmSales = document.getElementById('salesMasterForm');
+		var frmDetail = document.getElementById('salesDetailInput');
+		var frmFirst = document.getElementById('Sales_First');
+		var frmPrev = document.getElementById('Sales_Prev');
+		var frmGoTo = document.getElementById('Sales_Goto');
+		var frmNext = document.getElementById('Sales_Next');
+		var frmLast = document.getElementById('Sales_Last');
+		var frmPrint = document.getElementById('Sales_Stay');
+
+		if ( frmSales.sales_ID.value > 0 && frmDetail.editAllowed.value == 1)
+		{
+			stateValue = false;
+		}
+
+		for (var i = 0; i < frmDetail.elements.length; i++)
+		{
+			frmDetail.elements[i].disabled = stateValue;
+		}
+
+		// if salesdetail_ID in salesDetailInput is not empty, this is an edit:
+		// disable salesMasterForm
+		// disable all navigation button at the bottom (first, next, prev, last, goto, print)
+		if (frmDetail.salesDetail_ID.value > 0 )
+		{
+			for (var i = 0; i < frmSales.elements.length; i++)
+			{
+				frmSales.elements[i].disabled = true;
+			}
+			for (var i = 0; i < frmFirst.elements.length; i++)
+			{
+				frmFirst.elements[i].disabled = true;
+			}
+			for (var i = 0; i < frmPrev.elements.length; i++)
+			{
+				frmPrev.elements[i].disabled = true;
+			}
+			for (var i = 0; i < frmGoTo.elements.length; i++)
+			{
+				frmGoTo.elements[i].disabled = true;
+			}
+			for (var i = 0; i < frmNext.elements.length; i++)
+			{
+				frmNext.elements[i].disabled = true;
+			}
+			for (var i = 0; i < frmLast.elements.length; i++)
+			{
+				frmLast.elements[i].disabled = true;
+			}
+			for (var i = 0; i < frmPrint.elements.length; i++)
+			{
+				frmPrint.elements[i].disabled = true;
+			}
+		}
+
+	}
+
+	salesDetailInitialState();
+</script>

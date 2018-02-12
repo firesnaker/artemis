@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<base href="{VAR_SITEURL}" />
+	<title> {VAR_PAGENAME} :: {VAR_SITENAME} </title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Ricky Kurniawan" />
+	<meta name="copyright" content="&#169; 2010 R. Kurniawan" />
+	<meta name="keywords" content="golden telecom indonesia, 3G, internet, wireless, modem gsm, modem cdma, wireless modem, wireless internet" />
+	<meta name="description" content="Golden Telecom Indonesia, Pusat grosir dan eceran, modem dan kartu, gsm dan cdma" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body onLoad="window.print();">
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;">
+			Date : {VAR_REPORTDATE} <br />
+			Employee : {VAR_REPORTEMPLOYEE} <br />
+			Client : {VAR_REPORTCLIENT} <br />
+			Product : {VAR_REPORTPRODUCT} <br />
+			Product Category : {VAR_REPORTPRODUCTCATEGORY}
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;border: solid black thin;">
+	<tr>
+		<td style="border: solid black thin;"> No. </td>
+		<td style="border: solid black thin;"> Tanggal </td>
+		<td style="border: solid black thin;"> Sales </td>
+		<td style="border: solid black thin;"> Client </td>
+		<td style="border: solid black thin;"> Pembayaran </td>
+		<td style="border: solid black thin;"> Notes </td>
+		<td style="border: solid black thin;"> Barang </td>
+		<td style="border: solid black thin;"> Jumlah </td>
+		<td style="border: solid black thin;"> Harga </td>
+		<td style="border: solid black thin;"> Diskon (%)</td>
+		<td style="border: solid black thin;"> Total </td>
+		<td style="border: solid black thin;"> Cash </td>
+		<td style="border: solid black thin;"> Debit </td>
+		<td style="border: solid black thin;"> Transfer </td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td style="border: solid black thin;"> {VAR_COUNTER} </td>
+		<td style="border: solid black thin;"> {VAR_DATE} </td>
+		<td style="border: solid black thin;"> {VAR_SALESNAME} </td>
+		<td style="border: solid black thin;"> {VAR_CLIENTNAME} </td>
+		<td style="border: solid black thin;"> {VAR_PAYMENTTYPENAME} </td>
+		<td style="border: solid black thin;"> {VAR_NOTES} </td>
+		<td style="border: solid black thin;"> {VAR_PRODUCTNAME} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_QUANTITY} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_PRICE} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_DISCOUNT} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_TOTAL} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_CASH} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_DEBIT} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_TRANSFER} </td>
+	</tr>
+	<!-- END reportListBlock -->
+	<tr>
+		<td colspan="8" style="text-align:right;">{VAR_QANTITYTOTAL}</td>
+		<td style="text-align:right;">&nbsp;</td>
+		<td style="text-align:right;">Grandtotal</td>
+		<td style="border: solid black thin;font-weight:bold;text-align: right;"> {VAR_GRANDTOTAL} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_CASHTOTAL} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_DEBITTOTAL} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_TRANSFERTOTAL} </td>
+	</tr>
+</table>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:100%;"> <span style="font-weight:bold"> REKAP PENJUALAN </span> </td>
+		</tr>
+	</table>
+
+	<table id="myTable" style="width:100%;border:thin solid black;">
+		<tr>
+			<td style="border:thin solid black;"> No. </td>
+			<td style="border:thin solid black;"> Tanggal </td>
+			<td style="border:thin solid black;"> Barang </td>
+			<td style="border:thin solid black;"> Jumlah </td>
+			<td style="border:thin solid black;"> Subtotal </td>
+		</tr>
+		<!-- BEGIN salesRecapListBlock -->
+		<tr style="background-color:{VAR_SALESRECAPROWBGCOLOR};">
+			<td style="border:thin solid black;"> {VAR_SALESRECAPCOUNTER} </td>
+			<td style="border:thin solid black;"> {VAR_SALESRECAPDATE} </td>
+			<td style="border:thin solid black;"> {VAR_SALESRECAPPRODUCTNAME} </td>
+			<td style="border:thin solid black;"> {VAR_SALESRECAPQUANTITY} </td>
+			<td style="border:thin solid black;"> {VAR_SALESRECAPSUBTOTAL} </td>
+		</tr>
+		<!-- END salesRecapListBlock -->
+		<tr>
+			<td colspan="4" style="text-align:right;border:thin solid black;"> GRANDTOTAL</td>
+			<td style="border:thin solid black;"> {VAR_GRANDTOTALSALESRECAP}</td>
+		</tr>
+	</table>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:100%;"> <span style="font-weight:bold"> BIAYA </span> </td>
+		</tr>
+	</table>
+
+	<table id="myTable" style="width:100%;border:thin solid black;">
+		<tr>
+			<td style="border:thin solid black;"> No. </td>
+			<td style="border:thin solid black;"> Tanggal </td>
+			<td style="border:thin solid black;"> Barang </td>
+			<td style="border:thin solid black;"> Harga </td>
+		</tr>
+		<!-- BEGIN expensesList -->
+		<tr style="background-color:{VAR_EXPENSESROWBGCOLOR};">
+			<td style="border:thin solid black;"> {VAR_EXPENSESCOUNTER} </td>
+			<td style="border:thin solid black;"> {VAR_LISTEXPENSESDATE} </td>
+			<td style="border:thin solid black;"> {VAR_LISTEXPENSESNAME} </td>
+			<td style="border:thin solid black;"> {VAR_LISTEXPENSESPRICE} </td>
+		</tr>
+		<!-- END expensesList -->
+		<tr>
+			<td colspan="3" style="text-align:right;border:thin solid black;"> GRANDTOTAL</td>
+			<td style="border:thin solid black;"> {VAR_GRANDTOTALEXPENSES}</td>
+		</tr>
+	</table>
+	
+	<table style="width:100%;">
+		<tr>
+			<td style="width:100%;"> <span style="font-weight:bold"> SETORAN </span> </td>
+		</tr>
+	</table>
+
+	<table id="myTable" style="width:100%;border:thin solid black;">
+		<tr>
+			<td style="border:thin solid black;"> No. </td>
+			<td style="border:thin solid black;"> Tanggal </td>
+			<td style="border:thin solid black;"> Nominal Setoran </td>
+		</tr>
+		<!-- BEGIN depositList -->
+		<tr style="background-color:{VAR_EXPENSESROWBGCOLOR};">
+			<td style="border:thin solid black;"> {VAR_DEPOSITCOUNTER} </td>
+			<td style="border:thin solid black;"> {VAR_LISTDEPOSITDATE} </td>
+			<td style="border:thin solid black;"> {VAR_LISTDEPOSITPRICE} </td>
+		</tr>
+		<!-- END depositList -->
+		<tr>
+			<td colspan="2" style="text-align:right;border:thin solid black;"> GRANDTOTAL</td>
+			<td style="border:thin solid black;"> {VAR_GRANDTOTALDEPOSIT}</td>
+		</tr>
+	</table>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="text-align:center;">
+				Print Date : {VAR_PRINTDATE}
+			</td>
+		</tr>
+	</table>
+
+</body>
+
+</html>

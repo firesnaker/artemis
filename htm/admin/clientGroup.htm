@@ -1,0 +1,67 @@
+
+<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+<form method="POST" action="{VAR_FORM_ACTION}" name="formClientGroup" id="formClientGroup">
+	<fieldset>
+		<legend>{TEXT_LEGEND_CLIENTGROUPTOOUTLET}</legend>
+		<div class="formElement">
+			<label for="outletName"> {TEXT_LABEL_OUTLET_NAME} </label>
+			<select name="outletID" id="outletID">
+				<option value="0">None Selected</option>
+			<!-- BEGIN outletListBlock -->
+				<option value="{VAR_OUTLET_ID}" {VAR_OUTLET_SELECTED}>{VAR_OUTLET_NAME}</option>
+			<!-- END outletListBlock -->
+			</select>
+			<div class="formElement" id="submitButton">
+				<input type="submit" name="clientGroupSelectSubmit" value="{TEXT_BUTTON_SELECT}">
+			</div>
+		</div>
+		</fieldset>
+</form>
+
+<table class="border" id="list2" style="width:45%;float:right;">
+	<tr>
+		<th class="border"> {TEXT_NO} </th>
+		<th class="border">
+			{TEXT_NAME}
+		</th>
+		<th class="border"> {TEXT_ADD} </th>
+		<th class="border"> {TEXT_REMOVE} </th>
+	</tr>
+	<!-- BEGIN clientListBlock -->
+	<tr>
+		<td class="borderAlignRight"> {VAR_LIST_NO} </td>
+		<td class="border"> {VAR_LIST_NAME} </td>
+		<td class="borderAlignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formEdit" id="formEdit">
+				<input type="hidden" name="outletID" value="{VAR_OUTLET_ID}">
+				<input type="hidden" name="addID" value="{VAR_LIST_ID}">
+				<input type="submit" name="addSubmit" value="{TEXT_BUTTON_ADD}" {VAR_FORMADDDISABLED}>
+			</form>
+		</td>
+		<td class="borderAlignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formDelete" id="formDelete">
+				<input type="hidden" name="outletID" value="{VAR_OUTLET_ID}">
+				<input type="hidden" name="removeID" value="{VAR_LIST_ID}">
+				<input type="submit" name="removeSubmit" value="{TEXT_BUTTON_REMOVE}" {VAR_FORMREMOVEDISABLED}>
+			</form>
+		</td>
+	</tr>
+	<!-- END clientListBlock -->
+</table>
+
+<table class="border" id="list1" style="width:45%;">
+	<tr>
+		<th class="border"> {TEXT_NO} </th>
+		<th class="border">
+			{TEXT_NAME}
+		</th>
+	</tr>
+	<!-- BEGIN clientOutletListBlock -->
+	<tr>
+		<td class="borderAlignRight"> {VAR_GROUP_NO} </td>
+		<td class="border"> {VAR_GROUP_NAME} </td>
+	</tr>
+	<!-- END clientOutletListBlock -->
+</table>
+
+<br />

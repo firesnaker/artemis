@@ -1,0 +1,70 @@
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_INVENTORY} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="master/reportInventory.php">
+			Product: 
+			<select name="inventoryProduct">
+				<option value="0">All Products</option>
+			<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->				
+			</select>
+			<br />
+			Date: <br />
+			<select name="inventoryDay">
+			<!-- BEGIN inventoryDayBlock -->
+				<option value="{VAR_INVENTORYDAYVALUE}" {VAR_INVENTORYDAYSELECTED}> {VAR_INVENTORYDAYVALUE} </option>
+			<!-- END inventoryDayBlock -->
+			</select>
+			<select name="inventoryMonth">
+			<!-- BEGIN inventoryMonthBlock -->
+				<option value="{VAR_INVENTORYMONTHVALUE}" {VAR_INVENTORYMONTHSELECTED}> {VAR_INVENTORYMONTHTEXT}</option>
+			<!-- END inventoryMonthBlock -->
+			</select>
+			<select name="inventoryYear">
+			<!-- BEGIN inventoryYearBlock -->
+				<option value="{VAR_INVENTORYYEARVALUE}" {VAR_INVENTORYYEARSELECTED}> {VAR_INVENTORYYEARVALUE}</option>
+			<!-- END inventoryYearBlock -->
+			</select>
+			<br />
+			<input type="submit"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> Outlet </td>
+		<td> Stok </td>
+		<td> Pembelian </td>
+		<td> Transfer masuk (verified dan unverified) </td>
+		<td> Penjualan </td>
+		<td> Transfer keluar (verified dan unverified) </td>
+	</tr>
+	<!-- BEGIN inventoryListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_OUTLETNAME} </td>
+		<td> {VAR_STOCKQTY} </td>
+		<td> {VAR_PURCHASE} </td>
+		<td> {VAR_TRANSFERIN} </td>
+		<td> {VAR_SALES} </td>
+		<td> {VAR_TRANSFEROUT} </td>
+	</tr>
+	<!-- END inventoryListBlock -->
+	<tr>
+		<td> - </td>
+		<td> Total </td>
+		<td> {VAR_TOTALSTOCK} </td>
+		<td> {VAR_TOTALPURCHASE} </td>
+		<td> {VAR_TOTALTRANSFERIN} </td>
+		<td> {VAR_TOTALSALES} </td>
+		<td> {VAR_TOTALTRANSFEROUT} </td>
+	</tr>
+</table>

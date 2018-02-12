@@ -1,0 +1,664 @@
+.ui-autocomplete
+{
+	z-index: 5000;
+}
+
+.bg_navbar
+{
+	background-color:#97bef0;
+}
+
+.login_form
+{
+	width:30%;
+	margin:0 auto;
+}
+
+.siteContent
+{
+     width: 90%;
+     margin: 0 auto;
+     background-color: #fff;
+}
+
+.nav_left
+{
+	background-color: #fff;
+	border: thin solid #979797;
+	padding: 0px;
+}
+
+.nav_left_header
+{
+	font-size: large;
+}
+
+.nav_left_padding
+{
+	padding:5px;
+}
+
+.main_content
+{
+	background-color: #fff;
+	padding: 2em;
+}
+
+.group_header
+{
+     font-family: Arial,Tahoma,Verdana;
+     font-weight: bold;
+     font-size: large;
+     margin: 0px;
+     margin-left: 25px;
+}
+
+.group_header_red
+{
+	color: #DA0008;
+}
+
+.group_header_green
+{
+	color: #4AC250;
+}
+
+@media screen {
+
+	a:active	/*commonly used*/
+	{
+		color: #000000;
+		background-color: transparent;
+		text-decoration: none;
+	}
+	
+	a:link	/*commonly used*/
+	{
+		color: #000000;
+		background-color: transparent;
+		text-decoration: none;
+	}
+	
+	a:visited	/*commonly used*/
+	{
+		color: #000000;
+		background-color: transparent;
+		text-decoration: none;
+	}
+	
+	a:hover	/*commonly used*/
+	{
+		color: #000000;
+		background-color: transparent;
+		text-decoration: none;
+	}
+	
+	body	/*commonly used*/
+	{
+	    border: thin none white;
+	    margin: 0px;
+	    padding: 50px 0px;
+	    color: #000000;
+	    font-family: Verdana, Serif;
+	    font-size: 12px;
+	}
+
+	div	/*commonly used*/
+	{
+	     border: thin none black; /*for debugging purpose*/
+	     margin: 0px;
+	     padding: 0px;
+	     width: auto;
+	     height: auto;
+	}
+	
+	div .featuredProductBox	/* used in product.htm */
+	{
+	     float: left;
+	     width: 28%;
+	     margin: 1%;
+	     padding: 5px;
+	     border: thin solid #979797;
+	     -moz-border-radius: 15px; /*creates an illusion of circled corners, only in firefox/mozilla*/
+	}
+	
+	div.spacer	/* used in index.htm, product.htm, productList.htm, contactUs.htm, outlet.htm */
+	{
+	     clear: both;
+	}
+
+	hr	/* commonly used */
+	{
+	     height:2px;
+	     width:80%;
+	     margin-left:10%;
+	     margin-right:10%;
+	     background-color:#e6e6e6;
+	}
+	
+	img	/* commonly used */
+	{
+	     border: thin none gray;
+	}
+
+	p	/* commonly used */
+	{
+		color : #000000;
+		margin-top : 5px;
+		padding-bottom : 10px;
+		margin-bottom : 0px;
+		margin-left : 20px;
+		margin-right : 20px;
+		font-size : small;
+		font-family : Tahoma,Verdana,Arial;
+	}
+	p a	/* commonly used */
+	{
+		color : #000000;
+	}
+	p a:hover { /* commonly used */
+		color : #294A7B;
+	}
+	
+	table	/* commonly used */
+	{
+	    border: thin none white;
+	    margin: 0px;
+	    padding: 0px;
+	}
+
+	td.lineRight	/* used in navigation.htm */
+	{
+	     border-right: thin solid white;
+	}
+	
+	td.smallText	/* used in tarifCDMA.htm */
+	{
+	     font-size: xx-small;
+	}
+
+	.b01	/* used in navigation.htm */
+	{
+		color : #000000;
+		margin-top : 2px;
+		padding-bottom : 1px;
+		margin-bottom : 1px;
+		margin-left : 10px;
+		margin-right : 0px;
+		font-size : small;
+		font-family : Tahoma,Verdana,Arial;
+	}
+	
+	.b01 a	/* used in navigation.htm */
+	{
+		color : #000000;
+		text-decoration: none;
+	}
+	
+	.b01 a:hover	/* used in navigation.htm */
+	{
+		color : #333333;
+	}
+	
+	.featuredProductHeader	/* used in productList.htm */
+	{
+	     color: #3466DE;
+	     font-family: Arial,Tahoma,Verdana;
+	     font-weight: bold;
+	     font-size: large;
+	     margin: 0px;
+	     margin-left: 25px;
+	}
+
+	.floatLeft	/* */
+	{
+		float: left;
+		margin-right: 5px;
+		margin-top: 5px;
+	}
+
+	.menu02 {	/* used in navigation.htm */
+		color : #FFFFFF;
+		margin-top : 5px;
+		padding-bottom : 5px;
+		margin-bottom : 0px;
+		margin-left : 20px;
+		margin-right : 20px;
+		font-size : small;
+		font-family : Tahoma,Verdana,Arial;
+		font-weight: bold;
+	}
+	.menu02 a {	/* used in navigation.htm */
+		color : #000000;
+		text-decoration: none;
+	}
+	.menu02 a:hover { /* used in navigation.htm */
+		color : #333333;
+	}
+	
+	.productName	/* used in product.htm */
+	{
+	     color: #1F86DE;
+	     font-size: large;
+	     font-weight: bold;
+	     padding: 0;
+	     margin: 0;
+	}
+	
+	.productLink /* used in product.htm */
+	{
+		text-align: right;
+	}
+	
+	/* Page Specific CSS */
+	/*Product Detail Pages*/
+	.productDetail /* div */	/* used in product.htm */
+	{
+	     width: 80%; /*same as hr*/
+	     margin-left: 5%;
+	     border: thin none black;
+	}
+	.productDetailName /* p */	/* used in product.htm */
+	{
+	     color: #1F86DE;
+	     font-size: 32px;
+	     font-weight: bold;
+	     padding-bottom: 0px;
+	}
+	
+	.productDetailCategory /* p */	/* used in product.htm */
+	{
+	     color: #000000;
+	     font-size: large;
+	     font-weight: bold;
+	     margin-top: 0px;
+	     padding-top: 0px;
+	     padding-bottom: 0px;
+	}
+	
+	.productDetailImage /* div */	/* used in product.htm */
+	{
+	     float: left;
+	     width: 150px;
+	     border: thin none black; /* for debugging purpose */
+	}
+	
+	.productDetailText /* div */	/* used in product.htm */
+	{
+	     float: left;
+	     width: 70%;
+	     padding: 10px;
+	     border: thin none black; /* for debugging purpose */
+	}
+
+	.pageHeader	/* used in speedTest.htm, tarifCDMA.htm, contactUs.htm, outlet.htm, mobileISP.htm, faq.htm */
+	{
+	     color: #3466DE;
+	     font-family: Arial,Tahoma,Verdana;
+	     font-weight: bold;
+	     font-size: x-large;
+	     margin: 0px;
+	}
+	
+	/*profile.htm Contact Page*X/
+	div #contactForm	/* used in contactUs.htm */
+	{
+	     border: thin solid #979797;
+	     width: 90%;
+	     padding: 10px;
+	}
+	
+	div.contactFormText	/* used in contactUs.htm */
+	{
+	     float: left;
+	     text-align: right;
+	     width: 19%;
+	}
+	
+	div.contactFormInput	/* used in contactUs.htm */
+	{
+	     float: right;
+	     width: 79%;
+	}
+	
+	div.contactFormInputAlignRight	/* used in contactUs.htm */
+	{
+	     float: right;
+	     width: 79%;
+	     text-align: center;
+	}
+	
+	div.contactBox	/* used in contactUs.htm, outlet.htm */
+	{
+	     font-size: medium;
+	}
+	
+	div.contactBoxLeft	/* used in contactUs.htm, outlet.htm */
+	{
+	     border: thin none black;
+	     float: left;
+	     width: 14%;
+	     text-align: right;
+	}
+	
+	div.contactBoxRight	/* used in contactUs.htm, outlet.htm */
+	{
+	     border: thin none black;
+	     float: right;
+	     width: 84%;
+	}
+	
+	p.normal /*used in admin/productIndex.htm, admin/profile.htm*/
+	{
+		font-size: larger;
+	}
+	
+	p.error /*used in admin/productIndex.htm, admin/profile.htm*/
+	{
+		color: #FF0000;
+		font-size: larger;
+	}
+
+/*	label /*used in admin/productIndex.htm, admin/profile.htm*X/
+	{
+		display: block;
+		width: 15em;
+		float: left;
+		text-align: right;
+		margin-right: 1em;
+	}
+*/
+	#list /*used in admin/productIndex.htm, admin/productCategory.htm, admin/product.htm*/
+	{
+		width: 100%;
+	}
+	
+	.border /*used in admin/productIndex.htm, admin/productCategory.htm*/
+	{
+		border: thin solid black;
+	}
+	
+	.borderAlignCenter /*used in admin/productIndex.htm*/
+	{
+		border: thin solid black;
+		text-align: center;
+	}
+	
+	.borderAlignRight /*used in admin/productIndex.htm*/
+	{
+		border: thin solid black;
+		text-align: right;
+	}
+	
+	.alignLeft /*used in admin/productIndex.htm, admin/productCategory.htm, admin/product.htm*/
+	{
+		text-align: left;
+	}
+	
+	.alignRight /*used in admin/productIndex.htm, admin/productCategory.htm, admin/product.htm*/
+	{
+		text-align: right;
+	}
+	
+	.alignCenter /*used in admin/productIndex.htm, admin/productCategory.htm, admin/product.htm*/
+	{
+		text-align: center;
+	}
+	
+	.alignTop /*used in admin/product.htm*/
+	{
+		vertical-align: top;
+	}
+	
+	form.inline /*used in admin/productIndex.htm, admin/productCategory.htm*/
+	{
+		display: inline;
+	}
+	
+	th /*commonly used*/
+	{
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	td 	/*commonly used*/
+	{
+		padding: 0.25em;
+	}
+	
+	.formElement /*used in admin/productIndex.htm, admin/profile.htm, admin/productCategory.htm, admin/product.htm*/
+	{
+		padding: 0.25em;
+	}
+	
+	#submitButton /*used in admin/productIndex.htm, admin/profile.htm, admin/productCategory.htm, admin/product.htm*/
+	{
+		margin-left: 15em;
+	}
+	
+	.topNewsItem	/* used in index.htm */
+	{
+	     color: #3466DE;
+	     font-family: Arial,Tahoma,Verdana;
+	     font-weight: bold;
+	     font-size: large;
+	     margin: 0px;
+	}
+	
+	.bold
+	{
+		font-weight: bold;
+	}
+	
+	.underline
+	{
+		text-decoration: underline;
+	}
+	
+	.spacerRight
+	{
+		text-align:right;
+		margin-right: 5em;
+		clear:both;
+	}
+
+	.ui-autocomplete {
+		max-height: 100px;
+		overflow-y: auto;
+		/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+	}
+	/* IE 6 doesn't support max-height
+	* we use height instead, but this forces the menu to always be this tall
+	*/
+	html .ui-autocomplete {
+		height: 100px;
+	}
+
+}
+
+@media print {
+	body	/*commonly used*/
+	{
+	    border: thin none white;
+	    margin: 0px;
+	    padding: 0px;
+	    color: #000000;
+	    background-color: #ffffff;
+	    font-family: Verdana, Serif;
+	    font-size: 12px;
+	}
+}
+
+/*
+
+span.golden //used in site.htm//
+{
+    font-size: 300%;
+    font-weight: bold;
+    color:#ccc000;
+}
+
+span.cdma //used in site.htm//
+{
+    font-size: 300%;
+    font-weight: bold;
+	color:#000066;
+}
+
+h1
+{
+	text-align:left;
+	font-size: large;
+	font-weight:bold;
+	float:left;
+}
+
+div #siteHeaderNavigation
+{
+     border: thin none black;
+     background-color: #4683f3;
+     padding: 5px;
+     font-weight: bold;
+     -moz-border-radius: 15px; //creates an illusion of circled corners, only in firefox/mozilla //
+}
+
+div #siteHeaderLanguage	//used in site.htm//
+{
+     text-align: right;
+     width: 70%; //this value must be less than 75%//
+     margin-right: 10%;
+     margin-left: 20%;
+     padding: 10px;
+     background-image: url("../img/bgLanguage.gif");
+     background-repeat: repeat-x;
+     border-left: thin solid #979797;
+     border-right: thin solid #979797;
+}
+
+div #navigationBottom	//used in navigation.htm//
+{
+     border: thin solid #4683f3;
+     background-color: #4683f3;
+     -moz-border-radius: 15px; //creates an illusion of circled corners, only in firefox/mozilla//
+}
+
+div #siteFooter //Linked with #siteContentText//	//used in site.htm//
+{
+    border-top: thin solid #4683f3; //for debugging purpose//
+    width: 71%;
+    margin-left: 22%;
+    margin-right: 4%;
+    text-align: center;
+    -moz-border-radius: 15px; //creates an illusion of circled corners, only in firefox/mozilla//
+}
+
+h2
+{
+	text-align:right;
+	font-size: normal;
+	font-weight:bold;
+	float:right;
+	padding-right:2em;
+}
+
+div #siteHeader	//used in site.htm//
+{
+     border: thin none black; //for debugging purpose//
+     width: 70%;
+     margin-left: 15%;
+     margin-right: 15%;
+     text-align: center;
+}
+
+div #siteContent	//used in site.htm//
+{
+     width: 90%;
+     height: auto;
+     margin-left: 5%;
+     margin-right: 5%;
+     text-align: left;
+     border: thin solid #979797;
+     height: auto;
+     background-color: #ffffff;
+}
+
+.bestProductHeader	// used in index.htm //
+{
+     color: #DA0008;
+     font-family: Arial,Tahoma,Verdana;
+     font-weight: bold;
+     font-size: large;
+     margin: 0px;
+     margin-left: 25px;
+}
+
+div.indexHeaderText	//used in index.htm, productList.htm//
+{
+     width: 29%;
+     float: left;
+}
+
+div.indexHeaderLine // used in index.htm //
+{
+     width: 69%;
+     float: right;
+}
+
+.topNewsHeader	 used in index.htm 
+{
+     color: #4AC250;
+     font-family: Arial,Tahoma,Verdana;
+     font-weight: bold;
+     font-size: large;
+     margin: 0px;
+     margin-left: 25px;
+}
+
+div #siteContentText //Linked with #siteContentNavigation//	//used in site.htm//
+{
+     float: right;
+     padding-top: 10px;
+     background-color: #FFFFFF;
+     width:79%;
+     border:thin none black; // for debugging purpose only //
+}
+
+div #siteContentNavigation //Linked with #siteContentText//	//used in site.htm//
+{
+     float: left;
+     background-color: #FFFFFF;
+     width:17%;
+     border:thin none black; // for debugging purpose only //
+     border-right: thin solid #979797;
+}
+
+div #siteContentNavigationHeader	//used in navigation.htm//
+{
+     background-color: #4683f3;
+     text-align: center;
+     color : #FFFFFF;
+ 	 margin-top : 0px;
+ 	 margin-bottom : 0px;
+ 	 padding-top : 5px;
+	 padding-bottom : 5px;
+	 //font-size : small;//
+	 font-family : Tahoma,Verdana,Arial;
+	 font-weight: bold;
+}
+
+div #siteContentNavigationOperatorLogo	//used in navigation.htm//
+{
+     text-align: center;
+}
+
+.bg_blue
+{
+	background-color: #4683f3;
+}
+
+.siteHeader
+{
+
+}
+*/

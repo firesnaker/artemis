@@ -1,0 +1,17 @@
+
+<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+<form method="POST" action="{VAR_FORM_ACTION}" name="formInvoiceNumbering" id="formInvoiceNumbering">
+	<fieldset>
+		<legend>{TEXT_LEGEND_INVOICE_NUMBERING}</legend>
+		<div class="formElement">
+			<label for="salesNumber"> {TEXT_SALES_NUMBER} </label>
+			<input type="text" name="salesNumber" id="salesNumber" value="{VAR_SALES_NUMBER}" disabled size="24" />
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="numberingSubmit" value="{TEXT_BUTTON_SUBMIT}" disabled />
+		</div>
+		<div  class="formElement" id="submitButton">
+			<input type="submit" name="resetSalesSubmit" value="{TEXT_BUTTON_RESET_SALES_NUMBER}" />
+		</div>
+	</fieldset>
+</form>

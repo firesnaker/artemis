@@ -1,0 +1,158 @@
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;">
+			Date : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="{VAR_FORMURL}">
+			Report Date :
+			From:
+			<select name="reportDayBegin">
+			<!-- BEGIN dateDayBeginBlock -->
+				<option value="{VAR_DAYBEGINVALUE}" {VAR_DAYBEGINSELECTED}> {VAR_DAYBEGINVALUE} </option>
+			<!-- END dateDayBeginBlock -->				
+			</select>
+			<select name="reportMonthBegin">
+			<!-- BEGIN dateMonthBeginBlock -->
+				<option value="{VAR_MONTHBEGINVALUE}" {VAR_MONTHBEGINSELECTED}> {VAR_MONTHBEGINTEXT}</option>
+			<!-- END dateMonthBeginBlock -->
+			</select>
+			<select name="reportYearBegin">
+			<!-- BEGIN dateYearBeginBlock -->
+				<option value="{VAR_YEARBEGINVALUE}" {VAR_YEARBEGINSELECTED}> {VAR_YEARBEGINVALUE}</option>
+			<!-- END dateYearBeginBlock -->
+			</select>
+			To :
+			<select name="reportDayEnd">
+			<!-- BEGIN dateDayEndBlock -->
+				<option value="{VAR_DAYENDVALUE}" {VAR_DAYENDSELECTED}> {VAR_DAYENDVALUE} </option>
+			<!-- END dateDayEndBlock -->				
+			</select>
+			<select name="reportMonthEnd">
+			<!-- BEGIN dateMonthEndBlock -->
+				<option value="{VAR_MONTHENDVALUE}" {VAR_MONTHENDSELECTED}> {VAR_MONTHENDTEXT}</option>
+			<!-- END dateMonthEndBlock -->
+			</select>
+			<select name="reportYearEnd">
+			<!-- BEGIN dateYearEndBlock -->
+				<option value="{VAR_YEARENDVALUE}" {VAR_YEARENDSELECTED}> {VAR_YEARENDVALUE}</option>
+			<!-- END dateYearEndBlock -->
+			</select>
+			<br />
+			VTS Product
+			<select name="VTSProduct">
+			<!-- BEGIN VTSProductBlock -->
+				<option value="{VAR_VTSPRODUCTVALUE}" {VAR_VTSPRODUCTSELECTED}> {VAR_VTSPRODUCTVALUE}</option>
+			<!-- END VTSProductBlock -->
+			</select>
+			<br />
+			WH
+			<select name="KodeWH">
+			<!-- BEGIN KodeWHBlock -->
+				<option value="{VAR_KODEWHVALUE}" {VAR_KODEWHSELECTED}> {VAR_KODEWHVALUE}</option>
+			<!-- END KodeWHBlock -->
+			</select>
+			<br />
+			Sales
+			<select name="KodeSales">
+			<!-- BEGIN KodeSalesBlock -->
+				<option value="{VAR_KODESALESVALUE}" {VAR_KODESALESSELECTED}> {VAR_KODESALESVALUE}</option>
+			<!-- END KodeSalesBlock -->
+			</select>
+			<br />
+			Customer
+			<select name="NamaCust">
+			<!-- BEGIN NamaCustBlock -->
+				<option value="{VAR_NAMACUSTVALUE}" {VAR_NAMACUSTSELECTED}> {VAR_NAMACUSTVALUE}</option>
+			<!-- END NamaCustBlock -->
+			</select>
+			<br />
+			Finance Status
+			<select name="FinStatus">
+			<!-- BEGIN FinStatusBlock -->
+				<option value="{VAR_FINSTATUSVALUE}" {VAR_FINSTATUSSELECTED}> {VAR_FINSTATUSTEXT}</option>
+			<!-- END FinStatusBlock -->
+			</select>
+			<br />
+			<input type="submit" name="filter" id="filter" value="Filter" / >
+			<input type="submit" name="save" id="save" value="Save" / >
+			</form>
+			
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td style="text-align:center;font-weight:bold;"> No. </td>
+		<td style="text-align:center;font-weight:bold;"> KodeWH </td>
+		<td style="text-align:center;font-weight:bold;"> KodeSales </td>
+		<td style="text-align:center;font-weight:bold;"> CustomerGroup </td>
+		<td style="text-align:center;font-weight:bold;"> NamaCust </td>
+		<td style="text-align:center;font-weight:bold;"> TxPeriod </td>
+		<td style="text-align:center;font-weight:bold;"> KodeTerminal </td>
+		<td style="text-align:center;font-weight:bold;"> NoHP </td>
+		<td style="text-align:center;font-weight:bold;"> Subtotal </td>
+		<td style="text-align:center;font-weight:bold;"> S005</td>
+		<td style="text-align:center;font-weight:bold;"> S010 </td>
+		<td style="text-align:center;font-weight:bold;"> S020 </td>
+		<td style="text-align:center;font-weight:bold;"> S025 </td>
+		<td style="text-align:center;font-weight:bold;"> S050 </td>
+		<td style="text-align:center;font-weight:bold;"> S100 </td>
+		<td style="text-align:center;font-weight:bold;"> FINANCE VERIFY </td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_KODEWH} </td>
+		<td> {VAR_KODESALES} </td>
+		<td> {VAR_CUSTOMERGROUP} </td>
+		<td> {VAR_NAMACUST} </td>
+		<td> {VAR_TXPERIOD} </td>
+		<td> {VAR_KODETERMINAL} </td>
+		<td> {VAR_NOHP} </td>
+		<td style="text-align:right;"> {VAR_SUBTOTAL} </td>
+		<td style="text-align:right;"> {VAR_S005} </td>
+		<td style="text-align:right;"> {VAR_S010} </td>
+		<td style="text-align:right;"> {VAR_S020} </td>
+		<td style="text-align:right;"> {VAR_S025} </td>
+		<td style="text-align:right;"> {VAR_S050} </td>
+		<td style="text-align:right;"> {VAR_S100} </td>
+		<td>
+			<form action="{VAR_FORMURL}" method="POST">
+				<input type="hidden" name="salesFinanceVerifyID" id="salesFinanceVerifyID" value="{VAR_SALESID}" />
+				<input type="hidden" name="reportDayBegin" id="reportDayBegin" value="{VAR_REPORTDAYBEGIN}" />
+				<input type="hidden" name="reportMonthBegin" id="reportMonthBegin" value="{VAR_REPORTMONTHBEGIN}" />
+				<input type="hidden" name="reportYearBegin" id="reportYearBegin" value="{VAR_REPORTYEARBEGIN}" />
+				<input type="hidden" name="reportDayEnd" id="reportDayEnd" value="{VAR_REPORTDAYEND}" />
+				<input type="hidden" name="reportMonthEnd" id="reportMonthEnd" value="{VAR_REPORTMONTHEND}" />
+				<input type="hidden" name="reportYearEnd" id="reportYearEnd" value="{VAR_REPORTYEAREND}" />
+				<input type="text" name="salesFinanceVerifyNotes" id="salesFinanceVerifyNotes" value="{VAR_FINANCEVERIFYNOTES}" />
+				<input type="submit" name="salesFinanceVerify" id="salesFinanceVerify" value="Finance Verify" {VAR_FORM_FINANCEVERIFY_DISABLED} />
+			</form>
+		</td>
+	</tr>
+	<!-- END reportListBlock -->
+
+	<tr>
+		<td colspan="8" style="text-align:right;font-weight:bold;">Grandtotal</td>
+		<td style="text-align:right;font-weight:bold;">{VAR_GRANDSUBTOTAL}</td>
+		<td style="text-align:right;font-weight:bold;">{VAR_S005TOTAL}</td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S010TOTAL} </td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S020TOTAL} </td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S025TOTAL} </td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S050TOTAL} </td>
+		<td style="text-align:right;font-weight:bold;"> {VAR_S100TOTAL} </td>
+		<td colspan="1">&nbsp;</td>
+	</tr>
+
+</table>
+
+<!--
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td> <input type="submit" value="Cetak" onClick="window.open('retail/reportDailyPrint.php?reportYearBegin={VAR_REPORTYEARBEGIN}&reportMonthBegin={VAR_REPORTMONTHBEGIN}&reportDayBegin={VAR_REPORTDAYBEGIN}&reportYearEnd={VAR_REPORTYEAREND}&reportMonthEnd={VAR_REPORTMONTHEND}&reportDayEnd={VAR_REPORTDAYEND}&reportClient={VAR_REPORTCLIENT}&reportEmployee={VAR_REPORTEMPLOYEE}&reportProduct={VAR_REPORTPRODUCT}');"></input></form> </td>
+	</tr>
+</table>
+-->

@@ -1,0 +1,40 @@
+
+	<div class="row">
+		<div class="col-sm-3 nav_left">
+			{VAR_NAVIGATIONLEFT}
+		</div>
+		<div class="col-sm-9 main_content">
+			<div class="row">
+				<div class="col-sm-6">
+					<img src="img/iconBestProduct.gif" width="21" height="21" alt="" align="left">
+					<p class="group_header group_header_red"> BEST PRODUCTS&nbsp; </p>
+				</div>
+				<div class="col-sm-6">
+					<hr />
+				</div>
+			</div>
+			<div class="row">
+				{VAR_PRODUCT_LIST}
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-sm-6">
+					<img src="img/iconTopNews.gif" width="21" height="21" alt="" align="left">
+					<p class="group_header group_header_green"> SPECIAL PROMO&nbsp; </p>
+				</div>
+				<div class="col-sm-6">
+					<hr />
+				</div>
+			</div>
+			<div class="row">
+				<!-- BEGIN eventListBlock -->
+                    <p class="topNewsItem">
+                    	{VAR_EVENTDATESTART} - {VAR_EVENTDATEEND} <br />
+                    	{VAR_EVENTLOCATION} <br />
+                    	{VAR_EVENTDESCRIPTION} <br />
+                    </p>
+                    <!-- END eventListBlock -->
+			</div>
+			<hr />
+		</div>
+	</div>

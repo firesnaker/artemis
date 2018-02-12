@@ -1,0 +1,120 @@
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+		</td>
+	</tr>
+</table>
+<table style="width:100%;">
+	<tr>
+		<td style="text-align:center;font-weight:bold;"> No. </td>
+		<td style="text-align:center;font-weight:bold;"> KodeWH </td>
+		<td style="text-align:center;font-weight:bold;"> KodeSales </td>
+		<td style="text-align:center;font-weight:bold;"> CustomerGroup </td>
+		<td style="text-align:center;font-weight:bold;"> NamaCust </td>
+		<td style="text-align:center;font-weight:bold;"> TxPeriod </td>
+		<td style="text-align:center;font-weight:bold;"> KodeTerminal </td>
+		<td style="text-align:center;font-weight:bold;"> NoHP </td>
+		<td style="text-align:center;font-weight:bold;"> Subtotal </td>
+		<td style="text-align:center;font-weight:bold;"> S005</td>
+		<td style="text-align:center;font-weight:bold;"> S010 </td>
+		<td style="text-align:center;font-weight:bold;"> S020 </td>
+		<td style="text-align:center;font-weight:bold;"> S025 </td>
+		<td style="text-align:center;font-weight:bold;"> S050 </td>
+		<td style="text-align:center;font-weight:bold;"> S100 </td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_KODEWH} </td>
+		<td> {VAR_KODESALES} </td>
+		<td> {VAR_CUSTOMERGROUP} </td>
+		<td> {VAR_NAMACUST} </td>
+		<td> {VAR_TXPERIOD} </td>
+		<td> {VAR_KODETERMINAL} </td>
+		<td> {VAR_NOHP} </td>
+		<td style="text-align:right;"> {VAR_SUBTOTAL} </td>
+		<td style="text-align:right;"> {VAR_S005} </td>
+		<td style="text-align:right;"> {VAR_S010} </td>
+		<td style="text-align:right;"> {VAR_S020} </td>
+		<td style="text-align:right;"> {VAR_S025} </td>
+		<td style="text-align:right;"> {VAR_S050} </td>
+		<td style="text-align:right;"> {VAR_S100} </td>
+	</tr>
+	<!-- END reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td colspan="8" style="text-align: right;"> Grandtotal </td>
+		<td style="text-align: right;"> {VAR_GRANDTOTAL} </td>
+	</tr>
+</table>
+
+<p style="font-weight:bold;">Pembayaran</p>
+
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> Tanggal </td>
+		<td> Cash / Bank </td>
+		<td> Jumlah </td>
+		<td> Notes </td>
+		<td> Action </td>
+	</tr>
+	<!-- BEGIN paymentListBlock -->
+	<tr style="background-color:{VAR_PAYMENTLISTROWBGCOLOR};">
+		<td> {VAR_PAYMENTLIST_NUMBER} </td>
+		<td> {VAR_PAYMENTLIST_DATE} </td>
+		<td> {VAR_PAYMENTLIST_CASH_BANK} </td>
+		<td> {VAR_PAYMENTLIST_AMOUNT} </td>
+		<td> {VAR_PAYMENTLIST_NOTES} </td>
+		<td>
+			<form method="POST" action="{VAR_FORMACTION}">
+				<input type="hidden" name="ID" value="{VAR_SALESID}" />
+				<input type="hidden" name="paymentID" value="{VAR_PAYMENTLIST_ID}" />
+				<input type="submit" name="paymentEdit" value="Edit" />
+			</form>
+			<form method="POST" action="{VAR_FORMACTION}">
+				<input type="hidden" name="ID" value="{VAR_SALESID}" />
+				<input type="hidden" name="paymentID" value="{VAR_PAYMENTLIST_ID}" />
+				<input type="submit" name="paymentDelete" value="Delete" />
+			</form>
+		</td>
+	</tr>
+	<!-- END paymentListBlock -->
+	<tr>
+		<td colspan="3" style="text-align:right;">Grandtotal</td>
+		<td>{VAR_PAYMENTLIST_GRANDTOTAL}</td>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+</table>
+
+<p style="font-weight:bold;">Tambah Data Pembayaran</p>
+
+<form method="POST" action="{VAR_FORMACTION}">
+	<input type='hidden' name='ID' value="{VAR_SALESID}" />
+	<input type='hidden' name='salesPaymentID' value="{VAR_SALESPAYMENT_ID}" />
+	Tanggal <input type="text" id='paymentDateJS' name="paymentDateJS" />
+		<input type='hidden' id='paymentDate' name='paymentDate' /> <br />
+	Jumlah <input type="text" name="paymentAmount" value="{VAR_SALESPAYMENT_AMOUNT}" /> <br />
+	Notes <input type="text" name="paymentNotes" value="{VAR_SALESPAYMENT_NOTES}" /> <br />
+	Cash <input name="paymentIsCash" type="radio" value="0" {VAR_SALESPAYMENT_BANKSELECTED}>Bank</option>
+		<input name="paymentIsCash" type="radio" value="1" {VAR_SALESPAYMENT_CASHSELECTED}>Cash</option> <br />
+	Bank <select name="paymentBank">
+			<!-- BEGIN paymentBankBlock -->
+			<option value="{VAR_BANKID}" {VAR_BANKSELECTED}> {VAR_BANKNAME} </option>
+			<!-- END paymentBankBlock -->
+	</select> <br />
+	<input type="submit" name="paymentSave" value="Save" /> <br />
+</form>
+
+<script type="text/javascript">
+	$(function() {
+		var oPaymentDate = new Date({VAR_BEGINYEAR}, {VAR_BEGINMONTH} - 1, {VAR_BEGINDAY});
+
+		$( "#paymentDateJS" ).datepicker();
+		$( "#paymentDateJS" ).datepicker( "setDate", oPaymentDate );
+		$( "#paymentDateJS" ).datepicker("option", {"autoSize": true, "dateFormat" : "d-M-yy", "defaultDate": +0, "altField": "#paymentDate", "altFormat" : "yy-mm-dd", "minDate" : new Date({VAR_OLDESTYEAR}, 1 - 1,1), "maxDate" : "+0d" });
+
+	});
+</script>

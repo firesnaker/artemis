@@ -1,0 +1,46 @@
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_INVENTORY} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="master/reportInventoryGlobal.php">
+			Outlet: 
+			<select name="inventoryOutlet">
+				<option value="0">All Outlets</option>
+			<!-- BEGIN outletListBlock -->
+				<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+			<!-- END outletListBlock -->				
+			</select>
+			<br />
+			Date: <br />
+			<input type="text" name="inventoryDate" id="inventoryDate" class="regular_dp" value="{VAR_INVENTORYDATEVALUE}" />
+			<br />
+			<input type="submit"></input>
+			<input type="submit" value="Cetak" onClick="javascript:window.open('master/reportInventoryGlobalPrint.php?inventoryOutlet={VAR_INVENTORYOUTLET}&inventoryDate={VAR_INVENTORYDATE}');"></input>
+			<input type="submit" value="Save" onClick="javascript:window.open('master/reportInventoryGlobalSave.php?inventoryOutlet={VAR_INVENTORYOUTLET}&inventoryDate={VAR_INVENTORYDATE}');"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> Barang </td>
+		<td> Jumlah </td>
+	</tr>
+	<!-- BEGIN inventoryListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_PRODUCTNAME} </td>
+		<td> {VAR_QUANTITY} </td>
+	</tr>
+	<!-- END inventoryListBlock -->
+	<tr>
+		<td> &nbsp; </td>
+		<td style="text-align:right;"> Total </td>
+		<td> {VAR_QUANTITYTOTAL} </td>
+	</tr>
+</table>

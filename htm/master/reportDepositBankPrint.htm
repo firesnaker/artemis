@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<base href="{VAR_SITEURL}" />
+	<title> {VAR_PAGENAME} :: {VAR_SITENAME} </title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body onLoad="javascript:window.print();">
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			Outlet: {VAR_SEARCHOUTLETNAME}
+			<br />
+			Date Period :<br />
+			From : {VAR_SEARCHBEGINDATE}
+			to {VAR_SEARCHENDDATE}
+			<br />
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;border: thin solid black;">
+	<tr>
+		<td style="border: thin solid black;"> No. </td>
+		<td style="border: thin solid black;"> Date </td>
+		<td style="border: thin solid black;"> Outlet </td>
+		<td style="border: thin solid black;"> Notes </td>
+		<td style="border: thin solid black;"> Setoran </td>
+		<td style="border: thin solid black;"> Bank </td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td style="border: thin solid black;"> {VAR_COUNTER} </td>
+		<td style="border: thin solid black;"> {VAR_DEPOSITDATE} </td>
+		<td style="border: thin solid black;"> {VAR_OUTLETNAME} </td>
+		<td style="border: thin solid black;"> {VAR_DEPOSITNOTES} </td>
+		<td style="text-align: right;border: thin solid black;"> {VAR_TOTALDEPOSIT} </td>
+		<td style="border: thin solid black;"> {VAR_DEPOSITBANK} </td>
+	</tr>
+	<!-- END reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td colspan="4" style="text-align: right;border: thin solid black;"> Grandtotal </td>
+		<td style="text-align: right;border: thin solid black;"> {VAR_GRANDTOTALDEPOSIT} </td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td style="text-align:center;">
+			Print Date : {VAR_PRINTDATE}
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

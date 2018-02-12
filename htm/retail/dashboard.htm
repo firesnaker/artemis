@@ -1,0 +1,119 @@
+
+		<div>
+		  <h1>{VAR_PAGENAME}</h1>
+		</div>
+
+		<h2><span class="label label-info">{TEXT_LATESTNEWS}</span></h2>
+
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<!-- BEGIN news_block -->
+			 <div class="panel panel-info">
+			 	<div class="panel-heading" role="tab" id="{VAR_NEWSID}">
+			 		<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#{VAR_COLLAPSEID}" aria-expanded="true" aria-controls="{VAR_COLLAPSEID}">
+						{VAR_NEWSDATE}
+						</a>
+					</h4>
+				</div>
+				<div id="{VAR_COLLAPSEID}" class="panel-collapse collapse {VAR_COLLAPSESHOW}" role="tabpanel" aria-labelledby="{VAR_NEWSID}">
+					<div class="panel-body">
+						{VAR_NEWSCONTENT}
+					</div>
+				</div>
+			</div>
+			<!-- END news_block -->
+		</div>
+
+		<div class="btn-toolbar" role="toolbar">
+			<div class="btn-group btn-group-lg btn-group-justified dropup" role="group">
+				<!-- BEGIN purchaseButton_block -->
+				<div class="btn-group" role="group">
+					<a href="retail/purchase.php"><button type="button" class="btn btn-default">
+						<i class="fa fa-download fa-lg"></i> Pembelian
+					</button></a>
+				</div>
+				<!-- END purchaseButton_block -->
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<i class="fa fa-upload fa-lg"></i> Penjualan <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<a href="retail/sales.php">
+								<i class="fa fa-upload fa-lg"></i> Penjualan
+							</a>
+						</li>
+						<li>
+							<a href="retail/sales_order.php">
+								<i class="fa fa-cloud-upload fa-lg"></i> Pesanan Penjualan
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="btn-group" role="group">
+					<a href="retail/transferView.php"> <button type="button" class="btn btn-default">
+						<i class="fa fa-exchange fa-lg"></i> Transfer
+					</button></a>
+				</div>
+				<div class="btn-group" role="group">
+					<a href="retail/expenses.php"><button type="button" class="btn btn-default">
+						<i class="fa fa-pencil-square-o fa-lg"></i> Biaya
+					</button></a>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-money fa-lg"></i> Setoran <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<a href="retail/deposit.php">
+								<i class="fa fa-money fa-lg"></i> Setoran Kas
+							</a>
+						</li>
+						<li>
+							<a href="retail/bank.php">
+								<i class="fa fa-bank fa-lg"></i> Setoran Bank
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"aria-expanded="false" >
+						<i class="fa fa-file-text-o fa-lg"></i> Laporan <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<!-- BEGIN purchaseReport_block -->
+						<li>
+							<a href="retail/reportPurchase.php">
+								<i class="fa fa-file-text-o fa-lg"></i> Laporan Pembelian
+							</a>
+						</li>
+						<!-- END purchaseReport_block -->
+						<li>
+							<a href="retail/reportDaily.php">
+								<i class="fa fa-file-text-o fa-lg"></i> Laporan Harian
+							</a>
+						</li>
+						<li>
+							<a href="retail/inventory.php">
+								<i class="fa fa-file-text-o fa-lg"></i> Laporan Stok
+							</a>
+						</li>
+						<li>
+							<a href="retail/finance.php">
+								<i class="fa fa-file-text-o fa-lg"></i> Laporan Finance
+							</a>
+						</li>
+						<li>
+							<a href="retail/reportSalesSerialNumber.php">
+								<i class="fa fa-file-text-o fa-lg"></i> Laporan SN Penjualan
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="btn-group btn-group-lg btn-group-justified dropup" role="group">
+				
+				
+			</div>
+		</div><!-- /.btn-toolbar -->

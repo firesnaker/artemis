@@ -1,0 +1,259 @@
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} {VAR_SELECTEDOUTLETNAME} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="{VAR_FORMACTION}">
+			WH
+			<select name="KodeWH" {VAR_FORMDISABLED}>
+			<!-- BEGIN KodeWHBlock -->
+				<option value="{VAR_KODEWHVALUE}" {VAR_KODEWHSELECTED}> {VAR_KODEWHVALUE}</option>
+			<!-- END KodeWHBlock -->
+			</select>
+			<br />
+			VTS Product
+			<select name="VTSProduct" {VAR_FORMDISABLED}>
+			<!-- BEGIN VTSProductBlock -->
+				<option value="{VAR_VTSPRODUCTVALUE}" {VAR_VTSPRODUCTSELECTED}> {VAR_VTSPRODUCTVALUE}</option>
+			<!-- END VTSProductBlock -->
+			</select>
+			<br />
+			Date Period :<br />
+			From :
+			<select name="beginDay">
+			<!-- BEGIN beginDayBlock -->
+				<option value="{VAR_BEGINDAYVALUE}" {VAR_BEGINDAYSELECTED}> {VAR_BEGINDAYVALUE} </option>
+			<!-- END beginDayBlock -->
+			</select>
+			<select name="beginMonth">
+			<!-- BEGIN beginMonthBlock -->
+				<option value="{VAR_BEGINMONTHVALUE}" {VAR_BEGINMONTHSELECTED}> {VAR_BEGINMONTHTEXT}</option>
+			<!-- END beginMonthBlock -->
+			</select>
+			<select name="beginYear">
+			<!-- BEGIN beginYearBlock -->
+				<option value="{VAR_BEGINYEARVALUE}" {VAR_BEGINYEARSELECTED}> {VAR_BEGINYEARVALUE}</option>
+			<!-- END beginYearBlock -->
+			</select>
+			to
+			<select name="endDay">
+			<!-- BEGIN endDayBlock -->
+				<option value="{VAR_ENDDAYVALUE}" {VAR_ENDDAYSELECTED}> {VAR_ENDDAYVALUE} </option>
+			<!-- END endDayBlock -->				
+			</select>
+			<select name="endMonth">
+			<!-- BEGIN endMonthBlock -->
+				<option value="{VAR_ENDMONTHVALUE}" {VAR_ENDMONTHSELECTED}> {VAR_ENDMONTHTEXT}</option>
+			<!-- END endMonthBlock -->
+			</select>
+			<select name="endYear">
+			<!-- BEGIN endYearBlock -->
+				<option value="{VAR_ENDYEARVALUE}" {VAR_ENDYEARSELECTED}> {VAR_ENDYEARVALUE}</option>
+			<!-- END endYearBlock -->
+			</select>
+			<br />
+			<input type="submit"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Penjualan </td>
+		<td colspan="2">{VAR_TOTAL_SALES_VALUE}</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Pembelian </td>
+		<td colspan="2">{VAR_TOTAL_PURCHASE_VALUE}</td>
+	</tr>
+	<tr>
+		<td colspan="4" >&nbsp;</td>
+		<td colspan="2">------------------------------</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Laba Rugi Gross</td>
+		<td colspan="2">{VAR_TOTAL_PROFITLOSS_VALUE}</td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Biaya </td>
+		<td colspan="2">{VAR_TOTAL_EXPENSES_VALUE}</td>
+	</tr>
+
+	<tr>
+		<td colspan="4">&nbsp;</td>
+		<td colspan="2">------------------------------</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Laba Rugi Netto </td>
+		<td colspan="2" style="font-weight:bold;color:{VAR_TOTAL_PROFITLOSSNET_COLOR}">{VAR_TOTAL_PROFITLOSSNET_VALUE}</td>
+	</tr>
+
+	<tr>
+		<td colspan="6"><hr /></td>
+	</tr>
+<!--
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Hutang </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>{TEXT_SUBTOTAL}</td>
+		<td>{TEXT_ACTION}</td>
+	</tr>
+	<!-- BEGIN purchaseBlock -->
+<!--
+	<tr>
+		<td>{VAR_PURCHASE_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_PURCHASE_PRICE}</td>
+		<td>{VAR_PURCHASE_VALUE}</td>
+		<td> {VAR_PURCHASE_SUBTOTAL_BY_ID}</td>
+		<td>
+			<form method="POST" action="{VAR_FORMACTION}" name="verifyPurchaseNonCash">
+				<input type="hidden" name="purchaseID" value="{VAR_PURCHASEID}" />
+				<input type="hidden" name="reportOutlet" value="{VAR_REPORTOUTLET}" />
+				<input type="hidden" name="reportProduct" value="{VAR_REPORTPRODUCT}" />
+				<input type="hidden" name="beginDay" value="{VAR_BEGINDAY}" />
+				<input type="hidden" name="beginMonth" value="{VAR_BEGINMONTH}" />
+				<input type="hidden" name="beginYear" value="{VAR_BEGINYEAR}" />
+				<input type="hidden" name="endDay" value="{VAR_ENDDAY}" />
+				<input type="hidden" name="endMonth" value="{VAR_ENDMONTH}" />
+				<input type="hidden" name="endYear" value="{VAR_ENDYEAR}" />
+				<input type="text" name="verifyNotes" value="" {VAR_VERIFY_DISABLED} />
+				<input type="submit" name="verifyPurchaseNonCashSubmit" value="Verify" {VAR_VERIFY_DISABLED} />
+			</form>
+		</td>
+	</tr>
+	<!-- END purchaseBlock -->
+<!--
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_NON_CASH_PURCHASE_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td colspan="6"><hr /></td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Piutang </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>{TEXT_SUBTOTAL}</td>
+		<td>{TEXT_ACTION}</td>
+	</tr>
+	<!-- BEGIN salesNonCashBlock -->
+<!--
+	<tr>
+		<td>{VAR_SALES_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_SALES_PRICE}</td>
+		<td>{VAR_SALES_VALUE}</td>
+		<td>{VAR_SALES_SUBTOTAL_BY_ID}</td>
+		<td>
+			<form method="POST" action="{VAR_FORMACTION}" name="verifySalesNonCash">
+				<input type="hidden" name="salesID" value="{VAR_SALESID}" />
+				<input type="hidden" name="reportOutlet" value="{VAR_REPORTOUTLET}" />
+				<input type="hidden" name="reportProduct" value="{VAR_REPORTPRODUCT}" />
+				<input type="hidden" name="beginDay" value="{VAR_BEGINDAY}" />
+				<input type="hidden" name="beginMonth" value="{VAR_BEGINMONTH}" />
+				<input type="hidden" name="beginYear" value="{VAR_BEGINYEAR}" />
+				<input type="hidden" name="endDay" value="{VAR_ENDDAY}" />
+				<input type="hidden" name="endMonth" value="{VAR_ENDMONTH}" />
+				<input type="hidden" name="endYear" value="{VAR_ENDYEAR}" />
+				<input type="text" name="financeNotes" value="" {VAR_VERIFY_DISABLED} />
+				<input type="submit" name="verifySalesNonCashSubmit" value="Verify" {VAR_VERIFY_DISABLED} />
+			</form>
+		</td>
+	</tr>
+	<!-- END salesNonCashBlock -->
+<!--
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_NON_CASH_SALES_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td colspan="6"><hr /></td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Kas </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>{TEXT_SUBTOTAL}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- BEGIN salesCashBlock -->
+<!--
+	<tr>
+		<td>{VAR_SALES_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_SALES_PRICE}</td>
+		<td>{VAR_SALES_VALUE}</td>
+		<td>{VAR_SALES_SUBTOTAL_BY_ID}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- END salesCashBlock -->
+<!--
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_CASH_SALES_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+-->
+	<tr>
+		<td colspan="6"><hr /></td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Stok </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- BEGIN stockBlock -->
+	<tr>
+		<td>{VAR_STOCK_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_STOCK_PRICE}</td>
+		<td>{VAR_STOCK_VALUE}</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- END stockBlock -->
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_STOCK_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>

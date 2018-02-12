@@ -1,0 +1,42 @@
+
+				<table style="width:100%;">
+					<tr>
+						<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} {VAR_SELECTEDOUTLETNAME} </span> </td>
+						<td style="text-align:right;">
+							Today : {VAR_TODAYDATE}
+							<br />
+							<form method="POST" action="{VAR_FORMACTION}" id="account_receivable_date">
+							Date 
+							<input type='text' id='dateBeginJS2' name='dateBeginJS2' value="{VAR_DATEBEGINJS2}" /> &nbsp;&nbsp;&nbsp;
+							<input type='hidden' id='dateBegin2' name='dateBegin2' value="{VAR_DATEBEGIN2}" />
+							<br />
+							<input type="submit"></input>
+							</form>
+						</td>
+					</tr>
+				</table>
+
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<table width="100%" class="table table-bordered table-hover table-condensed table-striped table-responsive" id="accountReceiveableMKiosList">
+							<thead>
+								<tr>
+									<th> {TEXT_NO} </th>
+									<th>	{TEXT_DATE} </th>
+									<th>	{TEXT_SUBTOTAL} </th>
+									<th>	{TEXT_PAYMENT} </th>
+									<th>	{TEXT_KODESALES} </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-right"> </td>
+									<td> </td>
+									<td> </td>
+									<td> </td>
+									<td> </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>

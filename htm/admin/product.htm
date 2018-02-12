@@ -1,0 +1,79 @@
+
+				<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title">{TEXT_PRODUCT_FORM}</h4>
+							</div>
+							<form role="form" class="form-horizontal" enctype="multipart/form-data" method="POST" id="formProduct">
+							<div class="modal-body">
+								<input class="form-control" type="hidden" name="productID" id="productID" value="">
+								<input class="form-control" type="hidden" name="productCategory" id="productCategory" value="">
+								<div class="form-group" id="productNameGroup">
+									<label class="control-label col-sm-3" for="productName"> {TEXT_LABEL_NAME} </label>
+									<div class="col-sm-5">
+										<input class="form-control" type="text" name="productName" id="productName" value="" required="required">
+									</div>
+								</div>
+								<div class="form-group" id="productDescriptionGroup">
+									<label class="control-label col-sm-3" for="productDescription"> {TEXT_LABEL_DESCRIPTION} </label>
+									<div class="col-sm-5">
+										<textarea class="form-control" name="productDescription" id="productDescription"></textarea>
+									</div>
+								</div>
+								<div class="form-group" id="productCategoryAutoCompleteGroup">
+									<label class="control-label col-sm-3" for="productCategoryAutoComplete"> {TEXT_LABEL_CATEGORY} </label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="productCategoryAutoComplete" id="productCategoryAutoComplete" placeholder="Type category here">
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer clearfix">
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">{TEXT_CLOSE}</button>
+								<span class="text-center alert" id="processBar"></span>
+								<button type="submit" class="btn btn-primary" id="saveProduct">{TEXT_SAVE_CHANGES}</button>
+							</div>
+							</form>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+
+				<h1 class="text-right"> {VAR_PAGENAME} </h1>
+				<hr />
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-left">
+						<a href="admin/product_category.php"><button class="btn btn-success btn-sm pull-left">View Product Categories</button></a>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+						&nbsp;
+					</div>
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-right">
+						<button class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#productModal" id="addNewProductButton">Add New Product</button>
+					</div>
+				</div>
+				<br />
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<table width="100%" class="table table-bordered table-hover table-condensed table-striped table-responsive" id="productList">
+							<thead>
+								<tr>
+									<th> {TEXT_NO} </th>
+									<th>	{TEXT_NAME} </th>
+									<th>	{TEXT_CATEGORY} </th>
+									<th> {TEXT_EDIT} </th>
+									<th> {TEXT_DELETE} </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-right"> </td>
+									<td> </td>
+									<td> </td>
+									<td class="text-center"> </td>
+									<td class="text-center"> </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>

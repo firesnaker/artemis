@@ -1,0 +1,79 @@
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_INVENTORY} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="{VAR_FORMACTION}">
+			Product: 
+			<select name="inventoryProduct">
+				<option value="0">Select A Product</option>
+			<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->				
+			</select>
+			<br />
+			Date Begin: <br />
+			<select name="inventoryDay">
+			<!-- BEGIN inventoryDayBlock -->
+				<option value="{VAR_INVENTORYDAYVALUE}" {VAR_INVENTORYDAYSELECTED}> {VAR_INVENTORYDAYVALUE} </option>
+			<!-- END inventoryDayBlock -->
+			</select>
+			<select name="inventoryMonth">
+			<!-- BEGIN inventoryMonthBlock -->
+				<option value="{VAR_INVENTORYMONTHVALUE}" {VAR_INVENTORYMONTHSELECTED}> {VAR_INVENTORYMONTHTEXT}</option>
+			<!-- END inventoryMonthBlock -->
+			</select>
+			<select name="inventoryYear">
+			<!-- BEGIN inventoryYearBlock -->
+				<option value="{VAR_INVENTORYYEARVALUE}" {VAR_INVENTORYYEARSELECTED}> {VAR_INVENTORYYEARVALUE}</option>
+			<!-- END inventoryYearBlock -->
+			</select>
+			<br />
+			Date End: <br />
+			<select name="inventoryDayEnd">
+			<!-- BEGIN inventoryDayEndBlock -->
+				<option value="{VAR_INVENTORYDAYENDVALUE}" {VAR_INVENTORYDAYENDSELECTED}> {VAR_INVENTORYDAYENDVALUE} </option>
+			<!-- END inventoryDayEndBlock -->
+			</select>
+			<select name="inventoryMonthEnd">
+			<!-- BEGIN inventoryMonthEndBlock -->
+				<option value="{VAR_INVENTORYMONTHENDVALUE}" {VAR_INVENTORYMONTHENDSELECTED}> {VAR_INVENTORYMONTHENDTEXT}</option>
+			<!-- END inventoryMonthEndBlock -->
+			</select>
+			<select name="inventoryYearEnd">
+			<!-- BEGIN inventoryYearEndBlock -->
+				<option value="{VAR_INVENTORYYEARENDVALUE}" {VAR_INVENTORYYEARENDSELECTED}> {VAR_INVENTORYYEARENDVALUE}</option>
+			<!-- END inventoryYearEndBlock -->
+			</select>
+			<br />
+			<input type="submit"></input>
+			<input type="button" value="Save" onClick="javascript:window.open('{VAR_FORMSAVE}?inventoryProduct={VAR_INVENTORYPRODUCT}&inventoryDay={VAR_INVENTORYDAY}&inventoryMonth={VAR_INVENTORYMONTH}&inventoryYear={VAR_INVENTORYYEAR}&inventoryDayEnd={VAR_INVENTORYDAYEND}&inventoryMonthEnd={VAR_INVENTORYMONTHEND}&inventoryYearEnd={VAR_INVENTORYYEAREND}');"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> SN Start </td>
+		<td> SN End </td>
+		<td> Quantity </td>
+		<td> Outlet </td>
+		<td> Client </td>
+		<td> Date </td>
+	</tr>
+	<!-- BEGIN inventoryListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_SNSTART} </td>
+		<td> {VAR_SNEND} </td>
+		<td> {VAR_QUANTITY} </td>
+		<td> {VAR_OUTLETNAME} </td>
+		<td> {VAR_CLIENTNAME} </td>
+		<td> {VAR_DATE} </td>
+	</tr>
+	<!-- END inventoryListBlock -->
+</table>

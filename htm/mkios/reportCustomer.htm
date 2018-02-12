@@ -1,0 +1,63 @@
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;">
+			Date : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="{VAR_FORMURL}">
+			Report Date :
+			From:
+			<input type="hidden" name="reportDayBegin" value="1" />
+			<select name="reportMonthBegin">
+			<!-- BEGIN dateMonthBeginBlock -->
+				<option value="{VAR_MONTHBEGINVALUE}" {VAR_MONTHBEGINSELECTED}> {VAR_MONTHBEGINTEXT}</option>
+			<!-- END dateMonthBeginBlock -->
+			</select>
+			<select name="reportYearBegin">
+			<!-- BEGIN dateYearBeginBlock -->
+				<option value="{VAR_YEARBEGINVALUE}" {VAR_YEARBEGINSELECTED}> {VAR_YEARBEGINVALUE}</option>
+			<!-- END dateYearBeginBlock -->
+			</select>
+			To :
+			<input type="hidden" name="reportDayEnd" value="28" />
+			<select name="reportMonthEnd">
+			<!-- BEGIN dateMonthEndBlock -->
+				<option value="{VAR_MONTHENDVALUE}" {VAR_MONTHENDSELECTED}> {VAR_MONTHENDTEXT}</option>
+			<!-- END dateMonthEndBlock -->
+			</select>
+			<select name="reportYearEnd">
+			<!-- BEGIN dateYearEndBlock -->
+				<option value="{VAR_YEARENDVALUE}" {VAR_YEARENDSELECTED}> {VAR_YEARENDVALUE}</option>
+			<!-- END dateYearEndBlock -->
+			</select>
+			<br />
+			<input type="submit" name="filter" id="filter" value="Filter" {VAR_FORM_EDIT_DISABLED} / >
+			<input type="submit" name="save" id="save" value="Save" {VAR_FORM_EDIT_DISABLED} / >
+			</form>
+<p> Untuk data lebih dari satu bulan, gunakan tombol Save. Tombol Filter bisa digunakan namun akan lebih lambat atau keluar halaman putih. Bila keluar halaman putih, kembali login dan pilih tombol save, setelah memilih periode. </p>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td style="text-align:center;font-weight:bold;"> No. </td>
+		<td style="text-align:center;font-weight:bold;"> NamaCust </td>
+		<td style="text-align:center;font-weight:bold;"> Monthly Summary </td>
+		<td style="text-align:center;font-weight:bold;"> Total </td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_NAMACUST} </td>
+		<td> {VAR_MONTHLYSUMMARY} </td>
+		<td style="text-align:right;"> {VAR_TOTAL} </td>
+	</tr>
+	<!-- END reportListBlock -->
+
+	<tr>
+		<td colspan="3" style="text-align:right;font-weight:bold;">Grandtotal</td>
+		<td style="text-align:right;font-weight:bold;">{VAR_GRANDSUBTOTAL}</td>
+	</tr>
+
+</table>

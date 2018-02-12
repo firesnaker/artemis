@@ -1,0 +1,140 @@
+
+
+				<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title">{TEXT_USER_FORM}</h4>
+							</div>
+							<form role="form" class="form-horizontal" enctype="multipart/form-data" method="POST" id="userForm">
+							<div class="modal-body">
+								<input class="form-control" type="hidden" name="userID" id="userID" value="">
+								<div class="form-group" id="userUsernameGroup">
+									<label class="control-label col-sm-3" for="userUsername"> {TEXT_LABEL_USERNAME} </label>
+									<div class="col-sm-5">
+										<input class="form-control" type="text" name="userUsername" id="userUsername" value="" required="required">
+									</div>
+								</div>
+								<div class="form-group" id="userPasswordGroup">
+									<label class="control-label col-sm-3" for="userPassword"> {TEXT_LABEL_PASSWORD} </label>
+									<div class="col-sm-5">
+										<input class="form-control" type="text" name="userPassword" id="userPassword" value="" required='required'>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer clearfix">
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">{TEXT_CLOSE}</button>
+								<span class="text-center alert" id="processBar"></span>
+								<button type="submit" class="btn btn-primary" id="saveUser">{TEXT_SAVE_CHANGES}</button>
+							</div>
+							</form>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+
+				<h1 class="text-right"> {VAR_PAGENAME} </h1>
+				<hr />
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-left">
+						<a href="admin/userGroup.php"><button class="btn btn-success btn-sm pull-left">View User Grouping</button></a>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+						&nbsp;
+					</div>
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-right">
+						<button class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#userModal" id="addNewUserButton">Add New User</button>
+					</div>
+				</div>
+				<br />
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<table width="100%" class="table table-bordered table-hover table-condensed table-striped table-responsive" id="userList">
+							<thead>
+								<tr>
+									<th> {TEXT_NO} </th>
+									<th>	{TEXT_NAME} </th>
+									<th> {TEXT_EDIT} </th>
+									<th> {TEXT_DELETE} </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-right"> </td>
+									<td> </td>
+									<td class="text-center"> </td>
+									<td class="text-center"> </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+<!--
+<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+<form enctype="multipart/form-data" method="POST" action="{VAR_FORM_ACTION}" name="formUser" id="formUser">
+	<fieldset>
+		<legend>{TEXT_LEGEND_USER}</legend>
+		<div class="formElement">
+			<input type="hidden" name="userID" id="userID" value="{VAR_USER_ID}">
+		</div>
+		<div class="formElement">
+			<label for="userName"> {TEXT_LABEL_NAME} </label>
+			<input type="text" name="userName" id="userName" value="{VAR_USER_NAME}">
+		</div>
+		<div class="formElement">
+			<label for="userEmail"> {TEXT_LABEL_EMAIL} </label>
+			<input type="text" name="userEmail" id="userEmail" value="{VAR_USER_EMAIL}">
+		</div>
+		<div class="formElement">
+			<label for="userOutlet"> {TEXT_LABEL_OUTLET} </label>
+			<select name="userOutlet" id="userOutlet">
+			<!-- BEGIN outletListBlock --X>
+				<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}>{VAR_OUTLETNAME}</option>
+			<!-- END outletListBlock --X>
+			</select>
+			<!--<input type="text" name="userName" id="userName" value="{VAR_USER_NAME}">--X>
+		</div>
+		<div class="formElement">
+			<label for="userIsFinance"> {TEXT_LABEL_ISFINANCE} </label>
+			<input type="radio" name="userIsFinance" id="userIsFinance" value="1" {VAR_ISFINANCE}> {TEXT_YES}
+			<input type="radio" name="userIsFinance" id="userIsFinance" value="0" {VAR_NOTISFINANCE}> {TEXT_NO}
+		</div>
+		<div class="formElement">
+			<label for="userUsername"> {TEXT_LABEL_USERNAME} </label>
+			<input type="text" name="userUsername" id="userUsername" value="{VAR_USER_USERNAME}">
+		</div>
+		<div class="formElement">
+			<label for="userPassword"> {TEXT_LABEL_PASSWORD} </label>
+			<input type="password" name="userPassword" id="userPassword" value="">
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="userSubmit" value="{TEXT_BUTTON_SUBMIT}" {VAR_DISABLEDSTATUS}>
+		</div>
+		{TEXT_NOTEFORADMINUSERCANNOTEDIT}
+	</fieldset>
+</form>
+
+<br />
+
+<table id="list">
+	<tr>
+		<!--<td class="alignLeft">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formPrevious" id="formPrevious">
+				<input type="submit" name="previousSubmit" value="{TEXT_BUTTON_PREVIOUS}">
+			</form>
+		</td>--X>
+		<td class="alignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formDelete" id="formDelete">
+				<input type="hidden" name="deleteID" id="deleteID" value="{VAR_USER_ID}">
+				<input type="submit" name="deleteSubmit" value="{TEXT_BUTTON_DELETE}" {VAR_DISABLEDSTATUS}>
+			</form>
+		</td>
+		<!--<td class="alignRight">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formNext" id="formNext">
+				<input type="submit" name="nextSubmit" value="{TEXT_BUTTON_NEXT}">
+			</form>
+		</td>--X>
+	</tr>
+</table>
+-->

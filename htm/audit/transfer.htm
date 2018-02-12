@@ -1,0 +1,109 @@
+<table style="width:100%;">
+	<tr>
+		<td style="text-align:right;"> Date : {VAR_TODAYDATE} </td>
+	</tr>
+</table>
+
+<form name="transferView" id="transferView" method="POST" action="audit/transfer.php" style="text-align:center;width:500px;">
+	<label for="transferOutletFrom" style="font-weight:bold;font-size:medium;">Transfer dari Outlet</label>
+	<select name="transferOutletFrom">
+		<option value="0">All Outlets</option>
+	<!-- BEGIN outletListBlockFrom -->
+		<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+	<!-- END outletListBlockFrom -->				
+	</select>
+	<br />
+	<label for="transferOutletTo" style="font-weight:bold;font-size:medium;">Transfer ke Outlet</label>
+	<select name="transferOutletTo">
+		<option value="0">All Outlets</option>
+	<!-- BEGIN outletListBlockTo -->
+		<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+	<!-- END outletListBlockTo -->				
+	</select>
+	<br />
+	<label for="transferProductCategory" style="font-weight:bold;font-size:medium;">Product Categories</label>
+	<select name="transferProductCategory">
+		<option value="0">All Product Categories</option>
+	<!-- BEGIN productCategoryListBlock -->
+		<option value="{VAR_PRODUCTCATEGORYID}" {VAR_PRODUCTCATEGORYSELECTED}> {VAR_PRODUCTCATEGORYNAME} </option>
+	<!-- END productCategoryListBlock -->				
+	</select>
+	<br />
+	<label for="transferProduct" style="font-weight:bold;font-size:medium;">Product</label>
+	<select name="transferProduct">
+		<option value="0">All Products</option>
+	<!-- BEGIN productListBlock -->
+		<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+	<!-- END productListBlock -->				
+	</select>
+	<br />
+	<label for="dateFromDay" style="font-weight:bold;font-size:medium;">Date From :</label>
+	<br />
+	<select name="dateFromDay">
+		<!-- BEGIN dateFromDayBlock -->
+		<option value="{VAR_FROMDAYVALUE}" {VAR_FROMDAYSELECTED}>{VAR_FROMDAYVALUE}</option>
+		<!-- END dateFromDayBlock -->
+	</select>
+	<select name="dateFromMonth">
+		<!-- BEGIN dateFromMonthBlock -->
+		<option value="{VAR_FROMMONTHVALUE}" {VAR_FROMMONTHSELECTED}>{VAR_FROMMONTHTEXT}</option>
+		<!-- END dateFromMonthBlock -->
+	</select>
+	<select name="dateFromYear">
+		<!-- BEGIN dateFromYearBlock -->
+		<option value="{VAR_FROMYEARVALUE}" {VAR_FROMYEARSELECTED}>{VAR_FROMYEARVALUE}</option>
+		<!-- END dateFromYearBlock -->
+	</select>
+	<br />
+	<label for="DateToDay" style="font-weight:bold;font-size:medium;">Date To :</label>
+	<br />
+	<select name="dateToDay">
+		<!-- BEGIN dateToDayBlock -->
+		<option value="{VAR_TODAYVALUE}" {VAR_TODAYSELECTED}>{VAR_TODAYVALUE}</option>
+		<!-- END dateToDayBlock -->
+	</select>
+	<select name="dateToMonth">
+		<!-- BEGIN dateToMonthBlock -->
+		<option value="{VAR_TOMONTHVALUE}" {VAR_TOMONTHSELECTED}>{VAR_TOMONTHTEXT}</option>
+		<!-- END dateToMonthBlock -->
+	</select>
+	<select name="dateToYear">
+		<!-- BEGIN dateToYearBlock -->
+		<option value="{VAR_TOYEARVALUE}" {VAR_TOYEARSELECTED}>{VAR_TOYEARVALUE}</option>
+		<!-- END dateToYearBlock -->
+	</select>
+	<br />
+	<input name="transferViewSort" id="transferViewSort" value="Sortir" type="submit" />
+</form>
+<br />
+<table>
+	<tr>
+		<td style="border:thin solid black;">No.</td>
+		<td style="border:thin solid black;">Tanggal</td>
+		<td style="border:thin solid black;">Notes</td>
+		<td style="border:thin solid black;">Transfer dari</td>
+		<td style="border:thin solid black;">Transfer ke</td>
+		<td style="border:thin solid black;">Barang dan Jumlah</td>
+		<td style="border:thin solid black;">Status</td>
+	</tr>
+<!-- BEGIN transferList -->
+	<tr>
+		<td style="border:thin solid black;">{VAR_COUNT}</td>
+		<td style="border:thin solid black;">{VAR_DATE}</td>
+		<td style="border:thin solid black;">{VAR_NOTES}</td>
+		<td style="border:thin solid black;">{VAR_FROM_OUTLET_NAME}</td>
+		<td style="border:thin solid black;">{VAR_TO_OUTLET_NAME}</td>
+		<td style="border:thin solid black;">
+		<!-- BEGIN transferDetailList -->
+			{VAR_PRODUCT_NAME} : {VAR_QUANTITY} unit<br />
+		<!-- END transferDetailList -->
+		</td>
+		<td style="border:thin solid black;">{VAR_STATUS}</td>
+	</tr>
+<!-- END transferList -->
+	<tr>
+		<td colspan="5" style="text-align:right;">{TEXT_GRANDTOTAL}</td>
+		<td>{VAR_GRANDTOTAL}</td>
+		<td colspan="2">{TEXT_NOTES}</td>
+	</tr>
+</table>

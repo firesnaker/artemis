@@ -1,0 +1,136 @@
+
+		<div class="page-header">
+		  <h1>{VAR_PAGENAME} <small>{VAR_PAGEOUTLETNAME}</small></h1>
+		</div>
+<div style="clear:both"></div>
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:30%;border:thin solid black;text-align:center;"> <span style="font-weight:bold;"> <a href="{VAR_FORM_CREATE}">Create Transfer Out</a> </span> </td>
+		<td style="width:30%;border:thin solid black;text-align:center;"> <span style="font-weight:bold;"> <a href="{VAR_FORM_ACTION}">View Transfer Activity</a> </span> </td>
+	</tr>
+</table>
+
+<hr />
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;"> Date : {VAR_TODAYDATE} </td>
+	</tr>
+</table>
+
+<hr />
+
+<form name="transferView" id="transferView" method="POST" action="{VAR_FORM_ACTION}">
+	<input id="tempType" value="{VAR_TYPEVALUE}" type="hidden" />
+	<div class="form-group">
+		<label for="transferDayBegin">Tanggal Transfer Mulai</label>
+		<select name="transferDayBegin">
+			<!-- BEGIN dateDayBeginBlock -->
+			<option value="{VAR_DAYBEGINVALUE}" {VAR_DAYBEGINSELECTED}>{VAR_DAYBEGINVALUE}</option>
+			<!-- END dateDayBeginBlock -->
+		</select>
+		<select name="transferMonthBegin">
+			<!-- BEGIN dateMonthBeginBlock -->
+			<option value="{VAR_MONTHBEGINVALUE}" {VAR_MONTHBEGINSELECTED}>{VAR_MONTHBEGINTEXT}</option>
+			<!-- END dateMonthBeginBlock -->
+		</select>
+		<select name="transferYearBegin">
+			<!-- BEGIN dateYearBeginBlock -->
+			<option value="{VAR_YEARBEGINVALUE}" {VAR_YEARBEGINSELECTED}>{VAR_YEARBEGINVALUE}</option>
+			<!-- END dateYearBeginBlock -->
+		</select>
+		<br />
+	</div>
+	<div class="form-group">
+		<label for="transferDayEnd">Tanggal Transfer Akhir</label>
+		<select name="transferDayEnd">
+			<!-- BEGIN dateDayEndBlock -->
+			<option value="{VAR_DAYENDVALUE}" {VAR_DAYENDSELECTED}>{VAR_DAYENDVALUE}</option>
+			<!-- END dateDayEndBlock -->
+		</select>
+		<select name="transferMonthEnd">
+			<!-- BEGIN dateMonthEndBlock -->
+			<option value="{VAR_MONTHENDVALUE}" {VAR_MONTHENDSELECTED}>{VAR_MONTHENDTEXT}</option>
+			<!-- END dateMonthEndBlock -->
+		</select>
+		<select name="transferYearEnd">
+			<!-- BEGIN dateYearEndBlock -->
+			<option value="{VAR_YEARENDVALUE}" {VAR_YEARENDSELECTED}>{VAR_YEARENDVALUE}</option>
+			<!-- END dateYearEndBlock -->
+		</select>
+		<br />
+	</div>
+	<div class="form-group">
+		<label for="transferViewType">Tipe Transfer</label>
+		<select name="transferViewType" id="transferViewType">
+			<option value="all">Semua transfer</option>
+			<option value="in">Semua Transfer masuk</option>
+			<option value="out">Semua transfer keluar</option>
+		</select>
+		<br />
+	</div>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input name="transferViewSort" id="transferViewSort" value="Sortir" type="submit" />
+	<input type="button" name="transferViewSave" id="transferViewSave" value="Save" onClick="javascript:window.open('retail/transferViewSave.php?transferViewType={VAR_TRANSFERVIEWTYPE}&transferYearBegin={VAR_TRANSFERYEARBEGIN}&transferMonthBegin={VAR_TRANSFERMONTHBEGIN}&transferDayBegin={VAR_TRANSFERDAYBEGIN}&transferYearEnd={VAR_TRANSFERYEAREND}&transferMonthEnd={VAR_TRANSFERMONTHEND}&transferDayEnd={VAR_TRANSFERDAYEND}');" />
+</form>
+<br />
+<table>
+	<tr>
+		<td style="border:thin solid black;">No.</td>
+		<td style="border:thin solid black;">Tanggal</td>
+		<td style="border:thin solid black;">Notes</td>
+		<td style="border:thin solid black;">Masuk dari / keluar ke (tergantung dari tipe transfer)</td>
+		<td style="border:thin solid black;">Barang dan Jumlah</td>
+		<td style="border:thin solid black;">Status</td>
+		<td style="border:thin solid black;">Edit</td>
+		<td style="border:thin solid black;">Verifikasi</td>
+	</tr>
+<!-- BEGIN transferList -->
+	<tr>
+		<td style="border:thin solid black;" {VAR_CSS_BOLD}>{VAR_COUNT}</td>
+		<td style="border:thin solid black;" {VAR_CSS_BOLD}>{VAR_DATE}</td>
+		<td style="border:thin solid black;" {VAR_CSS_BOLD}>{VAR_NOTES}</td>
+		<td style="border:thin solid black;" {VAR_CSS_BOLD}>{VAR_FROM_OR_TO} : {VAR_OUTLET_NAME}</td>
+		<td style="border:thin solid black;" {VAR_CSS_BOLD}>
+			<table>
+		<!-- BEGIN transferDetailList -->
+				<tr>
+					<td>{VAR_PRODUCT_NAME}</td><td> : {VAR_QUANTITY} unit</td>
+				</tr>
+				<tr>
+					<td colspan="2">SN:{VAR_SN}</td>
+				</tr>
+		<!-- END transferDetailList -->
+			</table>
+		</td>
+		<td style="border:thin solid black;" {VAR_CSS_BOLD}>{VAR_STATUS}</td>
+		<td style="border:thin solid black;" {VAR_CSS_BOLD}>
+			<form method="POST" action="{VAR_FORM_CREATE}">
+				<input name="transferDetailEditID" id="transferDetailEditID" type="hidden" value="{VAR_TRANSFER_ID}" />
+				<input name="transferDetailEditSubmit" id="transferDetailEditSubmit" type="submit" value="Edit" {VAR_DISABLE_EDIT} />
+			</form>
+		</td>
+		<td style="border:thin solid black;" {VAR_CSS_BOLD}>
+			<form method="POST" action="{VAR_FORM_ACTION}">
+				<input name="transferVerifyID" id="transferVerifyID" type="hidden" value="{VAR_TRANSFER_ID}" />
+				<input name="transferVerifySubmit" id="transferVerifySubmit" type="submit" value="Verify" {VAR_DISABLE_VERIFY} />
+			</form>
+		</td>
+	</tr>
+<!-- END transferList -->
+</table>
+
+<script type="text/javascript" >
+	var temp = document.getElementById("tempType");
+	var selectEl = document.getElementById("transferViewType");
+
+	var optionEls = selectEl.getElementsByTagName('option');
+	for (var i = 0, oEl; oEl = optionEls[i]; i++) {
+		if (oEl.value == temp.value)
+		{
+			oEl.selected = 'selected';
+		}
+	}
+</script>

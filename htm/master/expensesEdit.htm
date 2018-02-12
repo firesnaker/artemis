@@ -1,0 +1,67 @@
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:50%;"> <span style="font-weight:bold"> {VAR_OUTLETNAME} </span> </td>
+			<td style="text-align:right;">
+				Date : {VAR_EXPENSESDATE} <br />
+			</td>
+		</tr>
+	</table>
+	<div style="border: thin solid black;text-align:justify;">
+		<p style="text-align:center;font-weight:bold;"> INPUT BIAYA </p>
+		<form name="expensesForm" id="expensesForm" method="POST" action="master/expensesEdit.php">
+			<input type="hidden" name="expenses_day" id="expenses_day" value="{VAR_EXPENSESDAY}" />
+			<input type="hidden" name="expenses_month" id="expenses_month" value="{VAR_EXPENSESMONTH}" />
+			<input type="hidden" name="expenses_year" id="expenses_year" value="{VAR_EXPENSESYEAR}" />
+			<input type="hidden" name="outlet_ID" id="outlet_ID" value="{VAR_OUTLETID}" />
+			<input type="hidden" name="expenses_ID" id="expenses_ID" value="{VAR_EXPENSESID}" />
+			<input type="hidden" name="expenses_Edit_Date" id="expenses_Edit_Date" value="{VAR_EXPENSESEDITDATE}" />
+			<label for="expenses_notes">Notes</label><input type="text" name="expenses_notes" id="expenses_notes" value="{VAR_EXPENSESNOTES}" /> <br />
+			<label for="expenses_category">Category</label>
+				<select name="expenses_category">
+				<!-- BEGIN expensesCategoryListBlock -->
+					<option value='{VAR_EXPENSESCATEGORYVALUE}' {VAR_EXPENSESCATEGORYSELECTED}>{VAR_EXPENSESCATEGORYNAME}</option>
+				<!-- END expensesCategoryListBlock -->
+				</select>
+			<br />
+			<label for="expenses_price">Nominal Biaya</label><input type="text" name="expenses_price" id="expenses_price" value="{VAR_EXPENSESPRICE}" /> <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="expensesSubmit" id="expensesSubmit" value="Save" {VAR_SAVEDISABLED} />
+		</form>
+	</div>
+
+	<table id="myTable" style="width:100%;">
+		<tr>
+			<td> No. </td>
+			<td> Category </td>
+			<td> Notes </td>
+			<td> Nominal Biaya </td>
+			<td> Edit </td>
+			<td> Delete </td>
+		</tr>
+		<!-- BEGIN expensesList -->
+		<tr>
+			<td> {VAR_COUNTER} </td>
+			<td> {VAR_LISTEXPENSESCATEGORY} </td>
+			<td> {VAR_LISTEXPENSESNOTES} </td>
+			<td> {VAR_LISTEXPENSESPRICE} </td>
+			<td>
+				<form method="POST" name="expensesEdit" id="expensesEdit" action="master/expensesEdit.php">
+					<input type="hidden" name="expensesEdit_ID" id="expensesEdit_ID" value="{VAR_LISTEXPENSESID}" />
+					<input type="submit" name="expensesEditSubmit" value="Edit"></input>
+				</form>
+			</td>
+			<td>
+				<form method="POST" name="expensesDelete" id="expensesDelete" action="master/expensesEdit.php">
+					<input type="hidden" name="expensesDelete_ID" id="expensesDelete_ID" value="{VAR_LISTEXPENSESID}" />
+					<input type="submit" name="expensesDeleteSubmit" value="Delete"></input>
+				</form>
+			</td>
+		</tr>
+		<!-- END expensesList -->
+		<tr>
+			<td colspan="3" style="text-align:right;"> GRANDTOTAL</td>
+			<td> {VAR_GRANDTOTAL}</td>
+			<td colspan="1">&nbsp;</td>
+		</tr>
+	</table>
+	

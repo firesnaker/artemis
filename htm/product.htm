@@ -1,0 +1,77 @@
+<!-- BEGIN navigation_left_header_block -->
+	<div class="row">
+		<div class="col-sm-3 nav_left">
+			{VAR_NAVIGATIONLEFT}
+		</div>
+		<div class="col-sm-9 main_content">
+<!-- END navigation_left_header_block -->
+<!-- BEGIN productViewMiniBlock -->
+	<div class="featuredProductBox">
+		<a href="product.php/{VAR_PRODUCT_CATEGORY_NAME_LINK}/{VAR_PRODUCT_NAME_LINK}">
+			<p class="productName"> {VAR_PRODUCT_NAME} </p>
+	<!-- BEGIN productViewMiniThumbnailBlock -->
+			<img src="img/products/{VAR_PRODUCT_THUMBNAIL}" alt="{VAR_PRODUCT_NAME}" width="60" height="60" class="floatLeft" />
+	<!-- END productViewMiniThumbnailBlock -->
+			{VAR_PRODUCT_DESCRIPTION}
+			<p class="productLink"> {VAR_PRODUCT_PRICE} </p>
+			<p class="productLink"> More </p>
+		</a>
+	</div>
+	{VAR_PRODUCT_ROWSPACER}
+<!-- END productViewMiniBlock -->
+
+<!-- BEGIN productViewFullBlock -->
+	<p class="productDetailName"> {VAR_PRODUCTFULL_NAME} </p>
+	<p class="productDetailCategory">{VAR_PRODUCTFULL_CATEGORYNAME}</p>
+	<p class="productDetailName"> {VAR_PRODUCTFULL_PRICE} </p>
+	<hr />
+	<div class="productDetail">
+		<!-- BEGIN productViewFullThumbnailBlock -->
+		<div class="productDetailImage">
+			<img src="img/products/{VAR_PRODUCTFULL_IMAGE}" alt="{VAR_PRODUCTFULL_NAME}" width="120" />
+		</div>
+		<!-- END productViewFullThumbnailBlock -->
+		<div class="productDetailText">
+			{VAR_PRODUCTFULL_DESCRIPTION}
+			<br />
+			<!-- BEGIN productViewFullSpecificationBlock -->
+			<br />
+			{TEXT_SPECIFICATION}: <br />
+			<ul>
+				<!-- BEGIN productViewFullSpecificationItemBlock -->
+				<li> {VAR_PRODUCTFULL_SPECIFICATION} </li>
+				<!-- END productViewFullSpecificationItemBlock -->
+			</ul>
+			<!-- END productViewFullSpecificationBlock -->
+			<!-- BEGIN productViewFullFAQBlock -->
+			<a href="faqMobileQu.php"> FAQ MobileQu </a>
+			<!-- END productViewFullFAQBlock -->
+		</div>
+		<div class="spacer"></div>
+	</div>
+	<hr />
+<!-- END productViewFullBlock -->
+
+<!-- BEGIN productListByCategoryBlock -->
+<div>
+	<div class="indexHeaderText">
+		<a name="{VAR_CATEGORY_ID}">
+			<p class="featuredProductHeader">{VAR_CATEGORY_NAME}&nbsp;</p>
+		</a>
+	</div>
+	<div class="spacer">&nbsp;</div>
+
+	{VAR_PRODUCTLIST_BYCATEGORY}
+	<div class="spacerRight"> 
+	<!-- BEGIN viewAllProductInCategory -->
+		<a href="product/{VAR_CATEGORY_NAME_LINK}">{TEXT_VIEWALL} {VAR_CATEGORY_NAME}</a>
+	<!-- END viewAllProductInCategory -->
+	</div>
+</div>
+
+<hr />
+<!-- END productListByCategoryBlock -->
+<!-- BEGIN navigation_left_footer_block -->
+		</div>
+	</div>
+<!-- END navigation_left_footer_block -->

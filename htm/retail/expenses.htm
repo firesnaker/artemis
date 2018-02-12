@@ -1,0 +1,116 @@
+
+		<div class="page-header">
+		  <h1>{VAR_PAGENAME} <small>{VAR_PAGEOUTLETNAME}</small></h1>
+		</div>
+
+<div style="clear:both"></div>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="text-align:right;">
+				Date : {VAR_EXPENSESDATE} <br />
+				Goto Date :
+				<form method="POST" action="{VAR_FORM_ACTION}">
+				<select name="expenses_day">
+					<!-- BEGIN expensesDayBlock -->
+						<option value="{VAR_DAYVALUE}" {VAR_DAYSELECTED}> {VAR_DAYVALUE} </option>
+					<!-- END expensesDayBlock -->
+				</select>
+				<select name="expenses_month" {VAR_EXPENSESMONTHDISABLED}>
+					<!-- BEGIN expensesMonthBlock -->
+						<option value="{VAR_MONTHVALUE}" {VAR_MONTHSELECTED}> {VAR_MONTHTEXT} </option>
+					<!-- END expensesMonthBlock -->
+				</select>
+				<select name="expenses_year">
+					<!-- BEGIN expensesYearBlock -->
+						<option value="{VAR_YEARVALUE}" {VAR_YEARSELECTED}> {VAR_YEARVALUE} </option>
+					<!-- END expensesYearBlock -->
+				</select><br />
+				<input type="submit" value="Go" />
+				</form>
+			</td>
+		</tr>
+	</table>
+	<div style="border: thin solid black;text-align:justify;">
+		<p style="text-align:center;font-weight:bold;"> INPUT BIAYA </p>
+		<form name="expensesForm" id="expensesForm" method="POST" action="{VAR_FORM_ACTION}">
+			<input type="hidden" name="expenses_day" id="expenses_day" value="{VAR_EXPENSESDAY}" />
+					<input type="hidden" name="expenses_month" id="expenses_month" value="{VAR_EXPENSESMONTH}" />
+					<input type="hidden" name="expenses_year" id="expenses_year" value="{VAR_EXPENSESYEAR}" />
+			<input type="hidden" name="outlet_ID" id="outlet_ID" value="{VAR_OUTLETID}" />
+			<input type="hidden" name="expenses_ID" id="expenses_ID" value="{VAR_EXPENSESID}" />
+			<input type="hidden" name="expenses_Edit_Date" id="expenses_Edit_Date" value="{VAR_EXPENSESEDITDATE}" />
+			<div class="form-group">
+				<label for="expenses_name">Nama</label><input type="text" name="expenses_name" id="expenses_name" value="{VAR_EXPENSESNAME}" style="text-align:left;" /> <br />
+			</div>
+			<div class="form-group">
+				<label for="expenses_category">Category</label>
+					<select name="expenses_category">
+					<!-- BEGIN expensesCategoryListBlock -->
+						<option value='{VAR_EXPENSESCATEGORYVALUE}' {VAR_EXPENSESCATEGORYSELECTED}>{VAR_EXPENSESCATEGORYNAME}</option>
+					<!-- END expensesCategoryListBlock -->
+					</select>
+				<br />
+			</div>
+			<div class="form-group">
+				<label for="expenses_price">Harga</label><input type="text" name="expenses_price" id="expenses_price" value="{VAR_EXPENSESPRICE}" /> <br />
+			</div>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="expensesSubmit" id="expensesSubmit" value="Save" />
+		</form>
+	</div>
+
+	<table id="myTable" style="width:100%;">
+		<tr>
+			<td> No. </td>
+			<td> Barang </td>
+			<td> Category </td>
+			<td> Harga </td>
+			<td> Edit </td>
+			<td> Delete </td>
+		</tr>
+		<!-- BEGIN expensesList -->
+		<tr>
+			<td> {VAR_COUNTER} </td>
+			<td> {VAR_LISTEXPENSESNAME} </td>
+			<td> {VAR_LISTEXPENSESCATEGORY} </td>
+			<td> {VAR_LISTEXPENSESPRICE} </td>
+			<td>
+				<form method="POST" name="expensesEdit" id="expensesEdit" action="{VAR_FORM_ACTION}">
+					<input type="hidden" name="expensesEdit_ID" id="expensesEdit_ID" value="{VAR_LISTEXPENSESID}" />
+					<input type="hidden" name="expenses_day" id="expenses_day" value="{VAR_EXPENSESDAY}" />
+					<input type="hidden" name="expenses_month" id="expenses_month" value="{VAR_EXPENSESMONTH}" />
+					<input type="hidden" name="expenses_year" id="expenses_year" value="{VAR_EXPENSESYEAR}" />
+					<input type="submit" name="expensesEditSubmit" value="Edit"></input>
+				</form>
+			</td>
+			<td>
+				<form method="POST" name="expensesDelete" id="expensesDelete" action="{VAR_FORM_ACTION}">
+					<input type="hidden" name="expensesDelete_ID" id="expensesDelete_ID" value="{VAR_LISTEXPENSESID}" />
+					<input type="hidden" name="expenses_day" id="expenses_day" value="{VAR_EXPENSESDAY}" />
+					<input type="hidden" name="expenses_month" id="expenses_month" value="{VAR_EXPENSESMONTH}" />
+					<input type="hidden" name="expenses_year" id="expenses_year" value="{VAR_EXPENSESYEAR}" />
+					<input type="submit" name="expensesDeleteSubmit" value="Delete"></input>
+				</form>
+			</td>
+		</tr>
+		<!-- END expensesList -->
+		<tr>
+			<td colspan="2" style="text-align:right;"> GRANDTOTAL</td>
+			<td> {VAR_GRANDTOTAL}</td>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	</table>
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td>
+			<form method="POST" name="expensesPrint" id="expensesPrint" action="{VAR_FORM_ACTION}">
+				<input type="hidden" name="expenses_Date" id="expenses_Date" value="{VAR_EXPENSESDATEPRINT}" />
+				<input type="hidden" name="expenses_day" id="expenses_day" value="{VAR_EXPENSESDAY}" />
+					<input type="hidden" name="expenses_month" id="expenses_month" value="{VAR_EXPENSESMONTH}" />
+					<input type="hidden" name="expenses_year" id="expenses_year" value="{VAR_EXPENSESYEAR}" />
+				<input type="submit" name="Print" value="Cetak" onClick="javascript:window.open('retail/expensesPrint.php?expensesDate={VAR_EXPENSESDATEPRINT}');" {VAR_ELEMENTDISABLED}></input>
+			</form>
+		</td>
+	</tr>
+</table>

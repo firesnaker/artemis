@@ -1,0 +1,77 @@
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} {VAR_SELECTEDOUTLETNAME} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="{VAR_FORMACTION}">
+			Outlet: 
+			<select name="reportOutlet">
+				<option value="0">All Outlets</option>
+			<!-- BEGIN outletListBlock -->
+				<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+			<!-- END outletListBlock -->				
+			</select>
+			<br />
+			Product
+			<select name="reportProduct">
+				<option value="0">All Product</option>
+			<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->				
+			</select>
+			<br />
+			Date 
+			From : <input type='text' id='dateBeginJS' name='dateBeginJS' /> &nbsp;&nbsp;&nbsp;
+			to <input type='text' id='dateEndJS' name='dateEndJS' />
+			<input type='hidden' id='dateBegin' name='dateBegin' />
+			<input type='hidden' id='dateEnd' name='dateEnd' />
+			<br />
+			<input type="submit"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Piutang </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>{TEXT_SUBTOTAL}</td>
+		<td>{TEXT_ACTION}</td>
+	</tr>
+	<!-- BEGIN salesNonCashBlock -->
+	<tr>
+		<td>{VAR_SALES_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_SALES_PRICE}</td>
+		<td>{VAR_SALES_VALUE}</td>
+		<td>{VAR_SALES_SUBTOTAL_BY_ID}</td>
+		<td>
+			<form method="POST" action="{VAR_FORMACTION}" name="verifySalesNonCash">
+				<input type="hidden" name="salesID" value="{VAR_SALESID}" />
+				<input type="hidden" name="reportOutlet" value="{VAR_REPORTOUTLET}" />
+				<input type="hidden" name="reportProduct" value="{VAR_REPORTPRODUCT}" />
+				<input type="hidden" name="dateBegin" value="{VAR_DATEBEGIN}" />
+				<input type="hidden" name="dateEnd" value="{VAR_DATEEND}" />
+				<input type="text" name="financeNotes" value="" {VAR_VERIFY_DISABLED} />
+				<input type="submit" name="verifySalesNonCashSubmit" value="Verify" {VAR_VERIFY_DISABLED} />
+			</form>
+		</td>
+	</tr>
+	<!-- END salesNonCashBlock -->
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_NON_CASH_SALES_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+
+</table>

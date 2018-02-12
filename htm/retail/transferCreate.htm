@@ -1,0 +1,145 @@
+
+
+		<div class="page-header">
+		  <h1>{VAR_PAGENAME} <small>{VAR_PAGEOUTLETNAME}</small></h1>
+		</div>
+<div style="clear:both"></div>
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:30%;border:thin solid black;text-align:center;"> <span style="font-weight:bold;"> <a href="{VAR_FORM_ACTION}">Create Transfer Out</a> </span> </td>
+		<td style="width:30%;border:thin solid black;text-align:center;"> <span style="font-weight:bold;"> <a href="{VAR_FORM_VIEW}">View Transfer Activity</a> </span> </td>
+	</tr>
+</table>
+
+<hr />
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;"> Date : {VAR_TODAYDATE} </td>
+	</tr>
+</table>
+
+<hr />
+
+<div style="width:100%;">
+<p class="error">{VAR_ERRORMESSAGES}</p>
+	<form name="transferOut" id="transferOut" method="POST" action="{VAR_FORM_ACTION}">
+		<input type="hidden" name="transferOutID" id="transferOutID" value="{VAR_TRANSFEROUTID}" />
+		<div style="width:100%;text-align:right;">
+			Note: <input type="text" name="tranferNotes" id="tranferNotes" value="{VAR_TRANSFEROUTNOTES}" onChange="javascript:transferDetailChangeState();" />
+			<br />
+			Outlet Tujuan:
+			<select name="transferDestination" id="transferDestination" onchange = "javascript:transferDetailChangeState();">
+				<option value="-1">Pilih outlet tujuan</option>
+				<!-- BEGIN transferDestinationList -->	
+				<option value="{VAR_OUTLET_ID}" {VAR_OUTLET_SELECTED}>{VAR_OUTLET_NAME}</option>
+				<!-- END transferDestinationList -->
+			</select>
+			<br />
+			<input type="submit" name="transferSave" id="transferSave" value="Save" />
+			<input type="submit" name="transferCreateNew" id="transferCreateNew" value="Buat Baru" />
+			<input type="button" name="transferPrint" id="transferPrint" value="Print" onClick="javascript:window.open('retail/transferCreatePrint.php?transferOutID={VAR_TRANSFEROUTID}');" disabled="1" />
+		</div>
+	</form>
+	<br />
+	<table style="width:100%;">
+		<tr>
+			<td style="border: thin solid black;">Barang</td>
+			<td style="border: thin solid black;">Jumlah</td>
+			<td style="border: thin solid black;">Serial Number</td>
+			<td style="border: thin solid black;">Edit</td>
+		</tr>
+		<!-- BEGIN transferProductList -->
+		<tr>
+			<td style="border: thin solid black;">
+				{VAR_PRODUCT}
+			</td>
+			<td style="border: thin solid black;">
+				{VAR_QUANTITY}
+			</td>
+			<td style="border: thin solid black;">
+				{VAR_SN}
+			</td>
+			<td style="border: thin solid black;">
+				<form name="transferDetailDetailEdit" id="transferDetailDetailEdit" method="POST" action="{VAR_FORM_ACTION}">
+					<input type="hidden" name="transferDetailDetailEditID" id="transferDetailDetailEditID" value="{VAR_ID}" />
+					<input type="submit" name="transferDetailDetailEditSubmit" id="transferDetailDetailEditSubmit" value="Edit" />
+				</form>
+			</td>
+		</tr>
+		<!-- END transferProductList -->
+		<!-- BEGIN transferProductListEmpty -->
+		<tr><td colspan="3" style="border: thin solid black;text-align:center;">Tidak ada data</td></tr>
+		<!-- END transferProductListEmpty -->
+	</table>
+
+	<hr />
+
+	<form name="transferDetail" id="transferDetail" method="POST" action="{VAR_FORM_ACTION}">
+		<input type="hidden" name="transferOutID" id="transferOutID" value="{VAR_TRANSFEROUTID}" />
+		<input type="hidden" name="transferDetailID" id="transferDetailID" value="{VAR_TRANSFERDETAILID}" />
+		<div class="form-group">
+			<label>Produk</label>
+			<select name="transferDetailProduct" id="transferDetailProduct" disabled="1">
+				<!-- BEGIN transferProduct -->
+				<option value="{VAR_PRODUCT_ID}" {VAR_PRODUCT_SELECTED}>{VAR_PRODUCT_NAME}</option>
+				<!-- END transferProduct -->
+			</select>
+			<br />
+		</div>
+		<div class="form-group">
+			<label>Jumlah</label>
+			<input type="text" name="transferDetailQuantity" id="transferDetailQuantity" value="{VAR_TRANSFERDETAILQUANTITY}" disabled="1" />
+			<br />
+		</div>
+		<div class="form-group">
+			<label>SN Start <span style="color:red;">* Wajib diisi</span></label>
+			<input type="text" name="sn_start" id="sn_start" value="{VAR_SNSTART}" disabled="1" />
+			<br />
+		</div>
+		<div class="form-group">
+			<label>SN End</label>
+			<input type="text" name="sn_end" id="sn_end" value="{VAR_SNEND}" disabled="1" />
+			<br />
+		</div>
+		
+		<input type="submit" name="transferDetailSave" id="transferDetailSave" value="Save" disabled="1" />
+	</form>
+</div>
+
+<script type="text/javascript" >
+	function transferDetailChangeState() 
+	{
+		//check if transferOutID is empty, if empty then disable
+		var frmDetail = document.getElementById('transferDetail');
+		for (var i = 0; i < frmDetail.elements.length; i++)
+		{
+			frmDetail.elements[i].disabled = true;
+		}
+	}
+
+	function transferDetailInitialState() 
+	{
+		var stateValue = true;
+
+		var frmTransfer = document.getElementById('transferOut');
+		if ( frmTransfer.transferOutID.value > 0 )
+		{
+			stateValue = false;
+
+			//enable print button on transferOut
+			frmTransfer.transferPrint.disabled = stateValue;
+		}
+ 
+		//check if transferOutID is empty, if empty then disable
+		var frmDetail = document.getElementById('transferDetail');
+		for (var i = 0; i < frmDetail.elements.length; i++)
+		{
+			frmDetail.elements[i].disabled = stateValue;
+		}
+	}
+
+	transferDetailInitialState();
+</script>

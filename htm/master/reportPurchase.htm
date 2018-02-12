@@ -1,0 +1,122 @@
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="{VAR_FORMURL}">
+			Outlet: 
+			<select name="reportOutlet">
+				<option value="0">All Outlets</option>
+			<!-- BEGIN outletListBlock -->
+				<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+			<!-- END outletListBlock -->				
+			</select>
+			<br />
+			Product Category
+			<select name="reportProductCategory">
+				<option value="0">All Product Category</option>
+			<!-- BEGIN productCategoryListBlock -->
+				<option value="{VAR_PRODUCTCATEGORYID}" {VAR_PRODUCTCATEGORYSELECTED}> {VAR_PRODUCTCATEGORYNAME} </option>
+			<!-- END productCategoryListBlock -->				
+			</select>
+			<br />
+			Product
+			<select name="reportProduct">
+				<option value="0">All Product</option>
+			<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->				
+			</select>
+			<br />
+			Date Period :<br />
+			From :
+			<select name="beginDay">
+			<!-- BEGIN beginDayBlock -->
+				<option value="{VAR_BEGINDAYVALUE}" {VAR_BEGINDAYSELECTED}> {VAR_BEGINDAYVALUE} </option>
+			<!-- END beginDayBlock -->
+			</select>
+			<select name="beginMonth">
+			<!-- BEGIN beginMonthBlock -->
+				<option value="{VAR_BEGINMONTHVALUE}" {VAR_BEGINMONTHSELECTED}> {VAR_BEGINMONTHTEXT}</option>
+			<!-- END beginMonthBlock -->
+			</select>
+			<select name="beginYear">
+			<!-- BEGIN beginYearBlock -->
+				<option value="{VAR_BEGINYEARVALUE}" {VAR_BEGINYEARSELECTED}> {VAR_BEGINYEARVALUE}</option>
+			<!-- END beginYearBlock -->
+			</select>
+			to
+			<select name="endDay">
+			<!-- BEGIN endDayBlock -->
+				<option value="{VAR_ENDDAYVALUE}" {VAR_ENDDAYSELECTED}> {VAR_ENDDAYVALUE} </option>
+			<!-- END endDayBlock -->				
+			</select>
+			<select name="endMonth">
+			<!-- BEGIN endMonthBlock -->
+				<option value="{VAR_ENDMONTHVALUE}" {VAR_ENDMONTHSELECTED}> {VAR_ENDMONTHTEXT}</option>
+			<!-- END endMonthBlock -->
+			</select>
+			<select name="endYear">
+			<!-- BEGIN endYearBlock -->
+				<option value="{VAR_ENDYEARVALUE}" {VAR_ENDYEARSELECTED}> {VAR_ENDYEARVALUE}</option>
+			<!-- END endYearBlock -->
+			</select>
+			<br />
+			<input type="submit" value="{TEXT_FILTER}"></input>
+			<input type="button" value="Cetak" onClick="javascript:window.open('{VAR_FORMURLPRINT}?reportOutlet={VAR_REPORTOUTLET}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&reportProduct={VAR_REPORTPRODUCT}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
+			<input type="button" value="Save" onClick="javascript:window.open('{VAR_FORMURLSAVE}?reportOutlet={VAR_REPORTOUTLET}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&reportProduct={VAR_REPORTPRODUCT}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> Date </td>
+		<td> Outlet </td>
+		<td> Notes </td>
+		<td> Barang </td>
+		<td> Jumlah </td>
+<!--		<td> Edit </td>
+		<td> Verify Notes </td>-->
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_PURCHASEDATE} </td>
+		<td> {VAR_OUTLETNAME} </td>
+		<td> {VAR_NOTES} </td>
+		<td> {VAR_PRODUCTNAME} </td>
+		<td> {VAR_QUANTITY} </td>
+<!--		<td>
+			<form method="POST" action="{VAR_FORMURLEDIT}" name="editPurchase">
+				<input type="hidden" name="editPurchaseID" value="{VAR_PURCHASEID}" />
+				<input type="submit" name="editPurchaseSubmit" value="Edit" />
+			</form>
+		</td>
+		<td>
+			<form method="POST" action="{VAR_FORMURL}" name="verifyPurchase">
+				<input type="hidden" name="reportOutlet" value="{VAR_REPORTOUTLET}" />
+				<input type="hidden" name="reportProduct" value="{VAR_REPORTPRODUCT}" />
+				<input type="hidden" name="beginDay" value="{VAR_BEGINDAY}" />
+				<input type="hidden" name="beginMonth" value="{VAR_BEGINMONTH}" />
+				<input type="hidden" name="beginYear" value="{VAR_BEGINYEAR}" />
+				<input type="hidden" name="endDay" value="{VAR_ENDDAY}" />
+				<input type="hidden" name="endMonth" value="{VAR_ENDMONTH}" />
+				<input type="hidden" name="endYear" value="{VAR_ENDYEAR}" />
+				<input type="hidden" name="verifyPurchaseID" value="{VAR_PURCHASEID}" />
+				<input type="text" name="verifyPurchaseVerifyNotes" value="{VAR_PURCHASEVERIFYNOTES}" />
+				<input type="submit" name="verifyPurchaseSubmit" value="Verify" />
+			</form>
+		</td>-->
+	</tr>
+	<!-- END reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td colspan="5" style="text-align:right"> Total </td>
+		<td style="text-align:right"> {VAR_GRANDQUANTITY} </td>
+		<!--<td>&nbsp;</td>-->
+	</tr>
+</table>

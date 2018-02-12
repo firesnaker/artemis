@@ -1,0 +1,179 @@
+<h2>{TEXT_SALESORDER}</h2>
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="finance/sales_order.php">
+			Outlet: 
+			<select name="reportOutlet">
+				<option value="0">All Outlets</option>
+			<!-- BEGIN outletListBlock -->
+				<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+			<!-- END outletListBlock -->				
+			</select>
+			<br />
+			Employee
+			<select name="reportEmployee">
+				<option value="0">All Employee</option>
+			<!-- BEGIN employeeListBlock -->
+				<option value="{VAR_EMPLOYEEID}" {VAR_EMPLOYEESELECTED}> {VAR_EMPLOYEENAME} </option>
+			<!-- END employeeListBlock -->				
+			</select>
+			<br />
+			Client
+			<select name="reportClient">
+				<option value="0">All Client</option>
+			<!-- BEGIN clientListBlock -->
+				<option value="{VAR_CLIENTID}" {VAR_CLIENTSELECTED}> {VAR_CLIENTNAME} </option>
+			<!-- END clientListBlock -->				
+			</select>
+			<br />
+			Payment Type
+			<select name="reportPaymentType">
+				<option value="0">All Payment Type</option>
+			<!-- BEGIN paymentTypeListBlock -->
+				<option value="{VAR_PAYMENTTYPEID}" {VAR_PAYMENTTYPESELECTED}> {VAR_PAYMENTTYPENAME} </option>
+			<!-- END paymentTypeListBlock -->				
+			</select>
+			<br />
+			Product Category
+			<select name="reportProductCategory">
+				<option value="0">All Product Categories</option>
+			<!-- BEGIN productCategoryListBlock -->
+				<option value="{VAR_PRODUCTCATEGORYID}" {VAR_PRODUCTCATEGORYSELECTED}> {VAR_PRODUCTCATEGORYNAME} </option>
+			<!-- END productCategoryListBlock -->				
+			</select>
+			<br />
+			Product
+			<select name="reportProduct">
+				<option value="0">All Product</option>
+			<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->				
+			</select>
+			<br />
+			Date Period :<br />
+			From :
+			<select name="beginDay">
+			<!-- BEGIN beginDayBlock -->
+				<option value="{VAR_BEGINDAYVALUE}" {VAR_BEGINDAYSELECTED}> {VAR_BEGINDAYVALUE} </option>
+			<!-- END beginDayBlock -->
+			</select>
+			<select name="beginMonth">
+			<!-- BEGIN beginMonthBlock -->
+				<option value="{VAR_BEGINMONTHVALUE}" {VAR_BEGINMONTHSELECTED}> {VAR_BEGINMONTHTEXT}</option>
+			<!-- END beginMonthBlock -->
+			</select>
+			<select name="beginYear">
+			<!-- BEGIN beginYearBlock -->
+				<option value="{VAR_BEGINYEARVALUE}" {VAR_BEGINYEARSELECTED}> {VAR_BEGINYEARVALUE}</option>
+			<!-- END beginYearBlock -->
+			</select>
+			to
+			<select name="endDay">
+			<!-- BEGIN endDayBlock -->
+				<option value="{VAR_ENDDAYVALUE}" {VAR_ENDDAYSELECTED}> {VAR_ENDDAYVALUE} </option>
+			<!-- END endDayBlock -->				
+			</select>
+			<select name="endMonth">
+			<!-- BEGIN endMonthBlock -->
+				<option value="{VAR_ENDMONTHVALUE}" {VAR_ENDMONTHSELECTED}> {VAR_ENDMONTHTEXT}</option>
+			<!-- END endMonthBlock -->
+			</select>
+			<select name="endYear">
+			<!-- BEGIN endYearBlock -->
+				<option value="{VAR_ENDYEARVALUE}" {VAR_ENDYEARSELECTED}> {VAR_ENDYEARVALUE}</option>
+			<!-- END endYearBlock -->
+			</select>
+			<br />
+			<input type="submit"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<form action="finance/sales_order.php" method="POST" name="salesVerify">
+<input type="hidden" name="reportOutlet" value="{VAR_REPORTOUTLET}" />
+<input type="hidden" name="reportEmployee" value="{VAR_REPORTEMPLOYEE}" />
+<input type="hidden" name="reportClient" value="{VAR_REPORTCLIENT}" />
+<input type="hidden" name="reportPaymentType" value="{VAR_REPORTPAYMENTTYPE}" />
+<input type="hidden" name="reportProduct" value="{VAR_REPORTPRODUCT}" />
+<input type="hidden" name="reportProductCategory" value="{VAR_REPORTPRODUCTCATEGORY}" />
+<input type="hidden" name="beginDay" value="{VAR_BEGINDAY}" />
+<input type="hidden" name="beginMonth" value="{VAR_BEGINMONTH}" />
+<input type="hidden" name="beginYear" value="{VAR_BEGINYEAR}" />
+<input type="hidden" name="endDay" value="{VAR_ENDDAY}" />
+<input type="hidden" name="endMonth" value="{VAR_ENDMONTH}" />
+<input type="hidden" name="endYear" value="{VAR_ENDYEAR}" />
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> Date </td>
+		<td> Outlet </td>
+		<td> Notes </td>
+		<td> Sales </td>
+		<td> Client </td>
+		<td> Pembayaran </td>
+		<td> Barang </td>
+		<td> Serial Number </td>
+		<td> Jumlah </td>
+		<td> Harga </td>
+		<td> Diskon </td>
+		<td> Total </td>
+		<td> Total Nota </td>
+		<td> Verify </td>
+<!--		<td> Cash </td>
+		<td> Debit </td>
+		<td> Transfer </td>-->
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_SALESDATE} </td>
+		<td> {VAR_OUTLETNAME} </td>
+		<td> {VAR_NOTES} </td>
+		<td> {VAR_SALESNAME} </td>
+		<td> {VAR_CLIENTNAME} </td>
+		<td> {VAR_PAYMENTTYPENAME} </td>
+		<td> {VAR_PRODUCTNAME} </td>
+		<td> {VAR_SN} </td>
+		<td style="text-align: right;"> {VAR_QUANTITY} </td>
+		<td style="text-align: right;"> {VAR_PRICE} </td>
+		<td style="text-align: right;"> {VAR_DISCOUNT} </td>
+		<td style="text-align: right;"> {VAR_TOTAL} </td>
+		<td style="text-align: right;"> {VAR_SALES_SUBTOTAL_BY_ID} </td>
+		<td style="text-align: right;">
+			
+				<input type="hidden" name="salesVerifyID_{VAR_COUNTERROW}" value="{VAR_SALESID}" />
+				<input type="text" name="salesVerifyNotes_{VAR_COUNTERROW}" value="{VAR_SALESVERIFYNOTES}" {VAR_VERIFYDISABLED} />
+				
+			
+		</td>
+<!--		<td> {VAR_CASH} </td>
+		<td> {VAR_DEBIT} </td>
+		<td> {VAR_TRANSFER} </td>-->
+	</tr>
+	<!-- END reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td colspan="13" style="text-align: right;"> Grandtotal </td>
+		<td style="text-align: right;"> {VAR_GRANDTOTAL} </td>
+		<td>&nbsp;</td>
+<!--		<td> {VAR_CASH} </td>
+		<td> {VAR_DEBIT} </td>
+		<td> {VAR_TRANSFER} </td>-->
+	</tr>
+	<tr>
+		<td colspan="14" style="text-align:right;"><input type="submit" name="salesVerifySubmit" value="Verify" /></td>
+	</tr>
+</table>
+
+</form>
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td>  </td>
+	</tr>
+</table>

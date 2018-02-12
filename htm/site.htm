@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<base href="{VAR_SITEURL}" />
+	<title> {VAR_PAGENAME} :: {VAR_SITENAME} </title>
+
+	<!-- Bootstrap -->
+	<link href="{VAR_SITEURL}lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<link rel="stylesheet" href="{VAR_SITEURL}js/jquery-ui/themes/smoothness/jquery-ui.min.css">
+	<link rel="stylesheet" href="{VAR_SITEURL}lib/font-awesome/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{VAR_SITEURL}lib/bootstrap-validator/css/bootstrapValidator.min.css"/>
+
+	<link rel="stylesheet" type="text/css" href="{VAR_SITEURL}lib/data-tables/plugins/integration/bootstrap/3/dataTables.bootstrap.css">
+
+	<link rel="stylesheet" type="text/css" href="{VAR_SITEURL}css/site.css" />
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<nav class="navbar navbar-default navbar-fixed-top bg_navbar" role="navigation">
+			{VAR_NAVIGATIONTOP}
+		</nav>
+
+		<div class="row siteContent">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				{VAR_CONTENT}
+			</div>
+		</div>
+
+		<nav class="navbar navbar-default navbar-fixed-bottom bg_navbar" role="navigation">
+          	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<p class="text-center"><strong>Copyright &copy;{VAR_COPYRIGHTYEAR} {VAR_SITENAME}</strong></p>
+			</div>
+		</nav>
+     </div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="{VAR_SITEURL}lib/jquery/jquery-1.11.1.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="{VAR_SITEURL}lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{VAR_SITEURL}lib/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="{VAR_SITEURL}lib/ckeditor/config.js"></script>
+	<script type="text/javascript" src="{VAR_SITEURL}js/jquery-ui/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="{VAR_SITEURL}lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+
+	<script type="text/javascript" charset="utf8" src="{VAR_SITEURL}lib/data-tables/media/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="{VAR_SITEURL}lib/data-tables/plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="{VAR_SITEURL}js/site.js"></script>
+<!-- BEGIN javascriptModule -->
+	<script type="text/javascript" src="{VAR_SITEURL}con/{VAR_MODULE}.js"></script>
+<!-- END javascriptModule -->
+</body>
+
+</html>

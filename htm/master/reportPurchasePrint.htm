@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<base href="{VAR_SITEURL}" />
+	<title> {VAR_PAGENAME} :: {VAR_SITENAME} </title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body onLoad="javascript:window.print();">
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			Outlet: {VAR_SEARCHOUTLETNAME}
+			<br />
+			Product Category: {VAR_SEARCHPRODUCTCATEGORYNAME}
+			<br />
+			Product: {VAR_SEARCHPRODUCTNAME}
+			<br />
+			Date Period :<br />
+			From : {VAR_SEARCHBEGINDATE}
+			to {VAR_SEARCHENDDATE}
+			<br />
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;border: thin solid black;">
+	<tr>
+		<td style="border: thin solid black;"> No. </td>
+		<td style="border: thin solid black;"> Date </td>
+		<td style="border: thin solid black;"> Outlet </td>
+		<td style="border: thin solid black;"> Notes </td>
+		<td style="border: thin solid black;"> Barang </td>
+		<td style="border: thin solid black;"> Jumlah </td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td style="border: thin solid black;"> {VAR_COUNTER} </td>
+		<td style="border: thin solid black;"> {VAR_PURCHASEDATE} </td>
+		<td style="border: thin solid black;"> {VAR_OUTLETNAME} </td>
+		<td style="border: thin solid black;"> {VAR_NOTES} </td>
+		<td style="border: thin solid black;"> {VAR_PRODUCTNAME} </td>
+		<td style="border: thin solid black;"> {VAR_QUANTITY} </td>
+	</tr>
+	<!-- END reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td colspan="5" style="border: thin solid black;text-align:right;"> Total </td>
+		<td style="border: thin solid black;text-align:right;"> {VAR_GRANDQUANTITY} </td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td style="text-align:center;">
+			Print Date : {VAR_PRINTDATE}
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

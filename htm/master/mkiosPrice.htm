@@ -1,0 +1,93 @@
+<div style="width:100%;text-align:center;font-weight:bold;font-size:x-large;">
+	{TEXT_PAGENAME}
+</div>
+
+<hr />
+
+<table style="width:100%;">
+	<form method="POST" action="{VAR_FORMACTION}">
+	<tr>
+		<td><select name="editType">
+			<!-- BEGIN typeBlock -->
+				<option value="{VAR_TYPEVALUE}" {VAR_TYPESELECTED}> {VAR_TYPETEXT} </option>
+			<!-- END typeBlock -->
+			</select></td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="editS005" id="editS005" value="{VAR_EDITS005}" size="5" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="editS010" id="editS010" value="{VAR_EDITS010}" size="5" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="editS020" id="editS020" value="{VAR_EDITS020}" size="5" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="editS025" id="editS025" value="{VAR_EDITS025}" size="5" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="editS050" id="editS050" value="{VAR_EDITS050}" size="5" /> </td>
+		<td style="text-align:center;font-weight:bold;"> <input type="text" name="editS100" id="editS100" value="{VAR_EDITS100}" size="5" /> </td>
+		<td style="text-align:center;font-weight:bold;">
+			<select name="editDay">
+			<!-- BEGIN editDayBlock -->
+				<option value="{VAR_EDITDAYVALUE}" {VAR_EDITDAYSELECTED}> {VAR_EDITDAYVALUE} </option>
+			<!-- END editDayBlock -->				
+			</select>
+			<select name="editMonth">
+			<!-- BEGIN editMonthBlock -->
+				<option value="{VAR_EDITMONTHVALUE}" {VAR_EDITMONTHSELECTED}> {VAR_EDITMONTHTEXT}</option>
+			<!-- END editMonthBlock -->
+			</select>
+			<select name="editYear">
+			<!-- BEGIN editYearBlock -->
+				<option value="{VAR_EDITYEARVALUE}" {VAR_EDITYEARSELECTED}> {VAR_EDITYEARVALUE}</option>
+			<!-- END editYearBlock -->
+			</select>
+		</td>
+		<td style="text-align:center;font-weight:bold;">
+			<input type="hidden" name="editID" id="editID" value="{VAR_EDITID}" />
+			<input type="submit" name="editAction" id="editAction" value="{VAR_EDITACTION}" {VAR_FORM_EDIT_DISABLED} />
+		</td>
+	</tr>
+	</form>
+	<tr>
+		<td> No. </td>
+		<td> S005 </td>
+		<td> S010 </td>
+		<td> S020 </td>
+		<td> S025 </td>
+		<td> S050 </td>
+		<td> S100 </td>
+		<td> Effective Date </td>
+		<td> Edit </td>
+	</tr>
+	<tr><td colspan="9" style="text-align:center;font-size:large;">BUY</td></tr>
+	<!-- BEGIN buyListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_S005} </td>
+		<td> {VAR_S010} </td>
+		<td> {VAR_S020} </td>
+		<td> {VAR_S025} </td>
+		<td> {VAR_S050} </td>
+		<td> {VAR_S100} </td>
+		<td> {VAR_EFFECTIVEDATE} </td>
+		<td>
+			<form method="POST" action="{VAR_FORMACTION}" name="priceEdit">
+				<input type="hidden" name="mkiosPriceID" value="{VAR_MKIOSPRICEID}" />
+				<input type="submit" name="mkiosPriceEdit" value="Edit" />
+			</form>
+		</td>
+	</tr>
+	<!-- END buyListBlock -->
+	<tr><td colspan="9" style="text-align:center;font-size:large;">SELL</td></tr>
+	<!-- BEGIN sellListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_S005} </td>
+		<td> {VAR_S010} </td>
+		<td> {VAR_S020} </td>
+		<td> {VAR_S025} </td>
+		<td> {VAR_S050} </td>
+		<td> {VAR_S100} </td>
+		<td> {VAR_EFFECTIVEDATE} </td>
+		<td>
+			<form method="POST" action="{VAR_FORMACTION}" name="priceEdit">
+				<input type="hidden" name="mkiosPriceID" value="{VAR_MKIOSPRICEID}" />
+				<input type="submit" name="mkiosPriceEdit" value="Edit" />
+			</form>
+		</td>
+	</tr>
+	<!-- END sellListBlock -->
+</table>

@@ -1,0 +1,61 @@
+	<div class="row">
+		<div class="col-sm-3 nav_left">
+			{VAR_NAVIGATIONLEFT}
+		</div>
+		<div class="col-sm-9 main_content">
+
+          <p class="pageHeader"> HUBUNGI KAMI </p>
+
+          <div id="contactForm">
+	       <p>{VAR_MESSAGE}</p>
+               <form method="POST" name="formContact" id="formContact">
+                    <div class="contactFormText">
+                         Nama anda
+                    </div>
+                    <div class="contactFormInput">
+                         <input type="text" size="26" value="{VAR_FORMCONTACTNAME}" name="formContactName" id="formContactName">
+                    </div>
+                    <div class="spacer">&nbsp;</div>
+                    <div class="contactFormText">
+                         Email anda
+                    </div>
+                    <div class="contactFormInput">
+                         <input type="text" size="26" value="{VAR_FORMCONTACTEMAIL}" name="formContactEmail" id="formContactEmail">
+                    </div>
+                    <div class="spacer">&nbsp;</div>
+                    <div class="contactFormText">
+                         Bagian/Divisi
+                    </div>
+                    <div class="contactFormInput">
+                         <select name="formContactDivision" id="formContactDivision">
+                              <option value="1" {VAR_FORMCONTACTDIVISION1}> Marketing </option>
+                              <option value="2" {VAR_FORMCONTACTDIVISION2}> Technical Support </option>
+                         </select>
+                    </div>
+                    <div class="spacer">&nbsp;</div>
+                    <div class="contactFormText">
+                         Subyek
+                    </div>
+                    <div class="contactFormInput">
+                         <input type="text" size="32" value="{VAR_FORMCONTACTSUBJECT}" name="formContactSubject" id="formContactSubject">
+                    </div>
+                    <div class="spacer">&nbsp;</div>
+                    <div class="contactFormText">
+                         Pesan
+                    </div>
+                    <div class="contactFormInput">
+                         <textarea rows="5" cols="37" name="formContactContent" id="formContactContent">{VAR_FORMCONTACTCONTENT}</textarea>
+                    </div>
+                    <div class="spacer">&nbsp;</div>
+                    <div class="contactFormText">
+                         &nbsp;
+                    </div>
+                    <div class="contactFormInputAlignRight">
+                         <input type="submit" value="SEND" name="formContactSubmit" id="formContactSubmit">
+                    </div>
+                    <div class="spacer">&nbsp;</div>
+               </form>
+          </div>
+
+		</div>
+	</div>

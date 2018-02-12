@@ -1,0 +1,220 @@
+
+		<div class="page-header">
+		  <h1>{VAR_PAGENAME} <small>{VAR_PAGEOUTLETNAME}</small></h1>
+		</div>
+<div style="clear:both"></div>
+
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;">
+			Date : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="{VAR_FORM_ACTION}">
+			Report Date :
+			From:
+			<select name="reportDayBegin">
+			<!-- BEGIN dateDayBeginBlock -->
+				<option value="{VAR_DAYBEGINVALUE}" {VAR_DAYBEGINSELECTED}> {VAR_DAYBEGINVALUE} </option>
+			<!-- END dateDayBeginBlock -->				
+			</select>
+			<select name="reportMonthBegin">
+			<!-- BEGIN dateMonthBeginBlock -->
+				<option value="{VAR_MONTHBEGINVALUE}" {VAR_MONTHBEGINSELECTED}> {VAR_MONTHBEGINTEXT}</option>
+			<!-- END dateMonthBeginBlock -->
+			</select>
+			<select name="reportYearBegin">
+			<!-- BEGIN dateYearBeginBlock -->
+				<option value="{VAR_YEARBEGINVALUE}" {VAR_YEARBEGINSELECTED}> {VAR_YEARBEGINVALUE}</option>
+			<!-- END dateYearBeginBlock -->
+			</select>
+			To :
+			<select name="reportDayEnd">
+			<!-- BEGIN dateDayEndBlock -->
+				<option value="{VAR_DAYENDVALUE}" {VAR_DAYENDSELECTED}> {VAR_DAYENDVALUE} </option>
+			<!-- END dateDayEndBlock -->				
+			</select>
+			<select name="reportMonthEnd">
+			<!-- BEGIN dateMonthEndBlock -->
+				<option value="{VAR_MONTHENDVALUE}" {VAR_MONTHENDSELECTED}> {VAR_MONTHENDTEXT}</option>
+			<!-- END dateMonthEndBlock -->
+			</select>
+			<select name="reportYearEnd">
+			<!-- BEGIN dateYearEndBlock -->
+				<option value="{VAR_YEARENDVALUE}" {VAR_YEARENDSELECTED}> {VAR_YEARENDVALUE}</option>
+			<!-- END dateYearEndBlock -->
+			</select>
+			<br />
+			Employee
+			<select name="reportEmployee">
+				<option value="">All Employee</option>
+			<!-- BEGIN employeeListBlock -->
+				<option value="{VAR_EMPLOYEEID}" {VAR_EMPLOYEESELECTED}> {VAR_EMPLOYEENAME} </option>
+			<!-- END employeeListBlock -->				
+			</select>
+			<br />
+			Client
+			<select name="reportClient">
+				<option value="">All Client</option>
+			<!-- BEGIN clientListBlock -->
+				<option value="{VAR_CLIENTID}" {VAR_CLIENTSELECTED}> {VAR_CLIENTNAME} </option>
+			<!-- END clientListBlock -->				
+			</select>
+			<br />
+			Product Category
+			<select name="reportProductCategory">
+				<option value="0">All Product Category</option>
+			<!-- BEGIN productCategoryListBlock -->
+				<option value="{VAR_PRODUCTCATEGORYID}" {VAR_PRODUCTCATEGORYSELECTED}> {VAR_PRODUCTCATEGORYNAME} </option>
+			<!-- END productCategoryListBlock -->				
+			</select>
+			<br />
+			Product
+			<select name="reportProduct">
+				<option value="">All Product</option>
+			<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->				
+			</select>
+			<br />
+			<input type="submit"></input>
+			
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td> No. </td>
+		<td> Tanggal </td>
+		<td> Sales </td>
+		<td> Client </td>
+		<td> Pembayaran </td>
+		<td> Notes </td>
+		<td> Barang </td>
+		<td> Jumlah </td>
+		<td> Harga </td>
+		<td> Diskon (%)</td>
+		<td> Total </td>
+		<td> Cash </td>
+		<td> Debit </td>
+		<td> Transfer </td>
+	</tr>
+	<!-- BEGIN reportListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td> {VAR_COUNTER} </td>
+		<td> {VAR_DATE} </td>
+		<td> {VAR_SALESNAME} </td>
+		<td> {VAR_CLIENTNAME} </td>
+		<td> {VAR_PAYMENTTYPENAME} </td>
+		<td> {VAR_NOTES} </td>
+		<td> {VAR_PRODUCTNAME} </td>
+		<td style="text-align:right;"> {VAR_QUANTITY} </td>
+		<td style="text-align:right;"> {VAR_PRICE} </td>
+		<td style="text-align:right;"> {VAR_DISCOUNT} </td>
+		<td style="text-align:right;"> {VAR_TOTAL} </td>
+		<td style="text-align:right;"> {VAR_CASH} </td>
+		<td style="text-align:right;"> {VAR_DEBIT} </td>
+		<td style="text-align:right;"> {VAR_TRANSFER} </td>
+	</tr>
+	<!-- END reportListBlock -->
+	<tr>
+		<td colspan="8" style="text-align:right;">{VAR_QANTITYTOTAL}</td>
+		<td style="text-align:right;">&nbsp;</td>
+		<td style="text-align:right;">Grandtotal</td>
+		<td style="text-align:right;"> <strong>{VAR_GRANDTOTAL}</strong> </td>
+		<td style="text-align:right;"> {VAR_CASHTOTAL} </td>
+		<td style="text-align:right;"> {VAR_DEBITTOTAL} </td>
+		<td style="text-align:right;"> {VAR_TRANSFERTOTAL} </td>
+	</tr>
+</table>
+
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:100%;"> <span style="font-weight:bold"> REKAP PENJUALAN </span> </td>
+		</tr>
+	</table>
+
+	<table id="myTable" style="width:100%;border:thin solid black;">
+		<tr>
+			<td style="border:thin solid black;"> No. </td>
+			<!--<td style="border:thin solid black;"> Tanggal </td>-->
+			<td style="border:thin solid black;"> Barang </td>
+			<td style="border:thin solid black;"> Jumlah </td>
+			<td style="border:thin solid black;"> Subtotal </td>
+		</tr>
+		<!-- BEGIN salesRecapListBlock -->
+		<tr style="background-color:{VAR_SALESRECAPROWBGCOLOR};">
+			<td style="border:thin solid black;"> {VAR_SALESRECAPCOUNTER} </td>
+			<!--<td style="border:thin solid black;"> {VAR_SALESRECAPDATE} </td>-->
+			<td style="border:thin solid black;"> {VAR_SALESRECAPPRODUCTNAME} </td>
+			<td style="border:thin solid black;"> {VAR_SALESRECAPQUANTITY} </td>
+			<td style="border:thin solid black;"> {VAR_SALESRECAPSUBTOTAL} </td>
+		</tr>
+		<!-- END salesRecapListBlock -->
+		<tr>
+			<td colspan="3" style="text-align:right;border:thin solid black;"> GRANDTOTAL</td>
+			<td style="border:thin solid black;"> {VAR_GRANDTOTALSALESRECAP}</td>
+		</tr>
+	</table>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:100%;"> <span style="font-weight:bold"> BIAYA </span> </td>
+		</tr>
+	</table>
+
+	<table id="myTable" style="width:100%;border:thin solid black;">
+		<tr>
+			<td style="border:thin solid black;"> No. </td>
+			<td style="border:thin solid black;"> Tanggal </td>
+			<td style="border:thin solid black;"> Barang </td>
+			<td style="border:thin solid black;"> Harga </td>
+		</tr>
+		<!-- BEGIN expensesList -->
+		<tr style="background-color:{VAR_EXPENSESROWBGCOLOR};">
+			<td style="border:thin solid black;"> {VAR_EXPENSESCOUNTER} </td>
+			<td style="border:thin solid black;"> {VAR_LISTEXPENSESDATE} </td>
+			<td style="border:thin solid black;"> {VAR_LISTEXPENSESNAME} </td>
+			<td style="border:thin solid black;"> {VAR_LISTEXPENSESPRICE} </td>
+		</tr>
+		<!-- END expensesList -->
+		<tr>
+			<td colspan="3" style="text-align:right;border:thin solid black;"> GRANDTOTAL</td>
+			<td style="border:thin solid black;"> {VAR_GRANDTOTALEXPENSES}</td>
+		</tr>
+	</table>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="width:100%;"> <span style="font-weight:bold"> SETORAN </span> </td>
+		</tr>
+	</table>
+
+	<table id="myTable" style="width:100%;border:thin solid black;">
+		<tr>
+			<td style="border:thin solid black;"> No. </td>
+			<td style="border:thin solid black;"> Notes </td>
+			<td style="border:thin solid black;"> Tanggal </td>
+			<td style="border:thin solid black;"> Nominal Setoran </td>
+		</tr>
+		<!-- BEGIN depositList -->
+		<tr style="background-color:{VAR_EXPENSESROWBGCOLOR};">
+			<td style="border:thin solid black;"> {VAR_DEPOSITCOUNTER} </td>
+			<td style="border:thin solid black;"> {VAR_LISTDEPOSITNOTES} </td>
+			<td style="border:thin solid black;"> {VAR_LISTDEPOSITDATE} </td>
+			<td style="border:thin solid black;"> {VAR_LISTDEPOSITPRICE} </td>
+		</tr>
+		<!-- END depositList -->
+		<tr>
+			<td colspan="3" style="text-align:right;border:thin solid black;"> GRANDTOTAL</td>
+			<td style="border:thin solid black;"> {VAR_GRANDTOTALDEPOSIT}</td>
+		</tr>
+	</table>
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td> <input type="submit" value="Cetak" onClick="window.open('retail/reportDailyPrint.php?reportYearBegin={VAR_REPORTYEARBEGIN}&reportMonthBegin={VAR_REPORTMONTHBEGIN}&reportDayBegin={VAR_REPORTDAYBEGIN}&reportYearEnd={VAR_REPORTYEAREND}&reportMonthEnd={VAR_REPORTMONTHEND}&reportDayEnd={VAR_REPORTDAYEND}&reportClient={VAR_REPORTCLIENT}&reportEmployee={VAR_REPORTEMPLOYEE}&reportProduct={VAR_REPORTPRODUCT}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}');"></input></form> </td>
+	</tr>
+</table>

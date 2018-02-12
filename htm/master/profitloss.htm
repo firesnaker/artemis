@@ -1,0 +1,229 @@
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {TEXT_REPORT} {VAR_SELECTEDOUTLETNAME} <br /> {VAR_HUMANDATEBEGIN} - {VAR_HUMANDATEEND} </span> </td>
+		<td style="text-align:right;">
+			Today : {VAR_TODAYDATE}
+			<br />
+			<form method="POST" action="master/profitloss.php">
+			Outlet: 
+			<select name="reportOutlet">
+				<option value="0">All Outlets</option>
+			<!-- BEGIN outletListBlock -->
+				<option value="{VAR_OUTLETID}" {VAR_OUTLETSELECTED}> {VAR_OUTLETNAME} </option>
+			<!-- END outletListBlock -->				
+			</select>
+			<br />
+			Product Category
+			<select name="reportProductCategory">
+				<option value="0">All Product Categories</option>
+			<!-- BEGIN productCategoryListBlock -->
+				<option value="{VAR_PRODUCTCATEGORYID}" {VAR_PRODUCTCATEGORYSELECTED}> {VAR_PRODUCTCATEGORYNAME} </option>
+			<!-- END productCategoryListBlock -->				
+			</select>
+			<br />
+			Product
+			<select name="reportProduct">
+				<option value="0">All Product</option>
+			<!-- BEGIN productListBlock -->
+				<option value="{VAR_PRODUCTID}" {VAR_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+			<!-- END productListBlock -->				
+			</select>
+			<br />
+			Date 
+			From : <input type='text' id='dateBeginJS' name='dateBeginJS' /> &nbsp;&nbsp;&nbsp;
+			to <input type='text' id='dateEndJS' name='dateEndJS' />
+			<input type='hidden' id='dateBegin' name='dateBegin' />
+			<input type='hidden' id='dateEnd' name='dateEnd' />
+			<br />
+			<input type="submit"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table style="width:100%;">
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Penjualan </td>
+		<td colspan="2">{VAR_TOTAL_SALES_VALUE}</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Pembelian </td>
+		<td colspan="2">{VAR_TOTAL_PURCHASE_VALUE}</td>
+	</tr>
+	<tr>
+		<td colspan="4" >&nbsp;</td>
+		<td colspan="2">------------------------------</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Laba Rugi Gross</td>
+		<td colspan="2">{VAR_TOTAL_PROFITLOSS_VALUE}</td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Biaya </td>
+		<td colspan="2">{VAR_TOTAL_EXPENSES_VALUE}</td>
+	</tr>
+
+	<tr>
+		<td colspan="4">&nbsp;</td>
+		<td colspan="2">------------------------------</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Laba Rugi Netto </td>
+		<td colspan="2" style="font-weight:bold;color:{VAR_TOTAL_PROFITLOSSNET_COLOR}">{VAR_TOTAL_PROFITLOSSNET_VALUE}</td>
+	</tr>
+
+	<tr>
+		<td colspan="6"><hr /></td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Hutang </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>{TEXT_SUBTOTAL}</td>
+		<td>{TEXT_ACTION}</td>
+	</tr>
+	<!-- BEGIN purchaseBlock -->
+	<tr>
+		<td>{VAR_PURCHASE_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_PURCHASE_PRICE}</td>
+		<td>{VAR_PURCHASE_VALUE}</td>
+		<td> {VAR_PURCHASE_SUBTOTAL_BY_ID}</td>
+		<td>
+			<form method="POST" action="master/profitloss.php" name="verifyPurchaseNonCash">
+				<input type="hidden" name="purchaseID" value="{VAR_PURCHASEID}" />
+				<input type="hidden" name="reportOutlet" value="{VAR_REPORTOUTLET}" />
+				<input type="hidden" name="reportProduct" value="{VAR_REPORTPRODUCT}" />
+				<input type="hidden" name="dateBegin" value="{VAR_DATEBEGIN}" />
+				<input type="hidden" name="dateEnd" value="{VAR_DATEEND}" />
+				<input type="text" name="verifyNotes" value="" {VAR_VERIFY_DISABLED} />
+				<input type="submit" name="verifyPurchaseNonCashSubmit" value="Verify" {VAR_VERIFY_DISABLED} />
+			</form>
+		</td>
+	</tr>
+	<!-- END purchaseBlock -->
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_NON_CASH_PURCHASE_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td colspan="6"><hr /></td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Piutang </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>{TEXT_SUBTOTAL}</td>
+		<td>{TEXT_ACTION}</td>
+	</tr>
+	<!-- BEGIN salesNonCashBlock -->
+	<tr>
+		<td>{VAR_SALES_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_SALES_PRICE}</td>
+		<td>{VAR_SALES_VALUE}</td>
+		<td>{VAR_SALES_SUBTOTAL_BY_ID}</td>
+		<td>
+			<form method="POST" action="master/profitloss.php" name="verifySalesNonCash">
+				<input type="hidden" name="salesID" value="{VAR_SALESID}" />
+				<input type="hidden" name="reportOutlet" value="{VAR_REPORTOUTLET}" />
+				<input type="hidden" name="reportProduct" value="{VAR_REPORTPRODUCT}" />
+				<input type="hidden" name="dateBegin" value="{VAR_DATEBEGIN}" />
+				<input type="hidden" name="dateEnd" value="{VAR_DATEEND}" />
+				<input type="text" name="financeNotes" value="" {VAR_VERIFY_DISABLED} />
+				<input type="submit" name="verifySalesNonCashSubmit" value="Verify" {VAR_VERIFY_DISABLED} />
+			</form>
+		</td>
+	</tr>
+	<!-- END salesNonCashBlock -->
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_NON_CASH_SALES_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td colspan="6"><hr /></td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Kas </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>{TEXT_SUBTOTAL}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- BEGIN salesCashBlock -->
+	<tr>
+		<td>{VAR_SALES_QUANTITY}</td>
+		<td>{VAR_PRODUCT_NAME}</td>
+		<td>{VAR_SALES_PRICE}</td>
+		<td>{VAR_SALES_VALUE}</td>
+		<td>{VAR_SALES_SUBTOTAL_BY_ID}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- END salesCashBlock -->
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_CASH_SALES_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td colspan="6"><hr /></td>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="font-weight:bold;"> Stok </td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{TEXT_QUANTITY}</td>
+		<td>{TEXT_NAME}</td>
+		<td>{TEXT_PRICE}</td>
+		<td>{TEXT_VALUE}</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- BEGIN stockBlock -->
+	<tr>
+		<td>{VAR_STOCK_QUANTITY}</td>
+		<td>
+			<a href="master/profitloss.php#" onClick="javascript:window.open('master/profitloss.php?dateBegin={VAR_DATEBEGIN}&dateEnd={VAR_DATEEND}&reportOutlet={VAR_REPORTOUTLET}&reportProduct={VAR_STOCKPRODUCTID}')">{VAR_PRODUCT_NAME}</a>
+		</td>
+		<td>{VAR_STOCK_PRICE}</td>
+		<td>{VAR_STOCK_VALUE}</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<!-- END stockBlock -->
+	<tr>
+		<td colspan="4"> &nbsp; </td>
+		<td style="font-weight:bold;">{VAR_TOTAL_STOCK_VALUE}</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>

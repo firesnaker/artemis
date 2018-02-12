@@ -1,0 +1,107 @@
+		<div class="page-header">
+		  <h1>{VAR_PAGENAME} <small>{VAR_PAGEOUTLETNAME}</small></h1>
+		</div>
+
+<div style="clear:both"></div>
+
+	<table style="width:100%;">
+		<tr>
+			<td style="text-align:right;">
+				Date : {VAR_DEPOSITDATE} <br />
+				Goto Date :
+				<form method="POST" action="{VAR_FORM_ACTION}">
+				<select name="deposit_day">
+					<!-- BEGIN depositDayBlock -->
+						<option value="{VAR_DAYVALUE}" {VAR_DAYSELECTED}> {VAR_DAYVALUE} </option>
+					<!-- END depositDayBlock -->
+				</select>
+				<select name="deposit_month" {VAR_DEPOSITMONTHDISABLED}>
+					<!-- BEGIN depositMonthBlock -->
+						<option value="{VAR_MONTHVALUE}" {VAR_MONTHSELECTED}> {VAR_MONTHTEXT} </option>
+					<!-- END depositMonthBlock -->
+				</select>
+				<select name="deposit_year">
+					<!-- BEGIN depositYearBlock -->
+						<option value="{VAR_YEARVALUE}" {VAR_YEARSELECTED}> {VAR_YEARVALUE} </option>
+					<!-- END depositYearBlock -->
+				</select><br />
+				<input type="submit" value="Go" />
+				</form>
+			</td>
+		</tr>
+	</table>
+	<div style="border: thin solid black;text-align:justify;">
+		<p style="text-align:center;font-weight:bold;"> INPUT SETORAN BANK </p>
+		<form name="depositForm" id="depositForm" method="POST" action="{VAR_FORM_ACTION}" role="form">
+			<input type="hidden" name="deposit_day" id="deposit_day" value="{VAR_DEPOSITDAY}" />
+			<input type="hidden" name="deposit_month" id="deposit_month" value="{VAR_DEPOSITMONTH}" />
+			<input type="hidden" name="deposit_year" id="deposit_year" value="{VAR_DEPOSITYEAR}" />
+			<input type="hidden" name="outlet_ID" id="outlet_ID" value="{VAR_OUTLETID}" />
+			<input type="hidden" name="deposit_ID" id="deposit_ID" value="{VAR_DEPOSITID}" />
+			<input type="hidden" name="deposit_Edit_Date" id="deposit_Edit_Date" value="{VAR_DEPOSITEDITDATE}" />
+			<div class="form-group">
+				<label for="deposit_bank">Bank</label>
+				<select name="deposit_bank">
+						<!-- BEGIN depositBankBlock -->
+							<option value="{VAR_BANKID}" {VAR_BANKSELECTED}> {VAR_BANKNAME} </option>
+						<!-- END depositBankBlock -->
+					</select>
+			</div>
+			<div class="form-group">
+				<label for="deposit_notes">Notes</label>
+				<input type="text" name="deposit_notes" id="deposit_notes" value="{VAR_DEPOSITNOTES}" />
+			</div>
+			<div class="form-group">
+				<label for="deposit_price">Nominal Setoran</label>
+				<input type="text" name="deposit_price" id="deposit_price" value="{VAR_DEPOSITPRICE}" /> <br />
+			</div>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="depositSubmit" id="depositSubmit" value="Save" />
+		</form>
+	</div>
+
+	<table id="myTable" style="width:100%;">
+		<tr>
+			<td> No. </td>
+			<td> Notes </td>
+			<td> Nominal Setoran </td>
+			<td> Bank </td>
+			<td> Edit </td>
+			<!--<td> Delete </td>-->
+		</tr>
+		<!-- BEGIN depositList -->
+		<tr>
+			<td> {VAR_COUNTER} </td>
+			<td> {VAR_LISTDEPOSITNOTES} </td>
+			<td> {VAR_LISTDEPOSITPRICE} </td>
+			<td> {VAR_LISTDEPOSITBANK} </td>
+			<td>
+				<form method="POST" name="depositEdit" id="depositEdit" action="{VAR_FORM_ACTION}">
+					<input type="hidden" name="depositEdit_ID" id="depositEdit_ID" value="{VAR_LISTDEPOSITID}" />
+					<input type="submit" name="depositEditSubmit" value="Edit" {VAR_EDIT_DISABLED}></input>
+				</form>
+			</td>
+<!--			<td>
+				<form method="POST" name="depositDelete" id="depositDelete" action="retail/bank.php">
+					<input type="hidden" name="depositDelete_ID" id="depositDelete_ID" value="{VAR_LISTDEPOSITID}" />
+					<input type="submit" name="depositDeleteSubmit" value="Delete"></input>
+				</form>
+			</td>-->
+		</tr>
+		<!-- END depositList -->
+		<tr>
+			<td colspan="2" style="text-align:right;"> GRANDTOTAL</td>
+			<td> {VAR_GRANDTOTAL}</td>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	</table>
+
+<table style="width:100%; text-align:center">
+	<tr>
+		<td>
+			<form method="POST" name="depositPrint" id="depositPrint" action="{VAR_FORM_ACTION}">
+				<input type="hidden" name="deposit_Date" id="deposit_Date" value="{VAR_DEPOSITDATEPRINT}" />
+				<input type="submit" name="Print" value="Cetak" onClick="javascript:window.open('{VAR_FORM_PRINT}?depositDate={VAR_DEPOSITDATEPRINT}');" {VAR_ELEMENTDISABLED}></input>
+			</form>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<base href="{VAR_SITEURL}" />
+	<title> {VAR_PAGENAME} :: {VAR_SITENAME} </title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Ricky Kurniawan" />
+	<meta name="copyright" content="&#169; 2010 R. Kurniawan" />
+	<meta name="keywords" content="golden telecom indonesia, 3G, internet, wireless, modem gsm, modem cdma, wireless modem, wireless internet" />
+	<meta name="description" content="Golden Telecom Indonesia, Pusat grosir dan eceran, modem dan kartu, gsm dan cdma" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body onLoad="window.print();">
+
+<!-- BEGIN inventoryPrintBlock -->
+<table style="width:100%;">
+	<tr>
+		<td style="width:50%;"> <span style="font-weight:bold;"> {VAR_OUTLETNAME} </span> </td>
+		<td style="text-align:right;"> Date : {VAR_TODAYDATE} </td>
+	</tr>
+</table>
+
+<table style="width:100%;border: thin solid black;">
+	<tr>
+		<td style="border:thin solid black;"> No. </td>
+		<td style="border:thin solid black;"> Barang </td>
+		<td style="border:thin solid black;"> Jumlah </td>
+	</tr>
+	<!-- BEGIN inventoryListBlock -->
+	<tr style="background-color:{VAR_ROWBGCOLOR};">
+		<td style="border:thin solid black;"> {VAR_COUNTER} </td>
+		<td style="border:thin solid black;"> {VAR_PRODUCTNAME} </td>
+		<td style="border:thin solid black;"> {VAR_QUANTITY} </td>
+	</tr>
+	<!-- END inventoryListBlock -->
+</table>
+<!-- END inventoryPrintBlock -->
+
+	<table style="width:100%;">
+		<tr>
+			<td style="text-align:center;">
+				Print Date : {VAR_PRINTDATE}
+			</td>
+		</tr>
+	</table>
+
+</body>
+
+</html>

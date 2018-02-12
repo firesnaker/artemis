@@ -1,0 +1,85 @@
+
+<p class="{CSS_MESSAGE_GREETING}"> {VAR_MESSAGE_GREETING} </p>
+<form method="POST" action="{VAR_FORM_ACTION}" name="formNews" id="formNews">
+<input type="hidden" name="newsID" id="newsID" value="{VAR_NEWS_ID}" />
+	<fieldset>
+		<legend>{TEXT_LEGEND_NEWSFORM}</legend>
+		<div class="formElement">
+			<label for="newsDescription"> {TEXT_LABEL_DESCRIPTION} </label>
+			<br />
+			<textarea name="newsDescription" id="newsDescription" class="ckeditor">
+				{VAR_NEWS_DESCRIPTION}
+			</textarea>
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="newsSubmit" value="{TEXT_BUTTON_SUBMIT}">
+		</div>
+	</fieldset>
+</form>
+
+<br />
+
+<form method="POST" action="{VAR_FORM_ACTION}" name="formSearch" id="formSearch">
+	<fieldset>
+		<legend>{TEXT_LEGEND_NEWSSEARCH}</legend>
+		<div class="formElement">
+			<label for="searchDescription"> {TEXT_LABEL_DESCRIPTION} </label>
+			<input type="text" name="searchDescription" id="searchDescription" value="{VAR_SEARCH_DESCRIPTION}">
+		</div>
+		<div class="formElement" id="submitButton">
+			<input type="submit" name="searchSubmit" value="{TEXT_BUTTON_SEARCH}">
+		</div>
+	</fieldset>
+</form>
+
+<br />
+
+<table class="border" id="list">
+	<tr>
+		<th class="border"> {TEXT_NO} </th>
+		<th class="border">
+			{TEXT_DESCRIPTION}
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formSortDescription" id="formSortDescription" class="inline">
+				<input type="submit" name="sortDescriptionSubmit" value="{TEXT_BUTTON_SORTDESCRIPTION}">
+			</form>
+		</th>
+		<th class="border"> {TEXT_EDIT} </th>
+		<th class="border"> {TEXT_DELETE} </th>
+	</tr>
+	<!-- BEGIN newsListBlock -->
+	<tr>
+		<td class="borderAlignRight"> {VAR_LIST_NO} </td>
+		<td class="border"> {VAR_LIST_DESCRIPTION} </td>
+		<td class="borderAlignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formEdit" id="formEdit">
+				<input type="hidden" name="editID" value="{VAR_LIST_ID}">
+				<input type="submit" name="editSubmit" value="{TEXT_BUTTON_EDIT}">
+			</form>
+		</td>
+		<td class="borderAlignCenter">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formDelete" id="formDelete">
+				<input type="hidden" name="deleteID" value="{VAR_LIST_ID}">
+				<input type="submit" name="deleteSubmit" value="{TEXT_BUTTON_DELETE}">
+			</form>
+		</td>
+	</tr>
+	<!-- END newsListBlock -->
+	<!-- BEGIN newsListEmptyBlock -->
+	<tr>
+		<td colspan="4" class="border"> {TEXT_LIST_EMPTY} </td>
+	</tr>
+	<!-- END newsListEmptyBlock -->
+	<tr>
+		<td class="alignLeft">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formPrevious" id="formPrevious">
+				<input type="submit" name="previousSubmit" value="{TEXT_BUTTON_PREVIOUS}">
+			</form>
+		</td>
+		<td colspan="5"> &nbsp; </td>
+		<td class="alignRight">
+			<form method="POST" action="{VAR_FORM_ACTION}" name="formNext" id="formNext">
+				<input type="submit" name="nextSubmit" value="{TEXT_BUTTON_NEXT}">
+			</form>
+		</td>
+	</tr>
+</table>

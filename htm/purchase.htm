@@ -1,0 +1,252 @@
+
+				<div class="modal fade" id="purchaseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{TEXT_CLOSE}</span></button>
+								<h4 class="modal-title">{TEXT_PURCHASE}</h4>
+							</div>
+							<div class="modal-body">
+								<form role="form" class="form-horizontal" enctype="multipart/form-data" method="POST" id="formPurchase">
+									<input class="form-control" type="hidden" name="purchaseID" id="purchaseID" value="" />
+									<input class="form-control" type="hidden" name="outletID" id="outletID" value="" />
+									<input class="form-control" type="hidden" name="supplierID" id="supplierID" value="" />
+									<input class="form-control" type="hidden" name="paymentTypeID" id="paymentTypeID" value="" />
+	<!--								<div class="form-group" id="purchaseInvoiceNoGroup">
+										<label class="control-label col-sm-3" for="purchaseInvoiceNo"> {TEXT_LABEL_INVOICENO} </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" name="purchaseInvoiceNo" id="purchaseInvoiceNo" value="auto-filled" required="required" />
+										</div>
+									</div>-->
+<!-- BEGIN outlet_show -->
+									<div class="form-group" id="outletAutoCompleteGroup">
+										<label class="control-label col-sm-3" for="outletLookUp"> {TEXT_OUTLET} </label>
+										<div class="col-sm-5">
+											<input type="text" class="form-control" name="outletLookUp" id="outletLookUp" placeholder="{TEXT_OUTLET}">
+										</div>
+									</div>
+<!-- END outlet_show -->
+<!-- BEGIN paymentType_show -->
+									<div class="form-group" id="paymentTypeAutoCompleteGroup">
+										<label class="control-label col-sm-3" for="paymentTypeLookUp"> {TEXT_PAYMENTTYPE} </label>
+										<div class="col-sm-5">
+											<input type="text" class="form-control" name="paymentTypeLookUp" id="paymentTypeLookUp" placeholder="{TEXT_PAYMENTTYPE}">
+										</div>
+									</div>
+<!-- END paymentType_show -->
+									<div class="form-group" id="purchaseDateGroup">
+										<label class="control-label col-sm-3" for="purchaseDate"> {TEXT_DATE} </label>
+										<div class="col-sm-5">
+											<input class="form-control regular_dp" type="text" name="purchaseDate" id="purchaseDate" value="" required="required" />
+										</div>
+									</div>
+									<div class="form-group" id="purchaseNoteGroup">
+										<label class="control-label col-sm-3" for="purchaseNotes"> {TEXT_NOTES} </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" name="purchaseNotes" id="purchaseNotes" value="" />
+										</div>
+									</div>
+									<div class="form-group" id="supplierAutoCompleteGroup">
+										<label class="control-label col-sm-3" for="supplierLookUp"> {TEXT_SUPPLIER} </label>
+										<div class="col-sm-5">
+											<input type="text" class="form-control" name="supplierLookUp" id="supplierLookUp" placeholder="{TEXT_SUPPLIER}">
+										</div>
+									</div>
+									<div class="text-center">
+										<span class="text-center alert" id="processBar"></span>
+										<button type="submit" class="btn btn-primary" id="savePurchase">{TEXT_SAVE_CHANGES}</button>
+									</div>
+								</form>
+
+								<table width="100%" class="table table-bordered table-hover table-condensed table-striped table-responsive" id="purchaseDetailList">
+									<thead>
+										<tr>
+											<th width="10%"> {TEXT_NO} </th>
+											<th width="15%"> {TEXT_QUANTITY} </th>
+											<th width="35%"> {TEXT_PRODUCT} </th>
+											<th width="15%"> {TEXT_PRICE} </th>
+											<th width="25%"> {TEXT_SERIALNUMBER} </th>
+											<th width="15%"> {TEXT_EDIT} </th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="text-right"> </td>
+											<td> </td>
+											<td> </td>
+											<td> </td>
+											<td> </td>
+											<td class="text-center"> </td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="panel panel-info" id="panel_purchase_detail">
+									<div class="panel-heading">
+								 		<h4 class="panel-title">
+											{TEXT_PURCHASE}
+										</h4>
+									</div>
+									<div class="panel-body row">
+										<form role="form" class="form-inline" enctype="multipart/form-data" method="POST" id="formPurchaseDetail">
+											<input class="form-control" type="hidden" name="purchaseDetail_purchaseID" id="purchaseDetail_purchaseID" value="" />
+											<input class="form-control" type="hidden" name="purchaseDetail_ID" id="purchaseDetail_ID" value="" />
+											<input class="form-control" type="hidden" name="productItem" id="productItem" value="" />
+<!-- BEGIN price_hidden -->
+											<input class="form-control" type="hidden" name="purchaseDetail_Price" id="purchaseDetail_Price" value="0" />
+<!-- END price_hidden -->
+											<div class="form-group">
+												<label class="sr-only" for="purchaseDetail_Quantity">{TEXT_QUANTITY}</label>
+												<input type="text" class="form-control" name="purchaseDetail_Quantity" id="purchaseDetail_Quantity" placeholder="{TEXT_QUANTITY}" required="required">
+											</div>
+											<div class="form-group">
+												<label class="sr-only" for="productLookUp">{TEXT_PRODUCT}</label>
+												<input type="text" class="form-control" name="productLookUp" id="productLookUp" placeholder="{TEXT_PRODUCT}" required="required">
+											</div>
+<!-- BEGIN price_show -->
+											<div class="form-group">
+												<label class="sr-only" for="purchaseDetail_Price">{TEXT_PRICE}</label>
+												<input type="text" class="form-control" name="purchaseDetail_Price" id="purchaseDetail_Price" placeholder="{TEXT_PRICE}">
+											</div>
+<!-- END price_show -->
+											<div class="form-group">
+												<label class="sr-only" for="purchaseDetail_SnStart">{TEXT_SERIALNUMBER_START}</label>
+												<input type="text" class="form-control" name="purchaseDetail_SnStart" id="purchaseDetail_SnStart" placeholder="{TEXT_SERIALNUMBER_START}" required="required">
+											</div>
+											<div class="form-group">
+												<label class="sr-only" for="purchaseDetail_SnEnd">{TEXT_SERIALNUMBER_END}</label>
+												<input type="text" class="form-control" name="purchaseDetail_SnEnd" id="purchaseDetail_SnEnd" placeholder="{TEXT_SERIALNUMBER_END}">
+											</div>
+											<div class="form-group">
+												<button type="submit" class="btn btn-primary" id="savePurchaseDetail">{TEXT_SAVE_CHANGES}</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer clearfix">
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">{TEXT_CLOSE}</button>
+							</div>
+							
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+
+				<!-- BEGIN verifyForm -->
+				<div class="modal fade" id="verifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{TEXT_CLOSE}</span></button>
+								<h4 class="modal-title">{TEXT_VERIFY} {TEXT_PURCHASE}</h4>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-sm-4">
+										<h4>{TEXT_OUTLET}</h4>
+										<div id="verifyPurchaseOutlet"></div>
+									</div>
+									<div class="col-sm-4">
+										<h4>{TEXT_DATE}</h4>
+										<div id="verifyPurchaseDate"></div>
+									</div>
+									<div class="col-sm-4">
+										<h4>{TEXT_NOTES}</h4>
+										<div id="verifyPurchaseNotes"></div>
+									</div>
+								</div>
+
+								<hr />
+
+								<form role="form" class="form-horizontal" enctype="multipart/form-data" method="POST" id="formVerifyPurchase">
+									<input class="form-control" type="hidden" name="verifyPurchaseID" id="verifyPurchaseID" value="" />
+									<div class="form-group" id="verifyNoteGroup">
+										<label class="control-label col-sm-3" for="verifyNotes"> {TEXT_NOTES} </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" name="verifyNotes" id="verifyNotes" value="" />
+										</div>
+									</div>
+									<div class="text-center">
+										<span class="text-center alert" id="verifyProcessBar"></span>
+										<button type="submit" class="btn btn-primary" id="saveVerifyPurchase">{TEXT_SAVE_CHANGES}</button>
+									</div>
+								</form>
+								<form role="form" class="form-horizontal" enctype="multipart/form-data" method="POST" id="formVerifiedPurchase">
+<!--									<div class="form-group" id="verifiedUserGroup">
+										<label class="control-label col-sm-3" for="verifiedUser"> {TEXT_USER} </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" name="verifiedUser" id="verifiedUser" value="" />
+										</div>
+									</div>-->
+									<div class="form-group" id="verifyDateGroup">
+										<label class="control-label col-sm-3" for="verifiedDate"> {TEXT_DATE} </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" name="verifiedDate" id="verifiedDate" value="" />
+										</div>
+									</div>
+									<div class="form-group" id="verifyNotesGroup">
+										<label class="control-label col-sm-3" for="verifiedNotes"> {TEXT_NOTES} </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" name="verifiedNotes" id="verifiedNotes" value="" />
+										</div>
+									</div>
+									<div class="text-center">
+										<span class="text-center alert" id="verifiedProcessBar"></span>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer clearfix">
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">{TEXT_CLOSE}</button>
+							</div>
+							
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<!-- END verifyForm -->
+
+				<div>
+				  <h1>{VAR_PAGENAME}</h1>
+				</div>
+
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-left">
+						&nbsp;
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+						&nbsp;
+					</div>
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-right">
+						<!-- BEGIN purchase_button -->
+						<button class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#purchaseModal" id="addNewPurchaseButton">{TEXT_ADD} {TEXT_PURCHASE}</button>
+						<!-- END purchase_button -->
+					</div>
+				</div>
+				<br />
+
+				<div class="row clearfix">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<table width="100%" class="table table-bordered table-hover table-condensed table-striped table-responsive" id="purchaseList">
+							<thead>
+								<tr>
+									<th> {TEXT_NO} </th>
+									<th> {TEXT_OUTLET} </th>
+									<th> {TEXT_DATE} </th>
+									<th> {TEXT_NOTES} </th>
+									<th> {TEXT_EDIT} </th>
+									<th> {TEXT_PRINT} </th>
+									<th> {TEXT_VERIFY} </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-right"> </td>
+									<td class="text-center"> </td>
+									<td class="text-center"> </td>
+									<td> </td>
+									<td class="text-center"> </td>
+									<td class="text-center"> </td>
+									<td class="text-center"> </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
