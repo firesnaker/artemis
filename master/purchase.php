@@ -39,7 +39,7 @@
 	session_start();
 	$gate = new gate($_SESSION);
 	//remember, the role value must always be lowercase
-	if ( !$gate->is_valid_role('user_ID', 'user_Name', 'admin') )
+	if ( !$gate->is_valid_role('user_ID', 'user_Name', 'admin') && !$gate->is_valid_role('user_ID', 'user_Name', 'master') )
 	{
 		$_SESSION = array();
 		session_destroy();

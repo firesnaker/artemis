@@ -81,6 +81,7 @@
 		"TEXT_PHONE" => "No. Telepon", //TODO: change into language variables
 		"TEXT_FAX" => "No. Faximile", //TODO: change into language variables
 		"TEXT_ALLOWPURCHASE" => "Buka Pembelian", //TODO: change into language variables
+		"TEXT_ALLOWPURCHASENEWANDEDIT" => "Bisa Tambah Baru dan Ubah Pembelian", //TODO: change into language variables
 		"TEXT_CLOSE" => "Close", //TODO: change into language variables
 		"TEXT_SAVE_CHANGES" => "Save Changes", //TODO: change into language variables
 

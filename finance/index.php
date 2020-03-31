@@ -27,9 +27,13 @@
 	* Version		: 0.1												*
 	* Author		: FireSnakeR 										*
 	* Created		: 2012-04-29 										*
-	* Last modified	: 2012-05-03										*
+	* Last modified	: 2018-03-07										*
 	* 																	*
 	*********************************************************************/
+
+	//*** Immediate redirect to main index.php ***//
+	header("Location:../index.php");
+	exit;
 
 	//*** BEGIN INITIALIZATION ********************************************************//
 		//+++ BEGIN library inclusion +++++++++++++++++++++++++++++++++++++++//

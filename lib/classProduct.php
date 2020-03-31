@@ -44,6 +44,7 @@
 			private $productCategory_ID;
 			private $Name;
 			private $Description;
+			private $SpecialTax;
 			private $Deleted;
 			private $Created;
 			private $Modified;
@@ -501,7 +502,14 @@
 						}
 						else
 						{
-							$sQuery .= ' ' . $key . ' like "%' . $value . '%"';
+							if ($key == "SpecialTax")
+							{
+								$sQuery .= ' ' . $key . ' = "' . $value . '"';
+							}
+							else
+							{
+								$sQuery .= ' ' . $key . ' like "%' . $value . '%"';
+							}
 						}
 							
 						if ( $i >= 0 && $i < (count($aSearchByFieldArray) - 1) )

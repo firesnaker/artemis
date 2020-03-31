@@ -30,6 +30,8 @@
 			<!-- END productListBlock -->				
 			</select>
 			<br />
+			<input type="checkbox" name="reportSpecialTax" value="1" {VAR_REPORTSPECIALTAX_SELECTED}>Include Special Tax (All product only)</input><br />
+			<br />
 			Date Period :<br />
 			From :
 			<select name="beginDay">
@@ -65,8 +67,8 @@
 			</select>
 			<br />
 			<input type="submit" value="{TEXT_FILTER}"></input>
-			<input type="button" value="Cetak" onClick="javascript:window.open('{VAR_FORMURLPRINT}?reportOutlet={VAR_REPORTOUTLET}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&reportProduct={VAR_REPORTPRODUCT}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
-			<input type="button" value="Save" onClick="javascript:window.open('{VAR_FORMURLSAVE}?reportOutlet={VAR_REPORTOUTLET}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&reportProduct={VAR_REPORTPRODUCT}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
+			<input type="button" value="Cetak" onClick="javascript:window.open('{VAR_FORMURLPRINT}?reportOutlet={VAR_REPORTOUTLET}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&reportProduct={VAR_REPORTPRODUCT}&reportSpecialTax={VAR_REPORTSPECIALTAX}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
+			<input type="button" value="Save" onClick="javascript:window.open('{VAR_FORMURLSAVE}?reportOutlet={VAR_REPORTOUTLET}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&reportProduct={VAR_REPORTPRODUCT}&reportSpecialTax={VAR_REPORTSPECIALTAX}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
 			</form>
 		</td>
 	</tr>

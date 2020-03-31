@@ -84,27 +84,24 @@
 		}
 
 		//+++ END $_POST processing +++++++++++++++++++++++++++++++++++++++++//
-		$aSearchByFieldArray = array();		
+		$aSearchByFieldArray = array(
+			"Date" => "BETWEEN '" . $sReportDateBegin . "' AND '" . $sReportDateEnd . "'",
+			"sales.client_ID" => isset($_POST['reportClient'])?$_POST['reportClient']:"",
+			"sales.employee_ID" => isset($_POST['reportEmployee'])?$_POST['reportEmployee']:"",
+			"sales_detail.product_ID" => (isset($_POST['reportProduct']))?$_POST['reportProduct']:"",
+			"productCategory_ID" => (isset($_POST['reportProductCategory']) && $_POST['reportProductCategory'])?$_POST['reportProductCategory']:"",
+			"productSpecialTax" => "0",
+		);
 		if ( $_SESSION['outlet_ID'] > 0 )
 		{
-			$aSearchByFieldArray = array(
-				"outlet_ID" => $_SESSION['outlet_ID'],
-				"Date" => "BETWEEN '" . $sReportDateBegin . "' AND '" . $sReportDateEnd . "'",
-				"sales.client_ID" => isset($_POST['reportClient'])?$_POST['reportClient']:"",
-				"sales.employee_ID" => isset($_POST['reportEmployee'])?$_POST['reportEmployee']:"",
-				"sales_detail.product_ID" => (isset($_POST['reportProduct']))?$_POST['reportProduct']:"",
-				"productCategory_ID" => (isset($_POST['reportProductCategory']) && $_POST['reportProductCategory'])?$_POST['reportProductCategory']:"",
-			);
+			$aSearchByFieldArray["outlet_ID"] = $_SESSION['outlet_ID'];
 		}
-		else
+		if (
+			( isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == 1 )
+			|| ( isset($_POST['reportProduct']) && $_POST['reportProduct'] > 0 )
+		)
 		{
-			$aSearchByFieldArray = array(
-				"Date" => "BETWEEN '" . $sReportDateBegin . "' AND '" . $sReportDateEnd . "'",
-				"sales.client_ID" => ($_POST['reportClient'])?$_POST['reportClient']:"",
-				"sales.employee_ID" => ($_POST['reportEmployee'])?$_POST['reportEmployee']:"",
-				"sales_detail.product_ID" => ($_POST['reportProduct'])?$_POST['reportProduct']:"",
-				"productCategory_ID" => (isset($_POST['reportProductCategory']) && $_POST['reportProductCategory'])?$_POST['reportProductCategory']:"",
-			);
+			unset($aSearchByFieldArray["productSpecialTax"]);
 		}
 		$aSalesList = $cSales->GetSalesReport($aSearchByFieldArray);
 
@@ -206,6 +203,7 @@
 		"VAR_REPORTEMPLOYEE" => isset($_POST['reportEmployee'])?$_POST['reportEmployee']:"",
 		"VAR_REPORTPRODUCT" => isset($_POST['reportProduct'])?$_POST['reportProduct']:"",
 		"VAR_REPORTPRODUCTCATEGORY" => isset($_POST['reportProductCategory'])?$_POST['reportProductCategory']:"",
+		"VAR_REPORTSPECIALTAX_SELECTED" => (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == "1")?"checked":"",
 	));
 	
 	$cWebsite->template->set_block("navigation", "navigation_top_retail");

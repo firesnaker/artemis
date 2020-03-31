@@ -38,6 +38,7 @@
 	//+++ do session check first +++++++++++++++++++++++++++++++++++++++++++++//
 	session_start();
 	$gate = new gate($_SESSION);
+
 	//remember, the role value must always be lowercase
 	if ( !$gate->is_valid_user('user_ID') )
 	{
@@ -49,14 +50,30 @@
 	//+++ include necessary libraries ++++++++++++++++++++++++++++++++++++++++//
 	include_once($libPath . "/classWebsite.php");
 	include_once($libPath . "/classNews.php");
+	include_once($libPath . "/classUser.php");
+	include_once($libPath . "/classOutlet.php");
 	//+++ initialize objects and classes +++++++++++++++++++++++++++++++++++++//
 	$cWebsite = new Website;
 	$cNews = new News;
+	$cUser = new User;
+	$cOutlet = new Outlet;
 	//+++ declare and initialize page variables ++++++++++++++++++++++++++++++//
 	$sErrorMessages = FALSE;
 	$sMessages = FALSE;
 	$sPageName = "Dashboard";
 	$aModules = array();
+	
+	//set the user outlet ID if available from userOutlet, workaround until RBAC is established.
+		//get the outlet list, this user is allowed in
+		$user_outlet_list = $cUser->GetUserOutletList( array("user_ID" => $_SESSION["user_ID"]) );
+
+		$_SESSION['outlet_ID'] = $user_outlet_list[0]['outlet_ID'];
+
+		//there is a possibility that the user outlet is more than 1, for now we will get the first one.
+		$cOutlet->Outlet($user_outlet_list[0]['outlet_ID']);
+		$_SESSION['outlet_Name'] = $cOutlet->Name;
+		//set the purchase page availability here
+		$_SESSION['allow_purchase_page'] = $cOutlet->AllowPurchase;
 	//*** END INITIALIZATION *************************************************//
 
 	//*** BEGIN PAGE PROCESSING **********************************************//

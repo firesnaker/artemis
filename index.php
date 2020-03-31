@@ -89,6 +89,8 @@
 							$redirect = "mkios";
 						break;
 						default:
+							//this is broken, as the outlet will always return empty, outlet ID data is no longer
+							//stored in table user, but in UserOutlet, workaround is in retail/dashboard.php
 							$cOutlet->getOutlet($cUser->getProperty("outlet_ID"));
 							$_SESSION['outlet_ID'] = $cUser->getProperty("outlet_ID");
 							$_SESSION['outlet_Name'] = $cOutlet->getProperty("Name");

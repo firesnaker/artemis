@@ -49,7 +49,7 @@
 		session_start();
 
 		if ( count($_SESSION) > 0 && isset($_SESSION['user_ID']) && $_SESSION['user_ID'] > 0 
-		  && ($_SESSION['user_Name'] == "admin" ) )
+		  && ($_SESSION['user_Name'] == "admin" || $_SESSION['user_Name'] == "master") )
 		{
 			//do nothing
 		}
@@ -134,8 +134,14 @@
 			"outlet_ID" => ($iOutlet > 0)?$iOutlet:"",
 			"productCategory_ID" => ($iProductCategory > 0)?$iProductCategory:"",
 			"product_ID" => ($iProduct > 0)?$iProduct:"",
+			"productSpecialTax" => "0",
 			"Date" => "BETWEEN '" . $sBeginDate . "' AND '" . $sEndDate . "'"
 		);
+		if ( $iProduct > 0 || 
+			isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == 1)
+		{
+			unset($aSearchByFieldArray["productSpecialTax"]);
+		}
 
 		$aSearchExpensesByFieldArray = array(
 			"outlet_ID" => ($iOutlet > 0)?$iOutlet:"",
@@ -183,7 +189,8 @@
 		"VAR_ENDMONTH" => $iEndMonth,
 		"VAR_ENDDAY" => $iEndDay,
 		"VAR_HUMANDATEBEGIN" => date("d-M-Y", mktime(0,0,0,$iBeginMonth, $iBeginDay, $iBeginYear )),
-		"VAR_HUMANDATEEND" => date("d-M-Y", mktime(0,0,0, $iEndMonth, $iEndDay, $iEndYear))
+		"VAR_HUMANDATEEND" => date("d-M-Y", mktime(0,0,0, $iEndMonth, $iEndDay, $iEndYear)),
+		"VAR_REPORTSPECIALTAX_SELECTED" => (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == "1")?"checked":"",
 	));
 	
 	$cWebsite->template->set_block("navigation", "navigation_top_master");

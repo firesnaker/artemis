@@ -62,7 +62,8 @@
 			$cProduct->setProperty("productCategory_ID", $_POST['productCategory']);
 			$cProduct->setProperty("Name", $_POST['productName']);
 			$cProduct->setProperty("Description", $_POST['productDescription']);
-	
+			$cProduct->setProperty("SpecialTax", (isset($_POST['productSpecialTax']))?$_POST['productSpecialTax']:"0");
+
 			if ( $cProduct->setProduct() )
 			{
 				$result = "Save Success";
@@ -83,6 +84,7 @@
 				"productCategory_ID" => $cProduct->getProperty("productCategory_ID"),
 				"Name" => $cProduct->getProperty("Name"),
 				"Description" => $cProduct->getProperty("Description"),
+				"SpecialTax" => $cProduct->getProperty("SpecialTax"),
 				"categoryName" => $cProduct->getProperty("productCategory_Name")
 			);
 		}

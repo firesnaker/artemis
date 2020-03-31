@@ -280,20 +280,31 @@
 				"className" : "clickForDetails"
 			},
 			{ "data" : "Notes", "className" : "clickForDetails" },
-			{ "data": "Date", "searchable": false, "orderable": false, "defaultContent": '<button class="btn btn-primary btn-sm editPurchaseButton">Ubah</button>',
-				"render": function ( data, type, full, meta ) {
+			{ "data": "AllowPurchaseNewAndEdit", "searchable": false, "orderable": false, "defaultContent": '<button class="btn btn-primary btn-sm editPurchaseButton">Ubah</button>',
+				"render": function ( data, type, row, full, meta ) {
 					var page_url = document.location.href;
 					var is_retail = page_url.search("/retail/purchase.php");
 
-					//disable edit if not current month
-					var db_date = new Date(data);
-					var today_date = new Date();
+					//disable if not allowed purchase add and edit
 					if ( is_retail != -1 //is retail
-						&& ( !( db_date.getMonth() == today_date.getMonth() //not current month
-						&& db_date.getYear() == today_date.getYear() ) ) //not current year
+						&& data == 0
 					)
 					{
 						return 'Disabled';
+					}
+					else
+					{
+
+						//disable edit if not current month
+						var db_date = new Date(row.Date);
+						var today_date = new Date();
+						if ( is_retail != -1 //is retail
+							&& ( !( db_date.getMonth() == today_date.getMonth() //not current month
+							&& db_date.getYear() == today_date.getYear() ) ) //not current year
+						)
+						{
+							return 'Disabled';
+						}
 					}
 				}
 			},
@@ -305,10 +316,13 @@
 						return '<button class="btn btn-warning btn-sm quickVerifyPurchaseButton">Quick Verify</button> <button class="btn btn-warning btn-sm verifyPurchaseButton">Verify with Notes</button>';
 					}
 				}
-			}
+			},
+			{ "data" : "Date", "className" : "clickForDetails", "visible":false },
 		],
 		"order": [[ 2, "desc"]]
 	});
+	//edit purchasetable for any
+
 
 	purchaseTable.on( 'order.dt search.dt', function () {
 		purchaseTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {

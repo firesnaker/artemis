@@ -46,6 +46,8 @@
 			<!-- END productListBlock -->				
 			</select>
 			<br />
+			<input type="checkbox" name="reportSpecialTax" value="1" {VAR_REPORTSPECIALTAX_SELECTED}>Include Special Tax (All product only)</input><br />
+			<br />
 			Product Category
 			<select name="reportProductCategory">
 				<option value="0">All Product Category</option>
@@ -89,8 +91,8 @@
 			</select>
 			<br />
 			<input type="submit"></input>
-			<input type="button" value="Cetak" onClick="javascript:window.open('master/reportSalesOrderPrint.php?reportOutlet={VAR_REPORTOUTLET}&reportEmployee={VAR_REPORTEMPLOYEE}&reportClient={VAR_REPORTCLIENT}&reportPaymentType={VAR_REPORTPAYMENTTYPE}&reportProduct={VAR_REPORTPRODUCT}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
-			<input type="button" value="Save" onClick="javascript:window.open('master/reportSalesOrderSave.php?reportOutlet={VAR_REPORTOUTLET}&reportEmployee={VAR_REPORTEMPLOYEE}&reportClient={VAR_REPORTCLIENT}&reportPaymentType={VAR_REPORTPAYMENTTYPE}&reportProduct={VAR_REPORTPRODUCT}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
+			<input type="button" value="Cetak" onClick="javascript:window.open('master/reportSalesOrderPrint.php?reportOutlet={VAR_REPORTOUTLET}&reportEmployee={VAR_REPORTEMPLOYEE}&reportClient={VAR_REPORTCLIENT}&reportPaymentType={VAR_REPORTPAYMENTTYPE}&reportProduct={VAR_REPORTPRODUCT}&reportSpecialTax={VAR_REPORTSPECIALTAX}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
+			<input type="button" value="Save" onClick="javascript:window.open('master/reportSalesOrderSave.php?reportOutlet={VAR_REPORTOUTLET}&reportEmployee={VAR_REPORTEMPLOYEE}&reportClient={VAR_REPORTCLIENT}&reportPaymentType={VAR_REPORTPAYMENTTYPE}&reportProduct={VAR_REPORTPRODUCT}&reportSpecialTax={VAR_REPORTSPECIALTAX}&reportProductCategory={VAR_REPORTPRODUCTCATEGORY}&beginDay={VAR_BEGINDAY}&beginMonth={VAR_BEGINMONTH}&beginYear={VAR_BEGINYEAR}&endDay={VAR_ENDDAY}&endMonth={VAR_ENDMONTH}&endYear={VAR_ENDYEAR}');"></input>
 			</form>
 		</td>
 	</tr>
@@ -148,6 +150,7 @@
 				<input type="hidden" name="reportClient" value="{VAR_REPORTCLIENT}" />
 				<input type="hidden" name="reportPaymentType" value="{VAR_REPORTPAYMENTTYPE}" />
 				<input type="hidden" name="reportProduct" value="{VAR_REPORTPRODUCT}" />
+				<input type="hidden" name="reportSpecialTax" value="{VAR_REPORTSPECIALTAX}" />
 				<input type="hidden" name="beginDay" value="{VAR_BEGINDAY}" />
 				<input type="hidden" name="beginMonth" value="{VAR_BEGINMONTH}" />
 				<input type="hidden" name="beginYear" value="{VAR_BEGINYEAR}" />

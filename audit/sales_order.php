@@ -102,8 +102,15 @@
 			"paymentType_ID" => (isset($_POST['reportPaymentType']))?$_POST['reportPaymentType']:"",
 			"productCategory_ID" => (isset($_POST['reportProductCategory']))?$_POST['reportProductCategory']:"",
 			"product_ID" => (isset($_POST['reportProduct']))?$_POST['reportProduct']:"",
+			"productSpecialTax" => "0",
 			"Date" => "BETWEEN '" . $sBeginDate . "' AND '" . $sEndDate . "'"
 		);
+		if ( (isset($_POST['reportProduct']) && $_POST['reportProduct'] > 0) 
+			|| (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == 1)
+		)
+		{
+			unset($aSearchByFieldArray["productSpecialTax"]);
+		}
 
 		if ($_POST['FinStatus'] > -1)
 		{
@@ -444,6 +451,7 @@
 		"VAR_REPORTPAYMENTTYPE" => (isset($_POST['reportPaymentType']))?$_POST['reportPaymentType']:"0",
 		"VAR_REPORTPRODUCTCATEGORY" => (isset($_POST['reportProductCategory']))?$_POST['reportProductCategory']:"0",
 		"VAR_REPORTPRODUCT" => (isset($_POST['reportProduct']))?$_POST['reportProduct']:"0",
+		"VAR_REPORTSPECIALTAX_SELECTED" => (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == "1")?"checked":"",
 		"VAR_BEGINDAY" => $sDefaultBeginDay,
 		"VAR_BEGINMONTH" => $sDefaultBeginMonth,
 		"VAR_BEGINYEAR" => $sDefaultBeginYear,

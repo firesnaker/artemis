@@ -82,8 +82,17 @@
 			"outlet_ID" => $_SESSION['outlet_ID'],
 			"product_ID" => (isset($_POST['reportProduct']) && $_POST['reportProduct'])?$_POST['reportProduct']:"",
 			"productCategory_ID" => (isset($_POST['reportProductCategory']) && $_POST['reportProductCategory'])?$_POST['reportProductCategory']:"",
+			"productSpecialTax" => "0",
 			"Date" => "BETWEEN '" . $sBeginDate . "' AND '" . $sEndDate . "'"
 		);
+
+		if ( 
+			( isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == 1 )
+			|| ( isset($_POST['reportProduct']) && $_POST['reportProduct'] > 0 )
+		)
+		{
+			unset($aSearchByFieldArray["productSpecialTax"]);
+		}
 
 		$aPurchaseList = $cPurchase->GetPurchaseReport($aSearchByFieldArray);
 
@@ -302,6 +311,7 @@
 	$cWebsite->template->set_var(array(
 		"VAR_REPORTOUTLET" => (isset($_POST['reportOutlet']) && $_POST['reportOutlet'])?$_POST['reportOutlet']:"0",
 		"VAR_REPORTPRODUCT" => (isset($_POST['reportProduct']))?$_POST['reportProduct']:"0",
+		"VAR_REPORTSPECIALTAX_SELECTED" => (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == "1")?"checked":"",
 		"VAR_BEGINDAY" => $sDefaultBeginDay,
 		"VAR_BEGINMONTH" => $sDefaultBeginMonth,
 		"VAR_BEGINYEAR" => $sDefaultBeginYear,

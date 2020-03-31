@@ -49,7 +49,7 @@
 		session_start();
 
 		if ( count($_SESSION) > 0 && isset($_SESSION['user_ID']) && $_SESSION['user_ID'] > 0 
-		  && ($_SESSION['user_Name'] == "admin" ) )
+		  && ($_SESSION['user_Name'] == "admin" || $_SESSION['user_Name'] == "master") )
 		{
 			//do nothing
 		}
@@ -108,8 +108,14 @@
 		$aSearchByFieldArray = array(
 			"outlet_ID" => ($iOutlet > 0)?$iOutlet:"",
 			"product_ID" => ($iProduct > 0)?$iProduct:"",
+			"productSpecialTax" => "0",
 			"Date" => "BETWEEN '" . $sBeginDate . "' AND '" . $sEndDate . "'"
 		);
+		if ( $iProduct > 0 || 
+			isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == 1)
+		{
+			unset($aSearchByFieldArray["productSpecialTax"]);
+		}
 
 		$aSearchExpensesByFieldArray = array(
 			"outlet_ID" => ($iOutlet > 0)?$iOutlet:"",
@@ -155,6 +161,7 @@
 		"VAR_ENDYEAR" => $iEndYear,
 		"VAR_ENDMONTH" => $iEndMonth,
 		"VAR_ENDDAY" => $iEndDay,
+		"VAR_REPORTSPECIALTAX_SELECTED" => (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == "1")?"checked":"",
 
 		"VAR_FORMACTION" => "master/salesCash.php"
 	));

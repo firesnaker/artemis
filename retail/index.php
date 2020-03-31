@@ -27,9 +27,13 @@
 	* Version			: 1											*
 	* Author			: Ricky Kurniawan [ FireSnakeR ] 					*
 	* Created			: 2010-07-02 									*
-	* Last modified	: 2014-08-21									*
+	* Last modified	: 2018-03-07									*
 	*															*
 	***************************************************************************/
+
+	//*** Immediate redirect to main index.php ***//
+	header("Location:../index.php");
+	exit;
 
 	//*** BEGIN INITIALIZATION ***********************************************//
 	//+++ load the absolute necessities ++++++++++++++++++++++++++++++++++++++//

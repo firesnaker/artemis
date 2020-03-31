@@ -48,8 +48,10 @@
 	}
 	//+++ include necessary libraries ++++++++++++++++++++++++++++++++++++++++//
 	include_once($libPath . "/classWebsite.php");
+	include_once($libPath . "/classOutlet.php");
 	//+++ initialize objects and classes +++++++++++++++++++++++++++++++++++++//
 	$cWebsite = new Website;
+	$cOutlet = new FSR_Outlet;
 	//+++ declare and initialize page variables ++++++++++++++++++++++++++++++//
 	$sPageName = "Purchase";
 	$aModules = array("purchase");
@@ -141,7 +143,16 @@
 
 		$cWebsite->template->parse("verifyForm", "");
 
-		$cWebsite->template->parse("purchase_button", "purchase_button");
+		//check if outlet can have the purchase button
+		$cOutlet->getOutlet($_SESSION['outlet_ID']);
+		if ( $cOutlet->getProperty("AllowPurchaseNewAndEdit") == 1)
+		{
+			$cWebsite->template->parse("purchase_button", "purchase_button");
+		}
+		else
+		{
+			$cWebsite->template->parse("purchase_button", "");
+		}
 	}
 
 	if (count($aModules) > 0)

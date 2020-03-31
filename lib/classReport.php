@@ -240,7 +240,12 @@
 					else
 					{
 						//get all product list
-						$aProductData = $cProduct->GetProductList();
+						$aSearchBy = array();
+						if (isset($aData['productSpecialTax']))
+						{
+							$aSearchBy["SpecialTax"] = "0";
+						}
+						$aProductData = $cProduct->GetProductList($aSearchBy);
 					}
 				}
 				else

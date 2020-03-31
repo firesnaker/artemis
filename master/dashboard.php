@@ -43,7 +43,7 @@
 		session_start();
 
 		if ( count($_SESSION) > 0 && isset($_SESSION['user_ID']) && $_SESSION['user_ID'] > 0 
-		  && ($_SESSION['user_Name'] == "admin" ) )
+		  && ($_SESSION['user_Name'] == "admin" || $_SESSION['user_Name'] == "master") )
 		{
 			//do nothing
 		}

@@ -48,6 +48,7 @@
 			private $Phone;
 			private $Fax;
 			private $AllowPurchase;
+			private $AllowPurchaseNewAndEdit;
 			private $Deleted;
 			private $Created;
 			private $Modified;

@@ -284,6 +284,27 @@
 									}
 								}
 							break;
+							case "productSpecialTax" :
+								//create a mini query to get the product_ID where specialtax field = 0
+									$cProduct = new Product;
+									$aSearchBy = array(
+										"SpecialTax" => "0"
+									);
+									$aProductNonSpecialTaxList = $cProduct->GetProductList( $aSearchBy );
+									if (count($aProductNonSpecialTaxList) > 0)
+									{
+										$sQuery .= ' AND (';
+										for($i = 0; $i < count($aProductNonSpecialTaxList); $i++)
+										{
+											$sQuery .= 'product_ID="' . $aProductNonSpecialTaxList[$i]['ID'] . '"';
+											if ($i < (count($aProductNonSpecialTaxList) -1) )
+											{
+												$sQuery .= ' OR ';
+											}
+										}
+										$sQuery .= ' )';
+									}
+							break;
 							case "outlet_ID" :
 								if ( (trim($value) != "") AND ($value <> 0) ) //if not empty
 								{

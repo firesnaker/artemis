@@ -38,7 +38,7 @@
 	//+++ do session check first +++++++++++++++++++++++++++++++++++++++++++++//
 	session_start();
 	$gate = new gate($_SESSION);
-	if ( !$gate->is_valid_role('user_ID', 'user_Name', 'admin') ) //remember, the role value must always be lowercase
+	if ( !$gate->is_valid_role('user_ID', 'user_Name', 'admin') && !$gate->is_valid_role('user_ID', 'user_Name', 'master') ) //remember, the role value must always be lowercase
 	{
 		$_SESSION = array();
 		session_destroy();
@@ -89,9 +89,16 @@
 			"client_ID" => ($_GET['reportClient'])?$_GET['reportClient']:"",
 			"paymentType_ID" => ($_GET['reportPaymentType'])?$_GET['reportPaymentType']:"",
 			"product_ID" => ($_GET['reportProduct'])?$_GET['reportProduct']:"",
+			"productSpecialTax" => "0",
 			"productCategory_ID" => ($_GET['reportProductCategory'])?$_GET['reportProductCategory']:"",
 			"Date" => "BETWEEN '" . $sBeginDate . "' AND '" . $sEndDate . "'"
 		);
+		if ( (isset($_GET['reportProduct']) && $_GET['reportProduct'] > 0) 
+			|| (isset($_GET['reportSpecialTax']) && $_GET['reportSpecialTax'] == 1)
+		)
+		{
+			unset($aSearchByFieldArray["productSpecialTax"]);
+		}
 
 		$aSalesList = $cSales->GetSalesReport($aSearchByFieldArray);
 		$aOutletList = $cOutlet->GetActiveOutletList();
@@ -167,6 +174,7 @@
 		"VAR_SEARCHCLIENTNAME" => $sSearchClientName,
 		"VAR_SEARCHPAYMENTTYPENAME" => $sSearchPaymentTypeName,
 		"VAR_SEARCHPRODUCTNAME" => $sSearchProductName,
+		"VAR_INCLUDESPECIALTAX" => (isset($_GET['reportSpecialTax']) && $_GET['reportSpecialTax'] == 1)?" - Include Special Tax":" - No Special Tax",
 		"VAR_SEARCHPRODUCTCATEGORYNAME" => $sSearchProductCategoryName,
 		"VAR_SEARCHBEGINDATE" => date("d-M-Y", mktime(0,0,0,$_GET['beginMonth'], $_GET['beginDay'], $_GET['beginYear'])), 
 		"VAR_SEARCHENDDATE" => date("d-M-Y", mktime(0,0,0,$_GET['endMonth'], $_GET['endDay'], $_GET['endYear'])),

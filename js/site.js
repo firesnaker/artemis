@@ -195,6 +195,15 @@ $(document).ready(function(){
 					}
 				}
 			},
+			productSpecialTax: {
+				message: 'The Product Special Tax is not valid',
+				validators: {
+					regexp: {
+						regexp: /^[\d]+$/,
+						message: 'The Product Special Tax can only consist of numbers'
+					}
+				}
+			},
 			productCategory: {
 				message: 'The Product Category is not valid.',
 				validators: {
@@ -306,6 +315,11 @@ $(document).ready(function(){
 			$("#productName").val(msg.Name);
 			$("#productCategory").val(msg.productCategory_ID);
 			$("#productDescription").val(msg.Description);
+			if (msg.SpecialTax == 1)
+			{
+				$("#productSpecialTax").prop('checked', true);
+			}
+			
 			if (msg.categoryName != false)
 			{
 				$("#productCategoryAutoComplete").val(msg.categoryName);

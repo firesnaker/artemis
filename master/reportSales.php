@@ -38,7 +38,7 @@
 	//+++ do session check first +++++++++++++++++++++++++++++++++++++++++++++//
 	session_start();
 	$gate = new gate($_SESSION);
-	if ( !$gate->is_valid_role('user_ID', 'user_Name', 'admin') ) //remember, the role value must always be lowercase
+	if ( !$gate->is_valid_role('user_ID', 'user_Name', 'admin') && !$gate->is_valid_role('user_ID', 'user_Name', 'master') ) //remember, the role value must always be lowercase
 	{
 		$_SESSION = array();
 		session_destroy();
@@ -96,9 +96,16 @@
 			"client_ID" => (isset($_POST['reportClient']) && $_POST['reportClient'])?$_POST['reportClient']:"",
 			"paymentType_ID" => (isset($_POST['reportPaymentType']) && $_POST['reportPaymentType'])?$_POST['reportPaymentType']:"",
 			"product_ID" => (isset($_POST['reportProduct']) && $_POST['reportProduct'])?$_POST['reportProduct']:"",
+			"productSpecialTax" => "0",
 			"productCategory_ID" => (isset($_POST['reportProductCategory']) && $_POST['reportProductCategory'])?$_POST['reportProductCategory']:"",
 			"Date" => "BETWEEN '" . $sBeginDate . "' AND '" . $sEndDate . "'"
 		);
+		if ( (isset($_POST['reportProduct']) && $_POST['reportProduct'] > 0) 
+			|| (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == 1)
+		)
+		{
+			unset($aSearchByFieldArray["productSpecialTax"]);
+		}
 
 		$aSalesList = $cSales->GetSalesReport($aSearchByFieldArray);
 		$aOutletList = $cOutlet->GetActiveOutletList();
@@ -407,6 +414,8 @@
 		"VAR_REPORTCLIENT" => (isset($_POST['reportClient']) && $_POST['reportClient'])?$_POST['reportClient']:"0",
 		"VAR_REPORTPAYMENTTYPE" => (isset($_POST['reportPaymentType']) && $_POST['reportPaymentType'])?$_POST['reportPaymentType']:"0",
 		"VAR_REPORTPRODUCT" => (isset($_POST['reportProduct']) && $_POST['reportProduct'])?$_POST['reportProduct']:"0",
+		"VAR_REPORTSPECIALTAX" => (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == "1")?"1":"0",
+		"VAR_REPORTSPECIALTAX_SELECTED" => (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == "1")?"checked":"",
 		"VAR_REPORTPRODUCTCATEGORY" => (isset($_POST['reportProductCategory']) && $_POST['reportProductCategory'])?$_POST['reportProductCategory']:"0",
 		"VAR_BEGINDAY" => $sDefaultBeginDay,
 		"VAR_BEGINMONTH" => $sDefaultBeginMonth,

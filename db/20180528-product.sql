@@ -1,0 +1,2 @@
+ALTER TABLE `product` ADD `specialTax` TINYINT UNSIGNED NOT NULL DEFAULT '0' AFTER `ViewPriority`;
+ALTER TABLE `product` CHANGE `specialTax` `SpecialTax` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0';

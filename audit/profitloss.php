@@ -134,8 +134,15 @@
 			"outlet_ID" => ($iOutlet > 0)?$iOutlet:"",
 			"productCategory_ID" => ($iProductCategory > 0)?$iProductCategory:"",
 			"product_ID" => ($iProduct > 0)?$iProduct:"",
+			"productSpecialTax" => "0",
 			"Date" => "BETWEEN '" . $sBeginDate . "' AND '" . $sEndDate . "'"
 		);
+		if ( ($iProduct > 0) 
+			|| (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == 1)
+		)
+		{
+			unset($aSearchByFieldArray["productSpecialTax"]);
+		}
 
 		$aSearchExpensesByFieldArray = array(
 			"outlet_ID" => ($iOutlet > 0)?$iOutlet:"",
@@ -507,6 +514,7 @@
 	$cWebsite->template->set_var(array(
 		"VAR_REPORTOUTLET" => ($iOutlet > 0)?$iOutlet:"0",
 		"VAR_REPORTPRODUCT" => ($iProduct > 0)?$iProduct:"0",
+		"VAR_REPORTSPECIALTAX_SELECTED" => (isset($_POST['reportSpecialTax']) && $_POST['reportSpecialTax'] == "1")?"checked":"",
 		"VAR_REPORTPRODUCTCATEGORY" => ($iProductCategory > 0)?$iProductCategory:"0",
 		"VAR_DATEBEGIN" => $sBeginDate,
 		"VAR_DATEEND" => $sEndDate

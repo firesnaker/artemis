@@ -27,9 +27,13 @@
 	* Version		: 0.1												*
 	* Author		: FireSnakeR 										*
 	* Created		: 2012-07-21 										*
-	* Last modified	: 2012-07-21										*
+	* Last modified	: 2018-03-07										*
 	* 																	*
 	*********************************************************************/
+
+	//*** Immediate redirect to main index.php ***//
+	header("Location:../index.php");
+	exit;
 
 	//*** BEGIN INITIALIZATION ********************************************************//
 		//+++ BEGIN library inclusion +++++++++++++++++++++++++++++++++++++++//
@@ -73,7 +77,7 @@
 				if ( $sLoginResult > 0 ) //is valid user
 				{
 					$cUser->User($sLoginResult);
-					if ( ($cUser->Name == "admin") )
+					if ( $cUser->Name == "admin" || $cUser->Name == "master" )
 					{
 						$_SESSION['user_ID'] = $cUser->ID;
 						$_SESSION['user_Name'] = $cUser->Name;

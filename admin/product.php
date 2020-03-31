@@ -85,6 +85,7 @@
 		"TEXT_LABEL_NAME" => "Name", //TODO: change into language variables
 		"TEXT_LABEL_DESCRIPTION" => "Description", //TODO: change into language variables
 		"TEXT_LABEL_CATEGORY" => "Category", //TODO: change into language variables
+		"TEXT_LABEL_SPECIALTAX" => "Special Tax", //TODO: change into language variables
 
 		"TEXT_NO" => strtoupper("No."), //TODO: change into language variables
 		"TEXT_NAME" => strtoupper("Name"), //TODO: change into language variables

@@ -66,6 +66,7 @@
 			$cOutlet->setProperty("Phone", $_POST['outletPhone']);
 			$cOutlet->setProperty("Fax", $_POST['outletFax']);
 			$cOutlet->setProperty("AllowPurchase", (isset($_POST['outletAllowPurchase']))?$_POST['outletAllowPurchase']:"0");
+			$cOutlet->setProperty("AllowPurchaseNewAndEdit", (isset($_POST['outletAllowPurchaseNewAndEdit']))?$_POST['outletAllowPurchaseNewAndEdit']:"0");
 	
 			if ( $cOutlet->setOutlet() )
 			{
@@ -92,6 +93,7 @@
 				"Phone" => $cOutlet->getProperty("Phone"),
 				"Fax" => $cOutlet->getProperty("Fax"),
 				"AllowPurchase" => $cOutlet->getProperty("AllowPurchase"),
+				"AllowPurchaseNewAndEdit" => $cOutlet->getProperty("AllowPurchaseNewAndEdit"),
 				"parentName" => $cOutlet->getProperty("parentName")
 			);
 		}

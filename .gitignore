@@ -1,1 +1,4 @@
 .svn
+#Ignore config.php, new installation will use config-sample.php
+config.php
+localhost.sql

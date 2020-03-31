@@ -36,13 +36,18 @@
 	include_once("dirConf.php");
 	//+++ include necessary libraries ++++++++++++++++++++++++++++++++++++++++//
 	include_once($libPath . "/invoiceObject.php");
+	include_once($libPath . "/classOutlet.php");
 	//+++ initialize objects and classes +++++++++++++++++++++++++++++++++++++//
 	$cPurchase = new FSR_Invoice;
+	$cOutlet = new FSR_Outlet;
 	//+++ declare and initialize page variables ++++++++++++++++++++++++++++++//
 	$result = "";
 	//*** END INITIALIZATION *************************************************//
 
 	//*** BEGIN PAGE PROCESSING **********************************************//
+	session_start();
+	$cOutlet->getOutlet($_SESSION['outlet_ID']);
+
 	if ( isset($_POST) && count($_POST) > 0)
 	{
 		if (isset($_POST['deleteID']))
@@ -52,7 +57,7 @@
 		elseif ( isset($_POST["purchaseDetail_ID"]) )
 		{
 			//can be updated if admin
-			session_start();
+			//session_start();
 			if (strtolower($_SESSION['user_Name']) == "admin")
 			{
 				$can_update = TRUE;
@@ -73,7 +78,7 @@
 				}
 			}
 
-			if ( $can_update )
+			if ( $can_update && $cOutlet->getProperty("AllowPurchaseNewAndEdit") == 1)
 			{
 				if ( isset($_POST['purchaseDetail_ID']) )
 				{
@@ -105,7 +110,7 @@
 			$can_update = FALSE;
 
 			//can be updated if admin
-			session_start();
+			//session_start();
 			if (strtolower($_SESSION['user_Name']) == "admin")
 			{
 				$can_update = TRUE;
@@ -121,7 +126,7 @@
 				}
 			}
 
-			if ( $can_update )
+			if ( $can_update && $cOutlet->getProperty("AllowPurchaseNewAndEdit") == 1)
 			{
 				if ( isset($_POST['purchaseID']) )
 				{
@@ -172,6 +177,7 @@
 			$result = array(
 				"ID" => $cPurchase->getProperty("ID"),
 				"outletID" => $cPurchase->getProperty("outlet_ID"),
+				//"outletAllowPurchaseNewAndEdit" => $cOutlet->getProperty("AllowPurchaseNewAndEdit"),
 				"supplierID" => $cPurchase->getProperty("supplier_id"),
 				"paymentTypeID" => $cPurchase->getProperty("paymentType_ID"),
 				"Date" => date("d-M-Y", strtotime($cPurchase->getProperty("Date"))),
@@ -212,7 +218,7 @@
 		}
 		else //get everything
 		{
-			session_start();
+			//session_start();
 
 			$param = array(
 				"outlet_ID" => "> 0"
@@ -225,6 +231,20 @@
 			}
 			$purchaseData = $cPurchase->listPurchase($param);
 			$result = array("data");
+
+			//inject outlet allow purchase into the result
+			//to be removed later on.
+			$tmpPurchaseData = array();
+			foreach ($purchaseData as $data)
+			{
+				$cOutletPurchase = new FSR_Outlet;
+				$cOutletPurchase->getOutlet($data['outlet_ID']);
+				$data["AllowPurchaseNewAndEdit"] = $cOutletPurchase->getProperty("AllowPurchaseNewAndEdit");
+
+				$tmpPurchaseData[] = $data;
+			}
+			$purchaseData = $tmpPurchaseData;
+
 			$result['data'] = $purchaseData;
 		}
 	}
