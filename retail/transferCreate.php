@@ -147,7 +147,7 @@
 		if ($iTransferID > 0 )
 		{
 			//generate PDF file for download.
-			$aOutletDetail = $cOutlet->GetOutletByID($aTranferData[0]["To_outlet_ID"]);
+			$aOutletDetail = $cOutlet->GetOutletByID($aTransferData[0]["To_outlet_ID"]);
 	
 			/* PDF Creation */
 			$aTransferListForPDF = array();
@@ -161,7 +161,7 @@
 				);
 			}
 	
-			list($year, $month, $day) = explode("-", $aTranferData[0]["Date"]);
+			list($year, $month, $day) = explode("-", $aTransferData[0]["Date"]);
 			$sTransferDate = date("d-M-Y", mktime(0, 0, 0, $month, $day, $year));
 	
 			$sFileName = $sPDFDirectory . "/transfer-print-" . date("d-m-Y") . "-" . $iTransferID . ".pdf";
@@ -175,7 +175,7 @@
 	
 			// Column headings
 			$cPDF->outletName = "Transfer Dari " . strip_tags($_SESSION['outlet_Name']) . " Untuk " . $aOutletDetail[0]["Name"] . "";
-			$cPDF->outletAddress = "Note:" . $aTranferData[0]["Notes"];
+			$cPDF->outletAddress = "Note:" . $aTransferData[0]["Notes"];
 			$cPDF->reportDate = "Tanggal:" . $sTransferDate;
 			$cPDF->printDate = "Tanggal Cetak:" . date("d-m-Y H:i");
 			$header = array('No', 'Barang', 'Jumlah', 'Serial Number');
@@ -214,8 +214,8 @@
 		"VAR_OUTLETNAME" => $_SESSION['outlet_Name'],
 		"VAR_ERRORMESSAGES" => $sErrorMessages,
 		
-		"VAR_TRANSFEROUTID" => (count($aTranferData))?$aTranferData[0]["ID"]:'',
-		"VAR_TRANSFEROUTNOTES" => (count($aTranferData))?$aTranferData[0]["Notes"]:'',
+		"VAR_TRANSFEROUTID" => (count($aTransferData))?$aTransferData[0]["ID"]:'',
+		"VAR_TRANSFEROUTNOTES" => (count($aTransferData))?$aTransferData[0]["Notes"]:'',
 
 		"VAR_TRANSFERDETAILID" => (isset($aTransferDetailEdit))?$aTransferDetailEdit[0]["ID"]:'',
 		"VAR_TRANSFERDETAILQUANTITY" => (isset($aTransferDetailEdit))?$aTransferDetailEdit[0]["quantity"]:'',
@@ -251,7 +251,7 @@
 			{
 				$transferDestinationList[] = array(
 					"VAR_OUTLET_ID" => $aOutlet[$i]['To_outlet_ID'],
-					"VAR_OUTLET_SELECTED" => (isset($aTransferData) && $aTranferData[0]["To_outlet_ID"] == $aOutlet[$i]['To_outlet_ID'])?"selected":"",
+					"VAR_OUTLET_SELECTED" => (isset($aTransferData) && $aTransferData[0]["To_outlet_ID"] == $aOutlet[$i]['To_outlet_ID'])?"selected":"",
 					"VAR_OUTLET_NAME" => $aOutletDetail[0]["Name"]
 				);
 			}
@@ -269,7 +269,7 @@
 			{
 				$transferDestinationList[] = array(
 					"VAR_OUTLET_ID" => $aOutlet[$i]['ID'],
-					"VAR_OUTLET_SELECTED" => ($aTranferData[0]["To_outlet_ID"] == $aOutlet[$i]['ID'])?"selected":"",
+					"VAR_OUTLET_SELECTED" => (isset($aTransferData) && $aTransferData[0]["To_outlet_ID"] == $aOutlet[$i]['ID'])?"selected":"",
 					"VAR_OUTLET_NAME" => $aOutlet[$i]['name']
 				);
 			}
