@@ -19,6 +19,49 @@
 <body onLoad="window.print();">
 
 	<table style="width:100%;">
+                <tr>
+                        <td style="width:50%;"> 
+                                <table>
+                                    <tr>
+                                      <td> <span style="font-weight:bold"> FAKTUR PENJUALAN </span> </td>
+                                    </tr>
+                                    <tr>
+                                      <td> <span style="font-weight:bold"> PT SINARLESTARI PRAKARSA ABADI </span> </td>
+                                    </tr>
+                                    <tr>
+                                      <td> Jl. Jendral Sudirman 212A, Bandung </td>
+                                    </tr>
+                                    <tr>
+                                      <td> 022-6041830 </td>
+                                    </tr>
+
+                                </table>
+                        <td>
+                                <table>
+                                    <tr>
+                                        <td>No. Transaksi</td>
+                                        <td>:</td>
+                                        <td>{VAR_SALESNUMBER}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>:</td>
+                                        <td>{VAR_SALESDATE}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pelanggan</td>
+                                        <td>:</td>
+                                        <td>{VAR_CLIENTNAME}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Catatan</td>
+                                        <td>:</td>
+                                        <td>{VAR_SALESNOTES}</td>
+                                    </tr>
+                                </table>
+                        </td>
+                </tr>
+<!--
 		<tr>
 			<td style="width:50%;"> <span style="font-weight:bold"> {VAR_OUTLETNAME} </span> <br /> {VAR_SALESORDERTEXT} </td>
 			<td style="text-align:right;">
@@ -35,17 +78,18 @@
 				Pembayaran: "{VAR_PAYMENTTYPENAME}"
 			</td>
 		</tr>
+-->
 	</table>
 
-	<table id="myTable" style="width:100%;border: thin solid black;">
+	<table id="myTable" style="width:100%;">
 		<tr>
 			<td style="border: thin solid black;"> No. </td>
-			<td style="border: thin solid black;"> Barang </td>
+			<td style="border: thin solid black;"> Nama Barang </td>
 			<td style="border: thin solid black;"> Jumlah </td>
-			<td style="border: thin solid black;"> Harga satuan (Sebelum Diskon) </td>
+			<td style="border: thin solid black;"> Harga satuan </td>
 			<td style="border: thin solid black;"> Diskon (%)</td>
 			<td style="border: thin solid black;"> Subtotal </td>
-			<td> Serial Number </td>
+<!--			<td> Serial Number </td>-->
 		</tr>
 		<!-- BEGIN salesDetailRow -->
 		<tr>
@@ -55,24 +99,58 @@
 			<td style="border: thin solid black;text-align:right;"> {VAR_PRICE} </td>
 			<td style="border: thin solid black;text-align:right;"> {VAR_DISCOUNT} </td>
 			<td style="border: thin solid black;text-align:right;"> <span id="subtotal_{VAR_COUNTER}"> {VAR_SUBTOTAL} </span> </td>
-			<td style="border: thin solid black;text-align:right;"> {VAR_SN} </td>
+<!--			<td style="border: thin solid black;text-align:right;"> {VAR_SN} </td>-->
 		</tr>
 		<!-- END salesDetailRow -->
 		<tr>
-			<td colspan="5" style="border: thin solid black;text-align:right;"> Grandtotal </td>
+                        <td colspan="2" rowspan="3">Hormat kami:</td>
+                        <td colspan="2" rowspan="3">Penerima:</td>
+			<td style="border: thin solid black;text-align:right;"> Total </td>
+			<td style="border: thin solid black;text-align:right;"> {VAR_TOTAL} </td>
+<!--			<td style="border: thin solid black;"> &nbsp; </td>-->
+		</tr>
+		<tr>
+			<td colspan="1" style="border: thin solid black;text-align:right;"> PPN </td>
+			<td style="border: thin solid black;text-align:right;"> {VAR_TAX} </td>
+<!--			<td style="border: thin solid black;"> &nbsp; </td>-->
+		</tr>
+		<tr>
+			<td colspan="1" style="border: thin solid black;text-align:right;"> Grandtotal </td>
 			<td style="border: thin solid black;text-align:right;"> {VAR_GRANDTOTAL} </td>
-			<td style="border: thin solid black;"> &nbsp; </td>
+<!--			<td style="border: thin solid black;"> &nbsp; </td>-->
+		</tr>
+		</tr>
+		<tr>
+                        <td colspan="2">
+                             <br />
+                             <br />
+                             <br />
+                             <br />
+                             <br />
+                             (...................)
+                        </td>
+                        <td colspan="2">
+                             <br />
+                             <br />
+                             <br />
+                             <br />
+                             <br />
+                             (...................)
+                        </td>
+			<td> &nbsp; </td>
+			<td> &nbsp; </td>
+<!--			<td> &nbsp; </td>-->
 		</tr>
 	</table>
-
+<!--
 	<table style="width:100%;">
 		<tr>
-			<td style="text-align:center;">
+			<td style="text-align:right;">
 				Print Date : {VAR_PRINTDATE}
 			</td>
 		</tr>
 	</table>
-
+-->
 </body>
 
 </html>

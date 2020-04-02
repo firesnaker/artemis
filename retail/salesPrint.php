@@ -143,7 +143,7 @@
 	}
 	else
 	{
-		$iGrandTotal = 0;
+		$iTotal = 0;
 		//salesDetailRow
 		$salesDetailRow = array();
 		for ($i = 0; $i < count($aSalesData); $i++)
@@ -161,12 +161,18 @@
 				"VAR_SN" => ($aSalesData[$i]['SnStart'] . (($aSalesData[$i]['SnEnd'] == "")?"":("-" . $aSalesData[$i]['SnEnd']) ) ),
 			);
 
-			$iGrandTotal += $iSubtotal;
+			$iTotal += $iSubtotal;
 		}
 		$cWebsite->buildBlock("site", "salesDetailRow", $salesDetailRow);
 	}
 
+        //tax calculation
+        $iTax = $iTotal * 0.1;
+        $iGrandTotal = $iTotal + $iTax;
+
 	$cWebsite->template->set_var(array(
+                "VAR_TOTAL" => number_format($iTotal, _NbOfDigitBehindComma_ ),
+                "VAR_TAX" => number_format($iTax, _NbOfDigitBehindComma_ ),
 		"VAR_GRANDTOTAL" => number_format($iGrandTotal, _NbOfDigitBehindComma_ )
 	));
 	

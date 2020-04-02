@@ -536,7 +536,7 @@
 
 			function GetOutletList( $aSearchByFieldArray=array(), $aSortByArray=array(), $aLimitByArray=array() )
 			{
-				$sQuery  = 'SELECT outlet.ID AS ID, outlet.master_outlet_ID AS master_outlet_ID, outlet.Name AS name, outlet.Address AS address, outlet.Phone AS phone, outlet.Fax AS fax, outlet.Status AS status, outlet.Viewable as viewable';
+				$sQuery  = 'SELECT outlet.ID AS ID, outlet.code AS code, outlet.master_outlet_ID AS master_outlet_ID, outlet.Name AS name, outlet.Address AS address, outlet.Phone AS phone, outlet.Fax AS fax, outlet.Status AS status, outlet.Viewable as viewable';
 				$sQuery .= ' FROM outlet';
 
 				//verify that $aSearchByFieldArray value is not empty

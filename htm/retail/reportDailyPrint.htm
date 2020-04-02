@@ -35,6 +35,7 @@
 	<tr>
 		<td style="border: solid black thin;"> No. </td>
 		<td style="border: solid black thin;"> Tanggal </td>
+		<td style="border: solid black thin;"> No. Nota </td>
 		<td style="border: solid black thin;"> Sales </td>
 		<td style="border: solid black thin;"> Client </td>
 		<td style="border: solid black thin;"> Pembayaran </td>
@@ -44,6 +45,8 @@
 		<td style="border: solid black thin;"> Harga </td>
 		<td style="border: solid black thin;"> Diskon (%)</td>
 		<td style="border: solid black thin;"> Total </td>
+		<td style="border: solid black thin;"> PPN </td>
+		<td style="border: solid black thin;"> Invoice Total </td>
 		<td style="border: solid black thin;"> Cash </td>
 		<td style="border: solid black thin;"> Debit </td>
 		<td style="border: solid black thin;"> Transfer </td>
@@ -52,6 +55,7 @@
 	<tr style="background-color:{VAR_ROWBGCOLOR};">
 		<td style="border: solid black thin;"> {VAR_COUNTER} </td>
 		<td style="border: solid black thin;"> {VAR_DATE} </td>
+		<td style="border: solid black thin;"> {VAR_INVOICENUMBER} </td>
 		<td style="border: solid black thin;"> {VAR_SALESNAME} </td>
 		<td style="border: solid black thin;"> {VAR_CLIENTNAME} </td>
 		<td style="border: solid black thin;"> {VAR_PAYMENTTYPENAME} </td>
@@ -61,16 +65,20 @@
 		<td style="border: solid black thin;text-align: right;"> {VAR_PRICE} </td>
 		<td style="border: solid black thin;text-align: right;"> {VAR_DISCOUNT} </td>
 		<td style="border: solid black thin;text-align: right;"> {VAR_TOTAL} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_TAX} </td>
+		<td style="border: solid black thin;text-align: right;"> {VAR_INVOICETOTAL} </td>
 		<td style="border: solid black thin;text-align: right;"> {VAR_CASH} </td>
 		<td style="border: solid black thin;text-align: right;"> {VAR_DEBIT} </td>
 		<td style="border: solid black thin;text-align: right;"> {VAR_TRANSFER} </td>
 	</tr>
 	<!-- END reportListBlock -->
 	<tr>
-		<td colspan="8" style="text-align:right;">{VAR_QANTITYTOTAL}</td>
+		<td colspan="9" style="text-align:right;">{VAR_QANTITYTOTAL}</td>
 		<td style="text-align:right;">&nbsp;</td>
 		<td style="text-align:right;">Grandtotal</td>
 		<td style="border: solid black thin;font-weight:bold;text-align: right;"> {VAR_GRANDTOTAL} </td>
+		<td style="border: solid black thin;font-weight:bold;text-align: right;"> {VAR_TAXTOTAL} </td>
+		<td style="border: solid black thin;font-weight:bold;text-align: right;"> {VAR_SUMINVOICETOTAL} </td>
 		<td style="border: solid black thin;text-align: right;"> {VAR_CASHTOTAL} </td>
 		<td style="border: solid black thin;text-align: right;"> {VAR_DEBITTOTAL} </td>
 		<td style="border: solid black thin;text-align: right;"> {VAR_TRANSFERTOTAL} </td>
@@ -90,6 +98,7 @@
 			<td style="border:thin solid black;"> Barang </td>
 			<td style="border:thin solid black;"> Jumlah </td>
 			<td style="border:thin solid black;"> Subtotal </td>
+			<td style="border:thin solid black;"> PPN </td>
 		</tr>
 		<!-- BEGIN salesRecapListBlock -->
 		<tr style="background-color:{VAR_SALESRECAPROWBGCOLOR};">
@@ -98,11 +107,13 @@
 			<td style="border:thin solid black;"> {VAR_SALESRECAPPRODUCTNAME} </td>
 			<td style="border:thin solid black;"> {VAR_SALESRECAPQUANTITY} </td>
 			<td style="border:thin solid black;"> {VAR_SALESRECAPSUBTOTAL} </td>
+			<td style="border:thin solid black;"> {VAR_TAXRECAPSUBTOTAL} </td>
 		</tr>
 		<!-- END salesRecapListBlock -->
 		<tr>
 			<td colspan="4" style="text-align:right;border:thin solid black;"> GRANDTOTAL</td>
 			<td style="border:thin solid black;"> {VAR_GRANDTOTALSALESRECAP}</td>
+			<td style="border:thin solid black;"> {VAR_GRANDTOTALTAXRECAP}</td>
 		</tr>
 	</table>
 

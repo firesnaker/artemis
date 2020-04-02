@@ -85,6 +85,14 @@
 
 			if (isset($_POST["salesSave"]) && $_POST["salesSave"])
 			{
+
+if ( isset($_POST['salesDayBegin']) && $_POST['salesDayBegin'] &&
+    isset($_POST['salesMonthBegin']) && $_POST['salesMonthBegin'] &&
+    isset($_POST['salesYearBegin']) && $_POST['salesYearBegin'] )
+{
+    $_POST["sales_date"] = $_POST['salesYearBegin'] . "-" . $_POST['salesMonthBegin'] . "-" . $_POST['salesDayBegin'];
+}
+
 				$aData = array(
 					"ID" => $_POST["sales_ID"],
 					"outletID" => $_POST["outlet_ID"],
@@ -339,7 +347,7 @@
 		{
 			$sFormElementDisabled = "";
 		}
-		//$sFormElementDisabled = ""; //temporarily enable edit in sales for all outlet
+		$sFormElementDisabled = ""; //temporarily enable edit in sales for all outlet
 		//Opened 15 Aug 2014, Closed 7 March 2015
 	//*** END PAGE PROCESSING ***************************************************//
 	
@@ -460,6 +468,65 @@
 	}
 	$cWebsite->buildBlock("content", "paymentTypeBlock", $paymentTypeBlock);
 
+        $cWebsite->template->set_block("content", "salesDateOldBlock");
+        $cWebsite->template->set_block("content", "salesDateNewBlock");
+        //date can be changed if new sales data.
+
+        if ( $iCurrentSalesID <= 0 )  //new data
+        {
+            //dateDayBeginBlock
+            $dateDayBeginBlock = array();
+	    for ($i = 0; $i < 31; $i++)
+	    {
+		    $sDefaultDay = date("d");
+
+		    $dateDayBeginBlock[] = array(
+			"VAR_DAYBEGINVALUE" => ($i+1 < 10)?'0' . ($i + 1):$i + 1,
+			"VAR_DAYBEGINSELECTED" => ( ($i+1) == $sDefaultDay)?"selected":""
+		    );
+	    }
+	    $cWebsite->buildBlock("salesDateNewBlock", "dateDayBeginBlock", $dateDayBeginBlock);
+
+	    //dateMonthBeginBlock
+	    $dateMonthBeginBlock = array();
+	    for ($i = 0; $i < 12; $i++)
+	    {
+		    $sDefaultMonth = date("m");
+
+		    $dateMonthBeginBlock[] = array(
+			"VAR_MONTHBEGINVALUE" => ( ($i+1) < 10)?"0" . ($i+1):$i+1,
+			"VAR_MONTHBEGINTEXT" => date("M", mktime(0,0,0,$i+1,1,2010)),
+			"VAR_MONTHBEGINSELECTED" => ( ($i+1) == $sDefaultMonth)?"selected":""
+		    );
+	    }
+	    $cWebsite->buildBlock("salesDateNewBlock", "dateMonthBeginBlock", $dateMonthBeginBlock);
+
+	    //dateYearBeginBlock
+	    $dateYearBeginBlock = array();
+	    for ($i = $iOldestYear; $i <= date("Y"); $i++)
+	    {
+		$sDefaultYear = date("Y");
+
+		$dateYearBeginBlock[] = array(
+			"VAR_YEARBEGINVALUE" => $i,
+			"VAR_YEARBEGINSELECTED" => ( $i == $sDefaultYear)?"selected":""
+		);
+	    }
+	    $cWebsite->buildBlock("salesDateNewBlock", "dateYearBeginBlock", $dateYearBeginBlock);
+
+            //remove the old date template
+	    $cWebsite->template->parse("salesDateOldBlock", "");
+            //display the new date template
+	    $cWebsite->template->parse("salesDateNewBlock", "salesDateNewBlock");
+        }
+        else  //old data
+        {
+            //remove the new date template
+	    $cWebsite->template->parse("salesDateNewBlock", "");
+            //display the old date template
+	    $cWebsite->template->parse("salesDateOldBlock", "salesDateOldBlock");
+        }
+
 	if ($iCurrentSalesID == 0 || $iSalesDetailCount == 0)
 	{
 		$cWebsite->template->set_block("content", "salesDetailRow");
@@ -467,7 +534,7 @@
 	}
 	else
 	{
-		$iGrandTotal = 0;
+		$iTotal = 0;
 		//salesDetailRow
 		$salesDetailRow = array();
 		for ($i = 0; $i < count($aSalesData); $i++)
@@ -486,12 +553,17 @@
 				"VAR_SN" => ($aSalesData[$i]['SnStart'] . (($aSalesData[$i]['SnEnd'] == "")?"":("-" . $aSalesData[$i]['SnEnd']) ) ),
 			);
 
-			$iGrandTotal += $iSubtotal;
+			$iTotal += $iSubtotal;
 		}
 		$cWebsite->buildBlock("content", "salesDetailRow", $salesDetailRow);
 	}
 
+        $iTax = $iTotal * 0.1;
+        $iGrandTotal = $iTotal + $iTax;
+
 	$cWebsite->template->set_var(array(
+		"VAR_TOTAL" => (isset($iTotal) && $iTotal > 0)?number_format($iTotal, _NbOfDigitBehindComma_):0,
+		"VAR_TAX" => (isset($iTax) && $iTax > 0)?number_format($iTax, _NbOfDigitBehindComma_):0,
 		"VAR_GRANDTOTAL" => (isset($iGrandTotal) && $iGrandTotal > 0)?number_format($iGrandTotal, _NbOfDigitBehindComma_):0
 	));
 

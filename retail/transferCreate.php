@@ -140,7 +140,8 @@
 		}
 
 		//+++ END $_POST / $_GET processing +++++++++++++++++++++++++++++++++++++++++//
-		$aTranferData = $cTransfer->GetTransferByID($iTransferID);
+		$aTransferData = $cTransfer->GetTransferByID($iTransferID);
+
 		$aTransferDetailData = $cTransfer->GetTransferDetailByTransferID($iTransferID);
 
 		//only generate pdf file when transferID exists. If not, it will interfere with the redirection on button "buat baru"
@@ -252,7 +253,7 @@
 				$transferDestinationList[] = array(
 					"VAR_OUTLET_ID" => $aOutlet[$i]['To_outlet_ID'],
 					"VAR_OUTLET_SELECTED" => (isset($aTransferData) && $aTransferData[0]["To_outlet_ID"] == $aOutlet[$i]['To_outlet_ID'])?"selected":"",
-					"VAR_OUTLET_NAME" => $aOutletDetail[0]["Name"]
+					"VAR_OUTLET_NAME" => $aOutletDetail[0]['code'] . "-" . $aOutletDetail[0]["Name"]
 				);
 			}
 		}
@@ -270,7 +271,7 @@
 				$transferDestinationList[] = array(
 					"VAR_OUTLET_ID" => $aOutlet[$i]['ID'],
 					"VAR_OUTLET_SELECTED" => (isset($aTransferData) && $aTransferData[0]["To_outlet_ID"] == $aOutlet[$i]['ID'])?"selected":"",
-					"VAR_OUTLET_NAME" => $aOutlet[$i]['name']
+					"VAR_OUTLET_NAME" => $aOutlet[$i]['code'] . "-" . $aOutlet[$i]['name']
 				);
 			}
 		}

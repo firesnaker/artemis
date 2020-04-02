@@ -119,7 +119,7 @@
 				$sQuery .= ' ,"' . $aSales["clientID"] . '"';
 				$sQuery .= ' ,"' . $aSales["paymentTypeID"] . '"';
 				$sQuery .= ' ,"' . $aSales["ajaxPostID"] . '"';
-				$sQuery .= ' ,"' . date("Ymd") . '"';
+				$sQuery .= ' ,"' . (($aSales["date"])?$aSales["date"]:date("Ymd")) . '"';
 				$sQuery .= ' ,"' . $aSales["notes"] . '")';
 
 				$aResult = $this->dbAction($sQuery);
@@ -2190,10 +2190,17 @@
 					$sOutletList .= "'". $aRow['ID'] ."',";
 				}
 
-				$sOutletList = substr($sOutletList, 0, -1);
+                                if ( $outletList != '' ) {
+				    $sOutletList = substr($sOutletList, 0, -1);
+                                }
 
 				//get child outlet
-				$sOutletQuery = " AND outlet_ID IN('". $iOutletParentID ."', ". $sOutletList .")";
+                                if ($sOutletList == '') {
+				    $sOutletQuery = " AND outlet_ID IN('". $iOutletParentID ."')";
+                                }
+                                else {
+				    $sOutletQuery = " AND outlet_ID IN('". $iOutletParentID ."', ". $sOutletList .")";
+                                }
 
 				//put this here, to avoid corruption during process above.
 				$cOutlet->getOutlet($iOutletParentID);

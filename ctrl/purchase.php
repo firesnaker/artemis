@@ -58,7 +58,10 @@
 		{
 			//can be updated if admin
 			//session_start();
-			if (strtolower($_SESSION['user_Name']) == "admin")
+			if (
+                            strtolower($_SESSION['user_Name']) == "admin"
+                            || strtolower($_SESSION['user_Name']) == "master"
+                        )
 			{
 				$can_update = TRUE;
 			}
@@ -111,7 +114,10 @@
 
 			//can be updated if admin
 			//session_start();
-			if (strtolower($_SESSION['user_Name']) == "admin")
+			if (
+                            strtolower($_SESSION['user_Name']) == "admin"
+                            || strtolower($_SESSION['user_Name']) == "master"
+                        )
 			{
 				$can_update = TRUE;
 			}

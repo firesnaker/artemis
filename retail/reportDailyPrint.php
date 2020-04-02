@@ -193,13 +193,13 @@
 			"VAR_LISTEXPENSESID" => $aExpensesList[$i]['ID'],
 			"VAR_LISTEXPENSESDATE" => date("d-M-Y", mktime(0, 0, 0, $sMonth, $sDay, $sYear) ),
 			"VAR_LISTEXPENSESNAME" => $aExpensesList[$i]['Name'],
-			"VAR_LISTEXPENSESPRICE" => number_format($aExpensesList[$i]['Price'], _NbOfDigitBehindComma_ )
+			"VAR_LISTEXPENSESPRICE" => number_format($aExpensesList[$i]['Price'], 0 )
 		);
 	}
 	$cWebsite->buildBlock("site", "expensesList", $expensesListBlock);
 
 	$cWebsite->template->set_var(array(
-		"VAR_GRANDTOTALEXPENSES" => number_format($iGrandTotal, _NbOfDigitBehindComma_)
+		"VAR_GRANDTOTALEXPENSES" => number_format($iGrandTotal, 0)
 	));
 
 	//depositListBlock
@@ -216,13 +216,13 @@
 			"VAR_DEPOSITROWBGCOLOR" => (($i % 2) == 1)?"#ffffff":"#cccccc",
 			"VAR_LISTDEPOSITID" => $aDepositList[$i]['ID'],
 			"VAR_LISTDEPOSITDATE" => date("d-M-Y", mktime(0, 0, 0, $sMonth, $sDay, $sYear) ),
-			"VAR_LISTDEPOSITPRICE" => number_format($aDepositList[$i]['Price'], _NbOfDigitBehindComma_ )
+			"VAR_LISTDEPOSITPRICE" => number_format($aDepositList[$i]['Price'], 0 )
 		);
 	}
 	$cWebsite->buildBlock("site", "depositList", $depositListBlock);
 
 	$cWebsite->template->set_var(array(
-		"VAR_GRANDTOTALDEPOSIT" => number_format($iGrandTotalDeposit, _NbOfDigitBehindComma_)
+		"VAR_GRANDTOTALDEPOSIT" => number_format($iGrandTotalDeposit, 0)
 	));
 
 	//salesRecapListBlock
@@ -275,15 +275,17 @@
 				"VAR_SALESRECAPCOUNTER" => $i++,
 				"VAR_SALESRECAPDATE" => date("d-M-Y", mktime(0, 0, 0, $sMonth, $sDay, $sYear) ),
 				"VAR_SALESRECAPPRODUCTNAME" => $cProduct->GetProductNameByID($iProductID),
-				"VAR_SALESRECAPQUANTITY" => number_format($aProductData['quantity'], _NbOfDigitBehindComma_ ),
-				"VAR_SALESRECAPSUBTOTAL" => number_format($aProductData['subtotal'], _NbOfDigitBehindComma_ )
+				"VAR_SALESRECAPQUANTITY" => number_format($aProductData['quantity'], 0 ),
+				"VAR_TAXRECAPSUBTOTAL" => number_format(( $aProductData['subtotal'] * 0.1), 0 ),
+				"VAR_SALESRECAPSUBTOTAL" => number_format($aProductData['subtotal'], 0 )
 			);
 		}
 	}
 	$cWebsite->buildBlock("site", "salesRecapListBlock", $salesRecapListBlock);
 
 	$cWebsite->template->set_var(array(
-		"VAR_GRANDTOTALSALESRECAP" => number_format($iGrandtotal, _NbOfDigitBehindComma_ ),
+		"VAR_GRANDTOTALTAXRECAP" => number_format( ($iGrandtotal*0.1), 0 ),
+		"VAR_GRANDTOTALSALESRECAP" => number_format($iGrandtotal, 0 ),
 	));
 
 	//inventoryListBlock
@@ -340,6 +342,7 @@
 			"VAR_ROWBGCOLOR" => (($i % 2) == 1)?"#ffffff":"#cccccc",
 			"VAR_COUNTER" => $i + 1,
 			"VAR_DATE" => date("d-M-Y", mktime(0, 0, 0, $sMonth, $sDay, $sYear) ),
+                        "VAR_INVOICENUMBER" => $aSalesList[$i]['number'],
 			"VAR_SALESNAME" => $sEmployeeName,
 			"VAR_PRODUCTNAME" => $sProductName,
 			"VAR_CLIENTNAME" => $sClientName,
@@ -347,22 +350,26 @@
 			"VAR_NOTES" => ( (($aSalesList[$i]['sales_order_ID'] > 0)?"<span style='color:red'>PP</span> ":"") . $aSalesList[$i]['Notes'] ),
 			"VAR_PRODUCTNAME" => $cProduct->GetProductNameByID($aSalesList[$i]['product_ID']),
 			"VAR_PRICE" => number_format($aSalesList[$i]['Price'], _NbOfDigitBehindComma_ ),
-			"VAR_DISCOUNT" => number_format($aSalesList[$i]['Discount'], 2 ),
-			"VAR_QUANTITY" => number_format($aSalesList[$i]['Quantity'], _NbOfDigitBehindComma_ ),
-			"VAR_TOTAL" => number_format($iTotal, _NbOfDigitBehindComma_ ),
-			"VAR_CASH" => number_format($iCash, _NbOfDigitBehindComma_ ),
-			"VAR_DEBIT" => number_format($iDebit, _NbOfDigitBehindComma_ ),
-			"VAR_TRANSFER" => number_format($iTransfer, _NbOfDigitBehindComma_ )
+			"VAR_DISCOUNT" => number_format($aSalesList[$i]['Discount'], 0 ),
+			"VAR_QUANTITY" => number_format($aSalesList[$i]['Quantity'], 0 ),
+			"VAR_TOTAL" => number_format($iTotal, 0 ),
+			"VAR_TAX" => number_format( ($iTotal*0.1), 0 ),
+			"VAR_INVOICETOTAL" => number_format($iTotal + ($iTotal * 0.1) ),
+			"VAR_CASH" => number_format($iCash, 0 ),
+			"VAR_DEBIT" => number_format($iDebit, 0 ),
+			"VAR_TRANSFER" => number_format($iTransfer, 0 )
 		);
 	}
 	$cWebsite->buildBlock("site", "reportListBlock", $reportListBlock);
 
 	$cWebsite->template->set_var(array(
-		"VAR_QANTITYTOTAL" => number_format($iQuantitytotal, _NbOfDigitBehindComma_ ),
-		"VAR_GRANDTOTAL" => number_format($iGrandtotal, _NbOfDigitBehindComma_ ),
-		"VAR_CASHTOTAL" => number_format($iCashtotal, _NbOfDigitBehindComma_ ),
-		"VAR_DEBITTOTAL" => number_format($iDebittotal, _NbOfDigitBehindComma_ ),
-		"VAR_TRANSFERTOTAL" => number_format($iTransfertotal, _NbOfDigitBehindComma_ )
+		"VAR_QANTITYTOTAL" => number_format($iQuantitytotal, 0 ),
+		"VAR_GRANDTOTAL" => number_format($iGrandtotal, 0 ),
+		"VAR_TAXTOTAL" => number_format( ($iGrandtotal * 0.1), 0 ),
+		"VAR_SUMINVOICETOTAL" => number_format( $iGrandtotal + ($iGrandtotal * 0.1), 0 ),
+		"VAR_CASHTOTAL" => number_format($iCashtotal, 0 ),
+		"VAR_DEBITTOTAL" => number_format($iDebittotal, 0 ),
+		"VAR_TRANSFERTOTAL" => number_format($iTransfertotal, 0 )
 	));
 
 	$cWebsite->buildContent("VAR_CONTENT");

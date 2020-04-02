@@ -89,6 +89,7 @@
 	<tr>
 		<td> No. </td>
 		<td> Tanggal </td>
+		<td> No. Nota </td>
 		<td> Sales </td>
 		<td> Client </td>
 		<td> Pembayaran </td>
@@ -98,6 +99,8 @@
 		<td> Harga </td>
 		<td> Diskon (%)</td>
 		<td> Total </td>
+		<td> PPN </td>
+		<td> Invoice Total </td>
 		<td> Cash </td>
 		<td> Debit </td>
 		<td> Transfer </td>
@@ -106,6 +109,7 @@
 	<tr style="background-color:{VAR_ROWBGCOLOR};">
 		<td> {VAR_COUNTER} </td>
 		<td> {VAR_DATE} </td>
+		<td> {VAR_INVOICENUMBER} </td>
 		<td> {VAR_SALESNAME} </td>
 		<td> {VAR_CLIENTNAME} </td>
 		<td> {VAR_PAYMENTTYPENAME} </td>
@@ -115,16 +119,20 @@
 		<td style="text-align:right;"> {VAR_PRICE} </td>
 		<td style="text-align:right;"> {VAR_DISCOUNT} </td>
 		<td style="text-align:right;"> {VAR_TOTAL} </td>
+                <td style="text-align:right;"> {VAR_TAX} </td>
+                <td style="text-align:right;"> {VAR_INVOICETOTAL} </td>
 		<td style="text-align:right;"> {VAR_CASH} </td>
 		<td style="text-align:right;"> {VAR_DEBIT} </td>
 		<td style="text-align:right;"> {VAR_TRANSFER} </td>
 	</tr>
 	<!-- END reportListBlock -->
 	<tr>
-		<td colspan="8" style="text-align:right;">{VAR_QANTITYTOTAL}</td>
+		<td colspan="9" style="text-align:right;">{VAR_QANTITYTOTAL}</td>
 		<td style="text-align:right;">&nbsp;</td>
 		<td style="text-align:right;">Grandtotal</td>
 		<td style="text-align:right;"> <strong>{VAR_GRANDTOTAL}</strong> </td>
+		<td style="text-align:right;"> <strong>{VAR_TAXTOTAL}</strong> </td>
+                <td style="text-align:right;"> {VAR_SUMINVOICETOTAL} </td>
 		<td style="text-align:right;"> {VAR_CASHTOTAL} </td>
 		<td style="text-align:right;"> {VAR_DEBITTOTAL} </td>
 		<td style="text-align:right;"> {VAR_TRANSFERTOTAL} </td>
@@ -145,6 +153,7 @@
 			<td style="border:thin solid black;"> Barang </td>
 			<td style="border:thin solid black;"> Jumlah </td>
 			<td style="border:thin solid black;"> Subtotal </td>
+			<td style="border:thin solid black;"> PPN </td>
 		</tr>
 		<!-- BEGIN salesRecapListBlock -->
 		<tr style="background-color:{VAR_SALESRECAPROWBGCOLOR};">
@@ -153,11 +162,13 @@
 			<td style="border:thin solid black;"> {VAR_SALESRECAPPRODUCTNAME} </td>
 			<td style="border:thin solid black;"> {VAR_SALESRECAPQUANTITY} </td>
 			<td style="border:thin solid black;"> {VAR_SALESRECAPSUBTOTAL} </td>
+                        <td style="border:thin solid black;"> {VAR_SALESRECAPTAX} </td>
 		</tr>
 		<!-- END salesRecapListBlock -->
 		<tr>
 			<td colspan="3" style="text-align:right;border:thin solid black;"> GRANDTOTAL</td>
 			<td style="border:thin solid black;"> {VAR_GRANDTOTALSALESRECAP}</td>
+			<td style="border:thin solid black;"> {VAR_GRANDTOTALTAXRECAP}</td>
 		</tr>
 	</table>
 
