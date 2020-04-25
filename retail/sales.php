@@ -86,12 +86,12 @@
 			if (isset($_POST["salesSave"]) && $_POST["salesSave"])
 			{
 
-if ( isset($_POST['salesDayBegin']) && $_POST['salesDayBegin'] &&
-    isset($_POST['salesMonthBegin']) && $_POST['salesMonthBegin'] &&
-    isset($_POST['salesYearBegin']) && $_POST['salesYearBegin'] )
-{
-    $_POST["sales_date"] = $_POST['salesYearBegin'] . "-" . $_POST['salesMonthBegin'] . "-" . $_POST['salesDayBegin'];
-}
+				if ( isset($_POST['salesDayBegin']) && $_POST['salesDayBegin'] &&
+					isset($_POST['salesMonthBegin']) && $_POST['salesMonthBegin'] &&
+					isset($_POST['salesYearBegin']) && $_POST['salesYearBegin'] )
+				{
+					$_POST["sales_date"] = $_POST['salesYearBegin'] . "-" . $_POST['salesMonthBegin'] . "-" . $_POST['salesDayBegin'];
+				}
 
 				$aData = array(
 					"ID" => $_POST["sales_ID"],
@@ -156,6 +156,35 @@ if ( isset($_POST['salesDayBegin']) && $_POST['salesDayBegin'] &&
 			if (isset($_POST["salesDetailEdit"]) && $_POST["salesDetailEdit"])
 			{
 				$aSalesDetailEdit = $cSales->GetSalesDetailByDetailID($_POST["salesDetail_ID"]);
+
+				$iSalesID = $_POST["sales_ID"];
+				$iSalesRecordCounter = $_POST["currentRecordCounter"];
+			}
+			
+			if (isset($_POST["salesNonTax_Save"]) && $_POST["salesNonTax_Save"])
+			{
+				if ( $_POST["sales_ID"] >= 0 && $_POST["salesNonTax_ID"] >= 0 && $_POST["salesNonTax_AddSubtract"] && $_POST["salesNonTax_Description"] && ( $_POST["salesNonTax_Amount"] >= 0 ) )
+				{
+					//TODO:check the quantity and product ID, make sure that the end result is above 0
+					//if the end result is below 0, deny the update
+
+					$aSalesNonTaxInsert = array(
+						"sales_ID" => $_POST["sales_ID"],
+						"ID" => $_POST["salesNonTax_ID"],
+						"AddSubtract" => $_POST["salesNonTax_AddSubtract"],
+						"Description" => $_POST["salesNonTax_Description"],
+						"Amount" => $_POST["salesNonTax_Amount"]
+					);
+					$iSalesNonTaxID = $cSales->SaveSalesNonTax($aSalesNonTaxInsert);
+
+					$iSalesID = $_POST["sales_ID"];
+					$iSalesRecordCounter = $_POST["currentRecordCounter"];
+				}
+			}
+
+			if (isset($_POST["salesNonTaxEdit"]) && $_POST["salesNonTaxEdit"])
+			{
+				$aSalesNonTaxEdit = $cSales->LoadSalesNonTax($_POST["salesNonTax_ID"]);
 
 				$iSalesID = $_POST["sales_ID"];
 				$iSalesRecordCounter = $_POST["currentRecordCounter"];
@@ -254,11 +283,14 @@ if ( isset($_POST['salesDayBegin']) && $_POST['salesDayBegin'] &&
 			$iCurrentRecordCounter += 1;
 
 			$aSalesData = $cSales->GetSalesWithDetail($iCurrentSalesID);
+			$aSalesDataNonTax = $cSales->GetSalesWithNonTax($iCurrentSalesID);
 			$iSalesDetailCount = count($aSalesData);
-
+			$iSalesNonTaxCount = count($aSalesDataNonTax);
+			
 			if (count($aSalesData) < 1 )
 			{
 				$iSalesDetailCount = 0;
+				$iSalesNonTaxCount = 0;
 				$aSalesData = $cSales->GetSalesByID($iCurrentSalesID);
 			}
 		}
@@ -390,8 +422,13 @@ if ( isset($_POST['salesDayBegin']) && $_POST['salesDayBegin'] &&
 		"VAR_EDIT_QUANTITY" => (isset($aSalesDetailEdit))?$aSalesDetailEdit[0]["Quantity"]:"",
 		"VAR_EDIT_PRICE" => (isset($aSalesDetailEdit))?$aSalesDetailEdit[0]["Price"]:"",
 		"VAR_EDIT_DISCOUNT" => (isset($aSalesDetailEdit))?$aSalesDetailEdit[0]["Discount"]:"",
-		"VAR_EDIT_SNSTART" => (isset($aSalesDetailEdit))?$aSalesDetailEdit[0]["SnStart"]:"",
+		"VAR_EDIT_SNSTART" => (isset($aSalesDetailEdit))?$aSalesDetailEdit[0]["SnStart"]:"-",
 		"VAR_EDIT_SNEND" => (isset($aSalesDetailEdit))?$aSalesDetailEdit[0]["SnEnd"]:"",
+		"VAR_EDIT_SALESNONTAXID" => (isset($aSalesNonTaxEdit))?$aSalesNonTaxEdit[0]["ID"]:"",
+		"VAR_EDIT_NONTAX_ADDSELECTED" => (isset($aSalesNonTaxEdit) && $aSalesNonTaxEdit[0]["AddSubtract"] == 1)?"selected":"",
+		"VAR_EDIT_NONTAX_SUBTRACTSELECTED" => (isset($aSalesNonTaxEdit) && $aSalesNonTaxEdit[0]["AddSubtract"] == 2)?"selected":"",
+		"VAR_EDIT_NONTAX_DESCRIPTION" => (isset($aSalesNonTaxEdit))?$aSalesNonTaxEdit[0]["Description"]:"",
+		"VAR_EDIT_NONTAX_AMOUNT" => (isset($aSalesNonTaxEdit))?$aSalesNonTaxEdit[0]["Amount"]:"",
 		"VAR_PREVRECORDCOUNTER" => ($iCurrentRecordCounter <= 1)?0:($iCurrentRecordCounter - 2),
 		"VAR_NEXTRECORDCOUNTER" => ($iCurrentRecordCounter > $iTotalSales)? $iTotalSales:$iCurrentRecordCounter,
 		"VAR_CURRENTRECORDCOUNTER" => $iCurrentRecordCounter,
@@ -468,64 +505,64 @@ if ( isset($_POST['salesDayBegin']) && $_POST['salesDayBegin'] &&
 	}
 	$cWebsite->buildBlock("content", "paymentTypeBlock", $paymentTypeBlock);
 
-        $cWebsite->template->set_block("content", "salesDateOldBlock");
-        $cWebsite->template->set_block("content", "salesDateNewBlock");
-        //date can be changed if new sales data.
+	$cWebsite->template->set_block("content", "salesDateOldBlock");
+	$cWebsite->template->set_block("content", "salesDateNewBlock");
+	//date can be changed if new sales data.
 
-        if ( $iCurrentSalesID <= 0 )  //new data
-        {
-            //dateDayBeginBlock
-            $dateDayBeginBlock = array();
-	    for ($i = 0; $i < 31; $i++)
-	    {
-		    $sDefaultDay = date("d");
+	if ( $iCurrentSalesID <= 0 )  //new data
+	{
+		//dateDayBeginBlock
+		$dateDayBeginBlock = array();
+	for ($i = 0; $i < 31; $i++)
+	{
+		$sDefaultDay = date("d");
 
-		    $dateDayBeginBlock[] = array(
-			"VAR_DAYBEGINVALUE" => ($i+1 < 10)?'0' . ($i + 1):$i + 1,
-			"VAR_DAYBEGINSELECTED" => ( ($i+1) == $sDefaultDay)?"selected":""
-		    );
-	    }
-	    $cWebsite->buildBlock("salesDateNewBlock", "dateDayBeginBlock", $dateDayBeginBlock);
-
-	    //dateMonthBeginBlock
-	    $dateMonthBeginBlock = array();
-	    for ($i = 0; $i < 12; $i++)
-	    {
-		    $sDefaultMonth = date("m");
-
-		    $dateMonthBeginBlock[] = array(
-			"VAR_MONTHBEGINVALUE" => ( ($i+1) < 10)?"0" . ($i+1):$i+1,
-			"VAR_MONTHBEGINTEXT" => date("M", mktime(0,0,0,$i+1,1,2010)),
-			"VAR_MONTHBEGINSELECTED" => ( ($i+1) == $sDefaultMonth)?"selected":""
-		    );
-	    }
-	    $cWebsite->buildBlock("salesDateNewBlock", "dateMonthBeginBlock", $dateMonthBeginBlock);
-
-	    //dateYearBeginBlock
-	    $dateYearBeginBlock = array();
-	    for ($i = $iOldestYear; $i <= date("Y"); $i++)
-	    {
-		$sDefaultYear = date("Y");
-
-		$dateYearBeginBlock[] = array(
-			"VAR_YEARBEGINVALUE" => $i,
-			"VAR_YEARBEGINSELECTED" => ( $i == $sDefaultYear)?"selected":""
+		$dateDayBeginBlock[] = array(
+		"VAR_DAYBEGINVALUE" => ($i+1 < 10)?'0' . ($i + 1):$i + 1,
+		"VAR_DAYBEGINSELECTED" => ( ($i+1) == $sDefaultDay)?"selected":""
 		);
-	    }
-	    $cWebsite->buildBlock("salesDateNewBlock", "dateYearBeginBlock", $dateYearBeginBlock);
+	}
+	$cWebsite->buildBlock("salesDateNewBlock", "dateDayBeginBlock", $dateDayBeginBlock);
 
-            //remove the old date template
-	    $cWebsite->template->parse("salesDateOldBlock", "");
-            //display the new date template
-	    $cWebsite->template->parse("salesDateNewBlock", "salesDateNewBlock");
-        }
-        else  //old data
-        {
-            //remove the new date template
-	    $cWebsite->template->parse("salesDateNewBlock", "");
-            //display the old date template
-	    $cWebsite->template->parse("salesDateOldBlock", "salesDateOldBlock");
-        }
+	//dateMonthBeginBlock
+	$dateMonthBeginBlock = array();
+	for ($i = 0; $i < 12; $i++)
+	{
+		$sDefaultMonth = date("m");
+
+		$dateMonthBeginBlock[] = array(
+		"VAR_MONTHBEGINVALUE" => ( ($i+1) < 10)?"0" . ($i+1):$i+1,
+		"VAR_MONTHBEGINTEXT" => date("M", mktime(0,0,0,$i+1,1,2010)),
+		"VAR_MONTHBEGINSELECTED" => ( ($i+1) == $sDefaultMonth)?"selected":""
+		);
+	}
+	$cWebsite->buildBlock("salesDateNewBlock", "dateMonthBeginBlock", $dateMonthBeginBlock);
+
+	//dateYearBeginBlock
+	$dateYearBeginBlock = array();
+	for ($i = $iOldestYear; $i <= date("Y"); $i++)
+	{
+	$sDefaultYear = date("Y");
+
+	$dateYearBeginBlock[] = array(
+		"VAR_YEARBEGINVALUE" => $i,
+		"VAR_YEARBEGINSELECTED" => ( $i == $sDefaultYear)?"selected":""
+	);
+	}
+	$cWebsite->buildBlock("salesDateNewBlock", "dateYearBeginBlock", $dateYearBeginBlock);
+
+		//remove the old date template
+	$cWebsite->template->parse("salesDateOldBlock", "");
+		//display the new date template
+	$cWebsite->template->parse("salesDateNewBlock", "salesDateNewBlock");
+	}
+	else  //old data
+	{
+		//remove the new date template
+	$cWebsite->template->parse("salesDateNewBlock", "");
+		//display the old date template
+	$cWebsite->template->parse("salesDateOldBlock", "salesDateOldBlock");
+	}
 
 	if ($iCurrentSalesID == 0 || $iSalesDetailCount == 0)
 	{
@@ -558,8 +595,39 @@ if ( isset($_POST['salesDayBegin']) && $_POST['salesDayBegin'] &&
 		$cWebsite->buildBlock("content", "salesDetailRow", $salesDetailRow);
 	}
 
-        $iTax = $iTotal * 0.1;
-        $iGrandTotal = $iTotal + $iTax;
+	if ($iCurrentSalesID == 0 || $iSalesNonTaxCount == 0)
+	{
+		$cWebsite->template->set_block("content", "salesNonTaxRow");
+		$cWebsite->template->parse("salesNonTaxRow", "");
+	}
+	else
+	{
+		$iNonTaxTotal = 0;
+		//salesNonTaxRow
+		$salesNonTaxRow = array();
+		for ($i = 0; $i < count($aSalesDataNonTax); $i++)
+		{
+			$salesNonTaxRow[] = array(
+				//"VAR_COUNTER" => $i+1,
+				"VAR_SALESNONTAXID" => $aSalesDataNonTax[$i]['nonTax_ID'],
+				"VAR_NONTAX_DESCRIPTION" => $aSalesDataNonTax[$i]['nonTax_Description'],
+				"VAR_NONTAX_AMOUNT" => number_format( $aSalesDataNonTax[$i]['nonTax_Amount'], _NbOfDigitBehindComma_ ),
+			);
+
+			if ($aSalesDataNonTax[$i]['nonTax_AddSubtract'] == 1)
+			{ //1 = add, 2 = subtract
+				$iNonTaxTotal += $aSalesDataNonTax[$i]['nonTax_Amount'];
+			}
+			else {
+				$iNonTaxTotal -= $aSalesDataNonTax[$i]['nonTax_Amount'];
+			}
+			
+		}
+		$cWebsite->buildBlock("content", "salesNonTaxRow", $salesNonTaxRow);
+	}
+
+	$iTax = $iTotal * 0.1;
+	$iGrandTotal = $iTotal + $iTax + $iNonTaxTotal;
 
 	$cWebsite->template->set_var(array(
 		"VAR_TOTAL" => (isset($iTotal) && $iTotal > 0)?number_format($iTotal, _NbOfDigitBehindComma_):0,

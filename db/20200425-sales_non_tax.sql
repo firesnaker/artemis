@@ -1,0 +1,7 @@
+CREATE TABLE sales_non_tax (
+	ID INT AUTO_INCREMENT PRIMARY KEY,
+	sales_ID INT NOT NULL,
+	AddSubtract TINYINT NOT NULL,
+	Description VARCHAR(255) NOT NULL,
+	Amount DOUBLE(20,4) NOT NULL
+);

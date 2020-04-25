@@ -92,10 +92,14 @@
 		$aSalesList = $cSales->GetSalesList($aSalesSearchByFieldArray);
 
 		$aSalesData = $cSales->GetSalesWithDetail($iCurrentSalesID);
+		$aSalesDataNonTax = $cSales->GetSalesWithNonTax($iCurrentSalesID);
 		$iSalesDetailCount = count($aSalesData);
+		$iSalesNonTaxCount = count($aSalesDataNonTax);
+
 		if (count($aSalesData) < 1 )
 		{
 			$iSalesDetailCount = 0;
+			$iSalesNonTaxCount = 0;
 			$aSalesData = $cSales->GetSalesByID($iCurrentSalesID);
 		}
 		
@@ -165,14 +169,44 @@
 		}
 		$cWebsite->buildBlock("site", "salesDetailRow", $salesDetailRow);
 	}
+	
+	if ($iCurrentSalesID == 0 || $iSalesNonTaxCount == 0)
+	{
+		$cWebsite->template->set_block("site", "salesNonTaxRow");
+		$cWebsite->template->parse("salesNonTaxRow", "");
+	}
+	else
+	{
+		$iNonTaxTotal = 0;
+		//salesNonTaxRow
+		$salesNonTaxRow = array();
+		for ($i = 0; $i < count($aSalesDataNonTax); $i++)
+		{
+			$salesNonTaxRow[] = array(
+				//"VAR_COUNTER" => $i+1,
+				"VAR_SALESNONTAXID" => $aSalesDataNonTax[$i]['nonTax_ID'],
+				"VAR_NONTAX_DESCRIPTION" => $aSalesDataNonTax[$i]['nonTax_Description'],
+				"VAR_NONTAX_AMOUNT" => number_format( $aSalesDataNonTax[$i]['nonTax_Amount'], _NbOfDigitBehindComma_ ),
+			);
 
-        //tax calculation
-        $iTax = $iTotal * 0.1;
-        $iGrandTotal = $iTotal + $iTax;
+			if ($aSalesDataNonTax[$i]['nonTax_AddSubtract'] == 1)
+			{ //1 = add, 2 = subtract
+				$iNonTaxTotal += $aSalesDataNonTax[$i]['nonTax_Amount'];
+			}
+			else {
+				$iNonTaxTotal -= $aSalesDataNonTax[$i]['nonTax_Amount'];
+			}
+		}
+		$cWebsite->buildBlock("site", "salesNonTaxRow", $salesNonTaxRow);
+	}
+
+	//tax calculation
+    $iTax = $iTotal * 0.1;
+	$iGrandTotal = $iTotal + $iTax + $iNonTaxTotal;
 
 	$cWebsite->template->set_var(array(
-                "VAR_TOTAL" => number_format($iTotal, _NbOfDigitBehindComma_ ),
-                "VAR_TAX" => number_format($iTax, _NbOfDigitBehindComma_ ),
+		"VAR_TOTAL" => number_format($iTotal, _NbOfDigitBehindComma_ ),
+		"VAR_TAX" => number_format($iTax, _NbOfDigitBehindComma_ ),
 		"VAR_GRANDTOTAL" => number_format($iGrandTotal, _NbOfDigitBehindComma_ )
 	));
 	

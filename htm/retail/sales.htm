@@ -168,6 +168,35 @@
 			<td style="text-align:right;"> {VAR_TAX}</td>
 			<td colspan="2" style="text-align:right;"> &nbsp;</td>
 		</tr>
+		<!-- BEGIN salesNonTaxRow -->
+		<tr>
+			<td>
+				&nbsp;
+			</td>
+			<td>
+				&nbsp;
+			</td>
+			<td>
+				&nbsp;
+			</td>
+			<td>
+				&nbsp;
+			</td>
+			<td>
+				{VAR_NONTAX_DESCRIPTION}
+			</td>
+			<td style="text-align:right;"> <span id="nontax_amount"> {VAR_NONTAX_AMOUNT} </span> </td>
+			<td> &nbsp; </td>
+			<td style="text-align:right;">
+				<form name="salesNonTaxEditForm" id="salesNonTaxEditForm" method="POST" action="{VAR_PAGEURL}">
+					<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+					<input type="hidden" name="salesNonTax_ID" id="salesNonTax_ID" value="{VAR_SALESNONTAXID}" />
+					<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}" />
+					<input type="submit" name="salesNonTaxEdit" id="salesNonTaxEdit" value="EDIT" {VAR_ELEMENTDISABLED} />
+				</form>
+			</td>
+		</tr>
+		<!-- END salesNonTaxRow -->
 		<tr>
 			<td colspan="5" style="text-align:right;"> GRANDTOTAL</td>
 			<td style="text-align:right;"> {VAR_GRANDTOTAL}</td>
@@ -176,59 +205,95 @@
 	</table>
 
 <div style="border: thin solid black;padding: 5px;">
-	<form name="salesDetailInput" id="salesDetailInput" method="POST" action="{VAR_PAGEURL}">
-		<input type="hidden" name="editAllowed" id="editAllowed" value="{VAR_EDITALLOWED}" />
-		<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
-		<input type="hidden" name="salesDetail_ID" id="salesDetail_ID" value="{VAR_EDIT_SALESDETAILID}" />
-		<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}" />
-		<div class="form-group">
-			<label>Tipe Barang</label>
-			<select name="product" id="product" onChange="javascript:updatePrice();" {VAR_ELEMENTDISABLED}>
-				<!-- BEGIN productListBlock -->
-				<option value="{VAR_PRODUCTID}" {VAR_EDIT_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
-				<!-- END productListBlock -->
-			</select>
+	<div class="leftInput" style="float:left">
+		<form name="salesDetailInput" id="salesDetailInput" method="POST" action="{VAR_PAGEURL}">
+			<input type="hidden" name="editAllowed" id="editAllowed" value="{VAR_EDITALLOWED}" />
+			<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+			<input type="hidden" name="salesDetail_ID" id="salesDetail_ID" value="{VAR_EDIT_SALESDETAILID}" />
+			<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}" />
+			<div class="form-group">
+				<label>Tipe Barang</label>
+				<select name="product" id="product" onChange="javascript:updatePrice();" {VAR_ELEMENTDISABLED}>
+					<!-- BEGIN productListBlock -->
+					<option value="{VAR_PRODUCTID}" {VAR_EDIT_PRODUCTSELECTED}> {VAR_PRODUCTNAME} </option>
+					<!-- END productListBlock -->
+				</select>
+				<br />
+			</div>
+			<div class="form-group">
+				<label>Jumlah</label>
+				<input type="text" name="quantity" id="quantity" value="{VAR_EDIT_QUANTITY}" {VAR_ELEMENTDISABLED} />
+				<br />
+			</div>
+			<div class="form-group">
+				<label>Harga Satuan</label>
+				<input type="text" name="price" id="price" value="{VAR_EDIT_PRICE}" {VAR_ELEMENTDISABLED} />
+				<br />
+			</div>
+			<div class="form-group">
+				<label>Diskon</label>
+				<input type="text" name="discount" id="discount" value="{VAR_EDIT_DISCOUNT}" {VAR_ELEMENTDISABLED} />
+				<br />
+			</div>
+			<div class="form-group">
+				<label>Serial Number Start</label> <span style="color:red;">* Wajib Diisi</span>
+				<input type="text" name="sn_start" id="sn_start" value="{VAR_EDIT_SNSTART}" {VAR_ELEMENTDISABLED} />
+				<br />
+			</div>
+			<div class="form-group">
+				<label>Serial Number End</label>
+				<input type="text" name="sn_end" id="sn_end" value="{VAR_EDIT_SNEND}" {VAR_ELEMENTDISABLED} />
+				<br />
+			</div>
+			<div class="form-group">
+			<label>&nbsp;</label>
+			<input type="submit" name="salesDetail_Save" id="salesDetail_Save" value="Save" {VAR_ELEMENTDISABLED} />
 			<br />
-		</div>
-		<div class="form-group">
-			<label>Jumlah</label>
-			<input type="text" name="quantity" id="quantity" value="{VAR_EDIT_QUANTITY}" {VAR_ELEMENTDISABLED} />
-			<br />
-		</div>
-		<div class="form-group">
-			<label>Harga Satuan</label>
-			<input type="text" name="price" id="price" value="{VAR_EDIT_PRICE}" {VAR_ELEMENTDISABLED} />
-			<br />
-		</div>
-		<div class="form-group">
-			<label>Diskon</label>
-			<input type="text" name="discount" id="discount" value="{VAR_EDIT_DISCOUNT}" {VAR_ELEMENTDISABLED} />
-			<br />
-		</div>
-		<div class="form-group">
-			<label>Serial Number Start</label> <span style="color:red;">* Wajib Diisi</span>
-			<input type="text" name="sn_start" id="sn_start" value="{VAR_EDIT_SNSTART}" {VAR_ELEMENTDISABLED} />
-			<br />
-		</div>
-		<div class="form-group">
-			<label>Serial Number End</label>
-			<input type="text" name="sn_end" id="sn_end" value="{VAR_EDIT_SNEND}" {VAR_ELEMENTDISABLED} />
-			<br />
-		</div>
-		<div class="form-group">
-		<label>&nbsp;</label>
-		<input type="submit" name="salesDetail_Save" id="salesDetail_Save" value="Save" {VAR_ELEMENTDISABLED} />
-		<br />
-		</div>
-		<div class="form-group">
-			<label>Target Subtotal</label>
-			<input type="text" name="target_subtotal" id="target_subtotal" value="" {VAR_ELEMENTDISABLED} onChange="updatePriceBySubtotal();" />
-			<br />
-		</div>
-		<!-- BEGIN productListPriceBlock -->
-			<input type="hidden" id="productPrice_{VAR_PRODUCTID}" name="productPrice_{VAR_PRODUCTID}" value="{VAR_PRODUCTPRICE}" />
-		<!-- END productListPriceBlock -->
-	</form>
+			</div>
+			<div class="form-group">
+				<label>Target Subtotal</label>
+				<input type="text" name="target_subtotal" id="target_subtotal" value="" {VAR_ELEMENTDISABLED} onChange="updatePriceBySubtotal();" />
+				<br />
+			</div>
+			<!-- BEGIN productListPriceBlock -->
+				<input type="hidden" id="productPrice_{VAR_PRODUCTID}" name="productPrice_{VAR_PRODUCTID}" value="{VAR_PRODUCTPRICE}" />
+			<!-- END productListPriceBlock -->
+		</form>
+	</div>
+	<div class="rightInput" style="float:right">
+		<!-- sales non-tax input-->
+		<form name="salesNonTaxInput" id="salesNonTaxInput" method="POST" action="{VAR_PAGEURL}">
+			<input type="hidden" name="editAllowed" id="editAllowed" value="{VAR_EDITALLOWED}" />
+			<input type="hidden" name="sales_ID" id="sales_ID" value="{VAR_SALESID}" />
+			<input type="hidden" name="salesNonTax_ID" id="salesNonTax_ID" value="{VAR_EDIT_SALESNONTAXID}" />
+			<input type="hidden" name="currentRecordCounter" id="currentRecordCounter" value="{VAR_CURRENTRECORDCOUNTER}" />
+			<div class="form-group">
+				<label>Extra Charge / Special Discount</label>
+				<select name="salesNonTax_AddSubtract" id="salesNonTax_AddSubtract" {VAR_ELEMENTDISABLED}>
+					<option value="1" {VAR_EDIT_NONTAX_ADDSELECTED}> Extra Charge </option>
+					<option value="2" {VAR_EDIT_NONTAX_SUBTRACTSELECTED}> Special Discount </option>
+				</select>
+				<br />
+			</div>
+			<div class="form-group">
+				<label>Deskripsi</label>
+				<input type="text" name="salesNonTax_Description" id="salesNonTax_Description" value="{VAR_EDIT_NONTAX_DESCRIPTION}" {VAR_ELEMENTDISABLED} />
+				<br />
+			</div>
+			<div class="form-group">
+				<label>Nominal</label>
+				<input type="text" name="salesNonTax_Amount" id="salesNonTax_Amount" value="{VAR_EDIT_NONTAX_AMOUNT}" {VAR_ELEMENTDISABLED} />
+				<br />
+			</div>
+			<div class="form-group">
+				<label>&nbsp;</label>
+				<input type="submit" name="salesNonTax_Save" id="salesNonTax_Save" value="Save" {VAR_ELEMENTDISABLED} />
+				<br />
+			</div>
+		</form>
+	</div>
+	<div class="clear" style="clear:both"></div>
+	
 </div>
 
 

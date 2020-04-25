@@ -111,7 +111,7 @@
 				$iSalesNumber = $this->generateSalesNumber($aSales["outletID"]);
 
 				$sQuery  = 'INSERT INTO sales';
-				$sQuery .= ' (`number`, `outlet_ID`, `sales_order_ID`, `employee_ID`, `client_ID`, `paymentType_ID`, `ajaxPostID`, `Date`, `Notes`)';
+				$sQuery .= ' (`number`, `outlet_ID`, `sales_order_ID`, `employee_ID`, `client_ID`, `paymentType_ID`, `ajaxPostID`, `FinanceNotes`, `IsPaid`, `Date`, `Notes`)';
 				$sQuery .= ' VALUES ("' . $iSalesNumber . '"';
 				$sQuery .= ' ,"' . $aSales["outletID"] . '"';
 				$sQuery .= ' ,"' . $iSalesOrderID . '"';
@@ -119,6 +119,8 @@
 				$sQuery .= ' ,"' . $aSales["clientID"] . '"';
 				$sQuery .= ' ,"' . $aSales["paymentTypeID"] . '"';
 				$sQuery .= ' ,"' . $aSales["ajaxPostID"] . '"';
+				$sQuery .= ' ,""';
+				$sQuery .= ' ,"0"';
 				$sQuery .= ' ,"' . (($aSales["date"])?$aSales["date"]:date("Ymd")) . '"';
 				$sQuery .= ' ,"' . $aSales["notes"] . '")';
 
@@ -745,10 +747,32 @@
 				$sQuery  = 'SELECT sales.ID AS ID, sales.number AS number, sales_order_ID, outlet_ID, Date, Notes, employee_ID, client_ID, paymentType_ID';
 				$sQuery .= ' ,sales_detail.ID AS detail_ID, sales_detail.ajaxPostID AS detail_ajaxPostID, product.ID AS productID, product.Name AS productName, Quantity, Discount, sales_detail.Price';
 				$sQuery .= ' ,SnStart, SnEnd';
-				$sQuery .= ' FROM sales, sales_detail, product';
+				$sQuery .= ' FROM sales';
+				$sQuery .= ' LEFT JOIN sales_detail ON sales_detail.sales_ID = sales.ID';
+				$sQuery .= ' LEFT JOIN product ON product.ID = sales_detail.product_ID';
 				$sQuery .= ' WHERE sales.ID = "' . $iSalesID . '"';
-				$sQuery .= ' AND sales_detail.sales_ID ="' . $iSalesID . '"';
-				$sQuery .= ' AND product.ID = sales_detail.product_ID';
+
+				$aResult = $this->dbQuery($sQuery);
+
+				//TODO:check result is valid
+				foreach( $aResult as $key => $value )
+				{
+					foreach( $value as $key2 => $value2 )
+					{
+						$value2 = stripslashes($value2);
+					}
+				}
+
+				return $aResult;
+			}
+			
+			function GetSalesWithNonTax($iSalesID)
+			{
+				$sQuery  = 'SELECT sales.ID AS ID, sales.number AS number, sales_order_ID, outlet_ID, Date, Notes, employee_ID, client_ID, paymentType_ID';
+				$sQuery .= ' ,sales_non_tax.ID AS nonTax_ID, AddSubtract AS nonTax_AddSubtract, Description AS nonTax_Description, Amount AS nonTax_Amount';
+				$sQuery .= ' FROM sales';
+				$sQuery .= ' RIGHT JOIN sales_non_tax ON sales_non_tax.sales_ID = sales.ID';
+				$sQuery .= ' WHERE sales.ID = "' . $iSalesID . '"';
 
 				$aResult = $this->dbQuery($sQuery);
 
@@ -826,13 +850,14 @@
 					//if ( $this->validateDataInput($aNewUser) ) //validate data input
 					//{
 						$sQuery  = 'INSERT INTO sales_detail';
-						$sQuery .= ' (`sales_ID`, `sales_order_detail_ID`, `product_ID`, `Quantity`, `Discount`, `Price`, `SnStart`, `SnEnd`)';
+						$sQuery .= ' (`sales_ID`, `sales_order_detail_ID`, `product_ID`, `Quantity`, `Discount`, `Price`, `ajaxPostID`, `SnStart`, `SnEnd`)';
 						$sQuery .= ' VALUES ("' . $aSalesDetail['sales_ID'] .'",';
 						$sQuery .= ' "' . $iSalesOrderDetailID .'",';
 						$sQuery .= ' "' . $aSalesDetail['product_ID'] .'",';
 						$sQuery .= ' "' . $aSalesDetail['quantity'] .'",';
 						$sQuery .= ' "' . $aSalesDetail['discount'] .'",';
 						$sQuery .= ' "' . $aSalesDetail['price'] .'",';
+						$sQuery .= ' "",';
 						$sQuery .= ' "' . $aSalesDetail['sn_start'] .'",';
 						$sQuery .= ' "' . $aSalesDetail['sn_end'] .'")';
 
@@ -2170,7 +2195,139 @@
 
 				return $aResult;
 			}
+			
+			/*** SALES NON TAX ***/
+			function SaveSalesNonTax($aData)
+			{
+				$iResult = 0;
 
+				if ($aData['ID'] == 0)
+				{
+					$sQuery  = 'INSERT INTO sales_non_tax';
+					$sQuery .= ' (`sales_ID`, `AddSubtract`, `Description`, `Amount`)';
+					$sQuery .= ' VALUES ("' . $aData["sales_ID"] . '"';
+					$sQuery .= ' ,"' . $aData["AddSubtract"] . '"'; //1 = Add, 2 = Subtract
+					$sQuery .= ' ,"' . $aData["Description"] . '"';
+					$sQuery .= ' ,"' . $aData["Amount"] . '")';
+				}
+				else
+				{
+					$sQuery  = 'UPDATE sales_non_tax SET';
+					$sQuery .= ' `sales_ID` = "' . $aData["sales_ID"] . '",';
+					$sQuery .= ' `AddSubtract` = "' . $aData["AddSubtract"] . '",';
+					$sQuery .= ' `Description` = "' . $aData["Description"] . '",';
+					$sQuery .= ' `Amount` = "' . $aData["Amount"] . '"';
+					$sQuery .= ' WHERE ID = "' . $aData['ID'] . '"';
+				}
+
+				$aResult = $this->dbAction($sQuery);
+
+				//check result is success or failure
+				if ($aResult == FALSE)
+				{
+					$this->LogError('FATAL::databaseError::' . $this->dbError);
+				}
+				else
+				{
+					//return the ID of the last insert
+					if ($aData['ID'] == 0)
+					{
+						$iResult = $this->dbLink->lastInsertId();
+					}
+					else
+					{
+						$iResult = $aData['ID'];
+					}
+				}
+
+				return $iResult;
+			}
+
+			function RemoveSalesNonTax($iID)
+			{
+				$sQuery  = 'DELETE FROM sales_non_tax ';
+				$sQuery .= ' WHERE ID = "' . $iID . '"';
+
+				$aResult = $this->dbAction($sQuery);
+
+				//check result is success or failure
+				if ($aResult == FALSE)
+				{
+					$this->LogError('FATAL::databaseError::' . $this->dbError);
+				}
+				else
+				{
+					//if I need to do post hook, put here.
+				}
+			}
+
+			public function LoadSalesNonTax($iID)
+			{
+				$sQuery  = 'SELECT *';
+				$sQuery .= ' FROM sales_non_tax';
+				$sQuery .= ' WHERE ID = "' . $iID . '"';
+
+				$aResult = $this->dbQuery($sQuery);
+
+				return $aResult;
+			}
+
+			function ListSalesNonTax($aParam)
+			{
+				$sQuery  = 'SELECT *';
+				$sQuery .= ' FROM sales_non_tax';
+				$sQuery .= ' WHERE 1';
+
+				$sCountQuery = $sQuery;
+
+				//by default we assume it is a = query
+				//if passed ">", "<", "LIKE", "BETWEEN" in the value
+				//then we redo the = query
+				//$aSearch parameter is field and value
+				//value contains the necessary notation
+				if ( count($aParam) > 0 )
+				{
+					$sGroupQuery = '';
+					$sOrderByQuery = '';
+					$sLimitQuery = '';
+					foreach ($aParam as $field => $value)
+					{
+						if (substr_count($field, 'GROUP BY') > 0)
+						{
+							$sGroupQuery = ' ' . $field . ' ' . $value;
+						}
+						elseif (substr_count($field, 'ORDER BY') > 0)
+						{
+							$sOrderByQuery = ' ' . $field . ' ' . $value;
+						}
+						elseif (substr_count($field, 'LIMIT') > 0)
+						{
+							$sLimitQuery = ' ' . $field . ' ' . $value;
+						}
+						else
+						{
+							$sQuery .= ' AND ' . $field . ' ' . $value;
+						}
+					}
+					$sCountQuery = $sQuery . $sGroupQuery . $sOrderByQuery;
+					$sQuery = $sCountQuery . $sLimitQuery;
+				}
+
+				$aResult = $this->dbQuery($sQuery);
+
+				//get the total amount of data inside the query
+				$iResultCount = count($this->dbQuery($sCountQuery));
+
+				//TODO:check result is valid
+				if ( count($aResult) > 0 )
+				{
+					$aResult[0]['Count'] = $iResultCount;
+				}
+
+				return $aResult;
+			}
+
+			/*** HELPER FUNCTIONS FOR SALES ****/
 			function generateSalesNumber($iOutletID, $iID = "")
 			{
 				//kode cabang + bulan (2 digit) + tahun (4 digit) + 4 digit nomor

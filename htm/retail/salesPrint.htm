@@ -103,18 +103,27 @@
 		</tr>
 		<!-- END salesDetailRow -->
 		<tr>
-                        <td colspan="2" rowspan="3">Hormat kami:</td>
-                        <td colspan="2" rowspan="3">Penerima:</td>
+			<td colspan="4" ></td>
 			<td style="border: thin solid black;text-align:right;"> Total </td>
 			<td style="border: thin solid black;text-align:right;"> {VAR_TOTAL} </td>
 <!--			<td style="border: thin solid black;"> &nbsp; </td>-->
 		</tr>
 		<tr>
-			<td colspan="1" style="border: thin solid black;text-align:right;"> PPN </td>
+			<td colspan="4" ></td>
+			<td style="border: thin solid black;text-align:right;"> PPN </td>
 			<td style="border: thin solid black;text-align:right;"> {VAR_TAX} </td>
 <!--			<td style="border: thin solid black;"> &nbsp; </td>-->
 		</tr>
+		<!-- BEGIN salesNonTaxRow -->
 		<tr>
+			<td colspan="4" ></td>
+			<td style="border: thin solid black;text-align:right;"> {VAR_NONTAX_DESCRIPTION} </td>
+			<td style="border: thin solid black;text-align:right;"> {VAR_NONTAX_AMOUNT} </td>
+		</tr>
+		<!-- END salesNonTaxRow -->
+		<tr>
+			<td colspan="2">Hormat kami:</td>
+            <td colspan="2">Penerima:</td>
 			<td colspan="1" style="border: thin solid black;text-align:right;"> Grandtotal </td>
 			<td style="border: thin solid black;text-align:right;"> {VAR_GRANDTOTAL} </td>
 <!--			<td style="border: thin solid black;"> &nbsp; </td>-->
