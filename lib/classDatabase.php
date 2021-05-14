@@ -98,6 +98,14 @@
 				if ((!isset($aData['ID']) || $aData['ID'] == "")
 					&& (!isset($aData['id']) || $aData['id'] == ""))
 				{
+					if ( !(isset($aData['ID']) )
+						||
+					   !(isset($aData['id']) ) )
+					{
+						array_shift($aFields);
+						array_shift($aValues);
+					}
+					
 					$sQuery  = "INSERT INTO " . $sTableName;
 					$sQuery .= " (". implode(",", $aFields) .")";
 					$sQuery .= " VALUES";

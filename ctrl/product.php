@@ -63,6 +63,10 @@
 			$cProduct->setProperty("Name", $_POST['productName']);
 			$cProduct->setProperty("Description", $_POST['productDescription']);
 			$cProduct->setProperty("SpecialTax", (isset($_POST['productSpecialTax']))?$_POST['productSpecialTax']:"0");
+			$cProduct->setProperty("Price", 0);
+			$cProduct->setProperty("Viewable", 0);
+			$cProduct->setProperty("ViewPriority", 99);
+			$cProduct->setProperty("Deleted", 0);
 
 			if ( $cProduct->setProduct() )
 			{

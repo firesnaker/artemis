@@ -149,6 +149,9 @@
 				$cPurchase->setProperty("supplier_id", $_POST['supplierID']);
 				$cPurchase->setProperty("Date", date("Y-m-d", strtotime($_POST['purchaseDate'])));
 				$cPurchase->setProperty("Notes", $_POST['purchaseNotes']);
+				$cPurchase->setProperty("paymentType_ID", 0);
+				$cPurchase->setProperty("Status", 0);
+				$cPurchase->setProperty("verified", 0);
 
 				if ($_POST['paymentTypeID'])
 				{

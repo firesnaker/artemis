@@ -112,6 +112,15 @@
 						$param[$key] = $value;
 					}
 				}
+				
+				if ( !$param['Created'] )
+				{
+					$param['Created'] = date("Y-m-d H:i:s");
+				}
+				if ( !$param['Modified'] )
+				{
+					$param['Modified'] = date("Y-m-d H:i:s");
+				}
 
 				return $this->db->dbSave($param, $this->tableProduct);
 			}
