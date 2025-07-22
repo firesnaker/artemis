@@ -61,6 +61,7 @@
 			if (
                             strtolower($_SESSION['user_Name']) == "admin"
                             || strtolower($_SESSION['user_Name']) == "master"
+                            || $_SESSION['allow_purchase_page'] == 1
                         )
 			{
 				$can_update = TRUE;
